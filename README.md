@@ -1,16 +1,18 @@
 # Readability
 
-Visual Studio Code extension to analyze your writing using the [Automated Readability Index (ARI)](https://en.wikipedia.org/wiki/Automated_readability_index). Works on both Markdown and plain text files.
+Visual Studio Code extension that analyzes the readability of each sentence. Readability works on Markdown files.
 
 ## Features
 
 ### Analyze readability
 
-If the sentence is greater than 11 words, flag it with:
+If the sentence in a **Markdown** file is greater than 11 words, flag it with:
 
-- **Warning**: "Hard to read" if the score >= 10 and < 14.
-- **Error**: "Very hard to read" if the score >= 14.
+- **Warning**: "Hard to read" if the `ARI` score >= 10 and < 14.
+- **Error**: "Very hard to read" if the `ARI` score >= 14.
 - **Error**: If the sentence is longer than 25 words.
+
+> ARI stands for [automated readability index](https://en.wikipedia.org/wiki/Automated_readability_index).
 
 Here's how I chose these benchmarks:
 
