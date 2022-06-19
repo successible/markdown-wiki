@@ -1,3 +1,3 @@
 # Change Log
 
-See GitHub Releases for the list of changes.
+See [GitHub Releases](https://github.com/paulzakin/readability/releases) for the list of changes.
