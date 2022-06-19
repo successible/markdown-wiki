@@ -1,8 +1,12 @@
 {
   "name": "readability",
   "version": "0.0.0",
-  "description": "Visual Studio Code extension to analyze your writing using the Automated Readability Index.",
-  "repository": "https://github.com/paulzakin/readability.git",
+  "description": "Analyze the readability of each sentence in a Markdown file",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulzakin/readability.git"
+  },
+  "icon": "images/icon.png",
   "author": "Paul Zakin",
   "publisher": "paulzakinazure",
   "private": true,
@@ -13,8 +17,7 @@
   },
   "main": "./dist/extension.js",
   "activationEvents": [
-    "onLanguage:markdown",
-    "onLanguage:plaintext"
+    "onLanguage:markdown"
   ],
   "contributes": {
     "commands": []
