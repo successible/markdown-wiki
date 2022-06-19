@@ -1,7 +1,11 @@
 {
   "name": "readability",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "engines": {
+    "vscode": "^1.68.0",
+    "node": ">=16"
+  },
   "main": "./dist/extension.js",
   "activationEvents": [
     "onLanguage:markdown",
