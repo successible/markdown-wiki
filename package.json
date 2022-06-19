@@ -4,7 +4,7 @@
   "description": "Visual Studio Code extension to analyze your writing using the Automated Readability Index.",
   "repository": "https://github.com/paulzakin/readability.git",
   "author": "Paul Zakin",
-  "publisher": "paulzakin",
+  "publisher": "paulzakinazure",
   "private": true,
   "license": "MIT",
   "engines": {
