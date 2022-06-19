@@ -1,0 +1,25 @@
+{
+  "extends": ["config:base", "group:all"],
+  "schedule": ["before 5am on monday"],
+  "major": {
+    "enabled": true,
+    "schedule": ["before 5am on the first day of the month"]
+  },
+  "minor": {
+    "automerge": true
+  },
+  "patch": {
+    "automerge": true
+  },
+  "pin": {
+    "automerge": true
+  },
+  "digest": {
+    "automerge": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 5am on monday"]
+  }
+}
