@@ -22,8 +22,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install vsce
-        run: npm i -g vsce
-
       - name: Publish
-        run: vsce publish -p ${{ secrets.AZURE_TOKEN }}
+        run: npx vsce publish -p ${{ secrets.AZURE_TOKEN }}
