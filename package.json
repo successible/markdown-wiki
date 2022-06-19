@@ -1,6 +1,6 @@
 {
   "name": "readability",
-  "version": "1.0.0",
+  "version": "1.1.7",
   "description": "Visual Studio Code extension to analyze your writing using the Automated Readability Index.",
   "repository": "https://github.com/paulzakin/readability.git",
   "author": "Paul Zakin",
