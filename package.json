@@ -13,7 +13,6 @@
   "private": true,
   "license": "MIT",
   "engines": {
-    "vscode": "^1.68.0",
     "node": ">=16"
   },
   "main": "./dist/extension.js",
@@ -88,7 +87,7 @@
     "@types/mocha": "9.1.1",
     "@types/node": "16.11.41",
     "@types/prettier": "2.6.3",
-    "@types/valid-url": "^1.0.3",
+    "@types/valid-url": "1.0.3",
     "@types/vscode": "1.68.0",
     "@typescript-eslint/eslint-plugin": "5.28.0",
     "@typescript-eslint/parser": "5.28.0",
@@ -110,7 +109,7 @@
     "set-operations": "1.2.2",
     "text-readability": "1.0.5",
     "url-regex": "5.0.0",
-    "valid-url": "^1.0.9",
+    "valid-url": "1.0.9",
     "wordcount": "1.1.1"
   }
 }
