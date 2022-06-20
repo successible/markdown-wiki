@@ -1,6 +1,7 @@
+import * as vscode from 'vscode'
+
 // Reference: https://github.com/microsoft/vscode-extension-samples/blob/main/code-actions-sample/src/diagnostics.ts
 import { split } from 'sentence-splitter'
-import * as vscode from 'vscode'
 
 // Library to analyze the readability of text
 const rs = require('text-readability')

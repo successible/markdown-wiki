@@ -1,10 +1,12 @@
 import * as fs from 'fs'
-import { customAlphabet } from 'nanoid'
-import prettier from 'prettier'
-import { difference } from 'set-operations'
 import * as vscode from 'vscode'
+
+import { customAlphabet } from 'nanoid'
+import { difference } from 'set-operations'
 import glob from 'glob'
 import { isWebUri } from 'valid-url'
+import parserMarkdown from 'prettier/parser-markdown'
+import prettier from 'prettier/standalone'
 
 const footnoteRegex = /(\[\^\w+\])(?!(: ))/g
 const endnoteRegex = /(\[\^\w+\]): (.*)/g
@@ -90,7 +92,13 @@ export const reorderFootnotes = (
   })
 
   // Finally, we format the contents and overwrite the old file
-  fs.writeFileSync(file, prettier.format(newContents, { parser: 'markdown' }))
+  fs.writeFileSync(
+    file,
+    prettier.format(newContents, {
+      plugins: [parserMarkdown],
+      parser: 'markdown',
+    })
+  )
   vscode.window.showInformationMessage('Footnotes reordered and formatted!')
 }
 
