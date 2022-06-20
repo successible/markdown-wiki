@@ -1,10 +1,10 @@
 {
-  "name": "readability",
+  "name": "markdown-wiki",
   "version": "0.0.0",
-  "description": "Analyze the readability of each sentence in a Markdown file",
+  "description": "Create and manage a Markdown wiki using Visual Studio Code",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paulzakin/readability.git"
+    "url": "https://github.com/paulzakin/markdown-wiki.git"
   },
   "icon": "images/icon.png",
   "author": "Paul Zakin",
@@ -17,10 +17,59 @@
   },
   "main": "./dist/extension.js",
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onCommand:readability.insertFootnote",
+    "onCommand:readability.reorderFootnotesInFile",
+    "onCommand:readability.reorderFootnotesInWorkspace"
   ],
   "contributes": {
-    "commands": []
+    "commands": [
+      {
+        "command": "readability.insertFootnote",
+        "title": "Insert Footnote"
+      },
+      {
+        "command": "readability.reorderFootnotesInFile",
+        "title": "Reorder Footnotes in File"
+      },
+      {
+        "command": "readability.reorderFootnotesInWorkspace",
+        "title": "Reorder Footnotes in Workspace"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "readability.insertFootnote",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "readability.reorderFootnotesInFile",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "readability.reorderFootnotesInWorkspace",
+          "when": "editorLangId == markdown"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "readability.insertFootnote",
+        "key": "ctrl+'",
+        "mac": "cmd+'"
+      },
+      {
+        "command": "readability.reorderFootnotesInFile",
+        "key": "ctrl+shift+'",
+        "mac": "cmd+shift+'"
+      },
+      {
+        "command": "readability.reorderFootnotesInWorkspace",
+        "key": "ctrl+alt+'",
+        "mac": "cmd+alt+'"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -34,18 +83,17 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/glob": "7.2.0",
     "@types/mocha": "9.1.1",
     "@types/node": "16.11.41",
+    "@types/prettier": "2.6.3",
+    "@types/valid-url": "^1.0.3",
     "@types/vscode": "1.68.0",
     "@typescript-eslint/eslint-plugin": "5.28.0",
     "@typescript-eslint/parser": "5.28.0",
     "@vscode/test-electron": "2.1.4",
     "eslint": "8.18.0",
-    "glob": "8.0.3",
     "mocha": "10.0.0",
-    "prettier": "2.7.1",
     "ts-loader": "9.3.0",
     "typescript": "4.7.4",
     "vsce": "2.9.1",
@@ -53,10 +101,15 @@
     "webpack-cli": "4.10.0"
   },
   "dependencies": {
+    "glob": "8.0.3",
+    "nanoid": "4.0.0",
+    "prettier": "2.7.1",
     "remove-markdown": "0.5.0",
     "sentence-splitter": "3.2.2",
+    "set-operations": "1.2.2",
     "text-readability": "1.0.5",
     "url-regex": "5.0.0",
+    "valid-url": "^1.0.9",
     "wordcount": "1.1.1"
   }
 }
