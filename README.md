@@ -1,4 +1,4 @@
-# Markdown Wiki
+# 📙 Markdown Wiki
 
 Create and manage a Markdown wiki using Visual Studio Code.
 
