@@ -1,0 +1,21 @@
+{
+  "extends": ["config:base"],
+  "timezone": "America/Chicago",
+  "labels": ["dependency"],
+  "configMigration": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupSlug": "all-minor-patch",
+      "groupName": "all non-major dependencies",
+      "schedule": ["before 6am on Tuesday"],
+      "automerge": true
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 6am on Wednesday"]
+  }
+}

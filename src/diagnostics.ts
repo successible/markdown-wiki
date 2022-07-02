@@ -76,7 +76,7 @@ export const refreshDiagnostics = (
     sentences.forEach((sentence) => {
       // For each sentence, analyze the readability.
       // If an unreadable sentence is found, create a diagnostic.
-      // Diagnostics are those underlined messages you see in the editor and Problem panel.
+      // Diagnostics are messages you see in the editor and Problem panel.
       const diagnostic = createDiagnostic(
         document,
         paragraph,
@@ -96,23 +96,23 @@ export const subscribeToDocumentChanges = (
   context: vscode.ExtensionContext,
   diagnosticCollection: vscode.DiagnosticCollection
 ): void => {
-  if (vscode.window.activeTextEditor) {
-    refreshDiagnostics(
-      vscode.window.activeTextEditor.document,
-      diagnosticCollection
-    )
+  const editor = vscode.window.activeTextEditor
+  if (editor && String(editor.document.uri).endsWith('.md')) {
+    refreshDiagnostics(editor.document, diagnosticCollection)
   }
   context.subscriptions.push(
     vscode.window.onDidChangeActiveTextEditor((editor) => {
-      if (editor) {
+      if (editor && String(editor.document.uri).endsWith('.md')) {
         refreshDiagnostics(editor.document, diagnosticCollection)
       }
     })
   )
   context.subscriptions.push(
-    vscode.workspace.onDidChangeTextDocument((e) =>
-      refreshDiagnostics(e.document, diagnosticCollection)
-    )
+    vscode.workspace.onDidChangeTextDocument((e) => {
+      if (String(e.document.uri).endsWith('.md')) {
+        refreshDiagnostics(e.document, diagnosticCollection)
+      }
+    })
   )
   context.subscriptions.push(
     vscode.workspace.onDidCloseTextDocument((document) =>
