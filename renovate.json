@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base"],
+  "extends": ["config:base", "docker:enableMajor"],
   "timezone": "America/Chicago",
   "labels": ["dependency"],
   "configMigration": true,
@@ -9,13 +9,28 @@
       "matchUpdateTypes": ["minor", "patch"],
       "groupSlug": "all-minor-patch",
       "groupName": "all non-major dependencies",
-      "schedule": ["before 6am on Tuesday"],
+      "schedule": ["before 6:00am on Monday"],
       "automerge": true
+    },
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["major"],
+      "groupSlug": "all-major",
+      "groupName": "all major dependencies",
+      "schedule": ["on the first day of the month before 6:00am"],
+      "automerge": false
     }
   ],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
-    "schedule": ["before 6am on Wednesday"]
-  }
+    "schedule": ["before 6:00am on Tuesday"]
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["^(\\.github\\/workflows)\\/[^/]+\\.ya?ml$"],
+      "matchStrings": ["image: (?<depName>.*):(?<currentValue>.*)"],
+      "datasourceTemplate": "docker"
+    }
+  ]
 }
