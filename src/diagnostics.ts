@@ -67,6 +67,7 @@ export const refreshDiagnostics = (
 ): void => {
   const diagnostics: vscode.Diagnostic[] = []
   // Loop through every line in the text
+  let enableLint = true
   for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
     // Any amount of text WITHOUT a \n character (new line) is treated as one line
     // Word Wrap will make a long line of text look like a paragraph.
@@ -74,16 +75,31 @@ export const refreshDiagnostics = (
     const paragraph = document.lineAt(lineIndex)
     const sentences = split(paragraph.text)
     sentences.forEach((sentence) => {
-      // For each sentence, analyze the readability.
-      // If an unreadable sentence is found, create a diagnostic.
-      // Diagnostics are messages you see in the editor and Problem panel.
-      const diagnostic = createDiagnostic(
-        document,
-        paragraph,
-        sentence.raw,
-        lineIndex
-      )
-      diagnostic && diagnostics.push(diagnostic)
+      // Don't lint the contents of a ```code``` block
+      // When you see a ```, disable linting until you see the closing ```
+      // That ensures you skip the body of the code block
+      const codeBlock = sentence.raw.startsWith('```')
+      console.log(sentence, codeBlock, enableLint)
+      if (codeBlock && enableLint) {
+        enableLint = false
+        return
+      } else if (codeBlock && !enableLint) {
+        enableLint = true
+        return
+      } else {
+        if (enableLint === true) {
+          // For each sentence, analyze the readability.
+          // If an unreadable sentence is found, create a diagnostic.
+          // Diagnostics are messages you see in the editor and Problem panel.
+          const diagnostic = createDiagnostic(
+            document,
+            paragraph,
+            sentence.raw,
+            lineIndex
+          )
+          diagnostic && diagnostics.push(diagnostic)
+        }
+      }
     })
   }
   diagnosticCollection.set(document.uri, diagnostics)
