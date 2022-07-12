@@ -13,7 +13,7 @@
   "private": true,
   "license": "MIT",
   "engines": {
-    "vscode": "^1.68.0",
+    "vscode": ">=1",
     "node": ">=16"
   },
   "main": "./dist/extension.js",
