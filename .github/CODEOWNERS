@@ -1,9 +1,2 @@
 # The default reviewer
 * @paulzakin
-
-# Renovate can merge in changes related to dependencies
-# https://github.com/renovatebot/renovate-approve-bot/issues/23
-/package.json app/renovate-approve @paulzakin
-/pnpm-lock.yaml app/renovate-approve @paulzakin
-/pyproject.toml app/renovate-approve @paulzakin
-/poetry.lock app/renovate-approve @paulzakin
