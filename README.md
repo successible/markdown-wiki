@@ -23,17 +23,17 @@ The first (and most important) is `ARI`. `ARI` stands for automated readability 
 
 If a sentence is greater than 11 words, we flag it with:
 
-- Warning: "Hard to read" if the `ARI >= 10` and `ARI < 14`.
-- Error: "Very hard to read" if the `ARI >= 14`.
-- Error: If the sentence is longer than 25 words.
+- Warning: "Hard to read" if the `ARI >= 10` and `ARI < 14`
+- Error: "Very hard to read" if the `ARI >= 14`
+- Error: If the sentence is longer than 25 words
 
 > Note: The average reader can only understand text at an 8th grade level. This is `ARI < 10` [^3]. The average reader will also find a sentence with more than 25 words very hard to read [^4].
 
 The extension can also analyze your writing using these libraries:
 
-- Joblint [^7]. Bundled with the extension.
-- Proselint [^5]. Must be installed on your system.
-- Write Good [^6]. Bundled with the extension.
+- Joblint [^7]. Bundled with the extension
+- Proselint [^5]. Must be installed on your system
+- Write Good [^6]. Bundled with the extension
 
 > Note: All of these libraries are disabled by default. If desired, you can enable them in your VS Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
@@ -43,13 +43,13 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 
 ### Insert Footnote
 
-- Task: Insert a `url` on your clipboard as a Markdown footnote.
-- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>'</kbd>.
+- Task: Insert a `url` on your clipboard as a Markdown footnote
+- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>'</kbd>
 
 ### Reorder Footnotes
 
-- Task: Reorder all the footnotes in a Markdown file.
-- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>'</kbd>.
+- Task: Reorder all the footnotes in a Markdown file
+- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>'</kbd>
 
 ## Links
 
@@ -66,20 +66,3 @@ On the flip side, if there is no match, we will flag the link as a broken link.
 [^5]: https://github.com/amperser/proselint
 [^6]: https://github.com/btford/write-good
 [^7]: https://github.com/rowanmanning/joblint
-
-## Keyboard Shortcuts
-
-<details>
-<summary>Table</summary>
-
-| Key                                                              | Command                          |
-| ---------------------------------------------------------------- | -------------------------------- |
-| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>B</kbd>                    | Toggle bold                      |
-| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>I</kbd>                    | Toggle italic                    |
-| <kbd>Alt</kbd>+<kbd>S</kbd> (on Windows)                         | Toggle strikethrough<sup>1</sup> |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>]</kbd>                | Toggle heading (uplevel)         |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>[</kbd>                | Toggle heading (downlevel)       |
-| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>M</kbd>                    | Toggle math environment          |
-| <kbd>Alt</kbd> + <kbd>C</kbd>                                    | Check/Uncheck task list item     |
-| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> | Toggle preview                   |
-| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>K</kbd> <kbd>V</kbd>       | Toggle preview to side           |
