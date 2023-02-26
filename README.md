@@ -7,8 +7,6 @@ You can get this extension in two ways:
 - Going directly to the Visual Studio Code marketplace [^1].
 - Searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
 
-## Features
-
 This extension has three clusters of functionality:
 
 - Analysis
@@ -17,7 +15,7 @@ This extension has three clusters of functionality:
 
 Let's start with Analysis!
 
-### Analysis
+## Analysis
 
 This extension has many options for analyzing your writing.
 
@@ -39,7 +37,7 @@ The extension can analyze your writing using these libraries:
 
 > Note: All three of these libraries are disabled by default. If desired, you can enable them in your VS Code Settings. You also must have `proselint` installed on your system for `proselint` to work. This extension will not install `proselint` for you! Finally, `proselint` can be a bit slow, so it does not run on every text change. Instead, you need to save the document for it too run.
 
-### Footnotes
+## Footnotes
 
 Managing Markdown footnotes is a pain. Use these commands to automate that task away!
 
@@ -51,7 +49,7 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 
 > Shortcut: `ctrl+shift+'` or `cmd+shift+'`.
 
-### Links
+## Links
 
 Many tools use a type of link called a **wiki link** with double square brackets. These represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
