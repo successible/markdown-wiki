@@ -8,11 +8,11 @@ export const Footnotes = async (context: vscode.ExtensionContext) => {
 
   const commands = [
     register(
-      `${name}.insertFootnoteInFile`,
+      `${name}.insertFootnote`,
       async () => await insertFootnoteInFile()
     ),
     register(
-      `${name}.reorderFootnotesInFile`,
+      `${name}.reorderFootnotes`,
       async () => await reorderFootnotesInFile()
     ),
   ]

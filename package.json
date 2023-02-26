@@ -26,17 +26,17 @@
       "properties": {
         "Markdown Wiki.joblint": {
           "type": "boolean",
-          "description": "Enable the joblint linter.",
+          "description": "Enable joblint",
           "default": false
         },
         "Markdown Wiki.proselint": {
           "type": "boolean",
-          "description": "Enable the proselint linter.",
-          "default": true
+          "description": "Enable proselint",
+          "default": false
         },
         "Markdown Wiki.Write Good": {
           "type": "boolean",
-          "description": "Enable the write-good linter.",
+          "description": "Enable Write Good",
           "default": false
         }
       }
@@ -59,34 +59,34 @@
     ],
     "commands": [
       {
-        "command": "markdown-wiki.insertFootnoteInFile",
-        "title": "Insert Footnote in File"
+        "command": "markdown-wiki.insertFootnote",
+        "title": "Insert Footnote"
       },
       {
-        "command": "markdown-wiki.reorderFootnotesInFile",
-        "title": "Reorder Footnotes in File"
+        "command": "markdown-wiki.reorderFootnotes",
+        "title": "Reorder Footnotes"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "markdown-wiki.insertFootnoteInFile",
+          "command": "markdown-wiki.insertFootnote",
           "when": "editorLangId == markdown"
         },
         {
-          "command": "markdown-wiki.reorderFootnotesInFile",
+          "command": "markdown-wiki.reorderFootnotes",
           "when": "editorLangId == markdown"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "markdown-wiki.insertFootnoteInFile",
+        "command": "markdown-wiki.insertFootnote",
         "key": "ctrl+'",
         "mac": "cmd+'"
       },
       {
-        "command": "markdown-wiki.reorderFootnotesInFile",
+        "command": "markdown-wiki.reorderFootnotes",
         "key": "ctrl+shift+'",
         "mac": "cmd+shift+'"
       }

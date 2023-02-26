@@ -19,7 +19,7 @@ Let's start with Analysis!
 
 This extension has many options for analyzing your writing.
 
-The first (and most important) is `ARI`. `ARI` stands for automated readability index, and we use it to check to readability. [^2]. Here's how:
+The first (and most important) is `ARI`. `ARI` stands for automated readability index. We use it to check to readability. [^2]. Here's how:
 
 If a sentence is greater than 11 words, we flag it with:
 
@@ -29,29 +29,31 @@ If a sentence is greater than 11 words, we flag it with:
 
 > Note: The average reader can only understand text at an 8th grade level. This is `ARI < 10` [^3]. The average reader will also find a sentence with more than 25 words very hard to read [^4].
 
-The extension can analyze your writing using these libraries:
+The extension can also analyze your writing using these libraries:
 
-- [Proselint](https://github.com/amperser/proselint)
-- [Write Good](https://github.com/btford/write-good)
-- [Joblint](https://github.com/rowanmanning/joblint)
+- Joblint [^7]. Bundled with the extension.
+- Proselint [^5]. Must be installed on your system.
+- Write Good [^6]. Bundled with the extension.
 
-> Note: All three of these libraries are disabled by default. If desired, you can enable them in your VS Code Settings. You also must have `proselint` installed on your system for `proselint` to work. This extension will not install `proselint` for you! Finally, `proselint` can be a bit slow, so it does not run on every text change. Instead, you need to save the document for it too run.
+> Note: All of these libraries are disabled by default. If desired, you can enable them in your VS Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
 ## Footnotes
 
 Managing Markdown footnotes is a pain. Use these commands to automate that task away!
 
-- `Insert Footnote in File`. Insert a `url` on your clipboard as a Markdown footnote.
+### Insert Footnote
 
-> Shortcut: `crtl + '` or `cmd + '`.
+- Task: Insert a `url` on your clipboard as a Markdown footnote.
+- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>'</kbd>.
 
-- `Reorder Footnotes in File`. Reorder all the footnotes in a Markdown file.
+### Reorder Footnotes
 
-> Shortcut: `ctrl+shift+'` or `cmd+shift+'`.
+- Task: Reorder all the footnotes in a Markdown file.
+- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>'</kbd>.
 
 ## Links
 
-Many tools use a type of link called a **wiki link** with double square brackets. These represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
+Many tools use a type of link called a wiki link with double square brackets. These represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
 Let's say you have a wiki link, [[security]], in a file called `cool.md`. If that link matches the name of another file, namely `security.md`, we will recognize it as a link. We will also handle variation in capitalization and pluralization. So you can write [[Security]] or [[securities]] in `cool.md` without error!
 
@@ -61,3 +63,23 @@ On the flip side, if there is no match, we will flag the link as a broken link.
 [^2]: https://en.m.wikipedia.org/wiki/Automated_readability_index
 [^3]: https://readable.com/blog/what-is-the-average-persons-reading-level/
 [^4]: https://insidegovuk.blog.gov.uk/2014/08/04/sentence-length-why-25-words-is-our-limit/
+[^5]: https://github.com/amperser/proselint
+[^6]: https://github.com/btford/write-good
+[^7]: https://github.com/rowanmanning/joblint
+
+## Keyboard Shortcuts
+
+<details>
+<summary>Table</summary>
+
+| Key                                                              | Command                          |
+| ---------------------------------------------------------------- | -------------------------------- |
+| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>B</kbd>                    | Toggle bold                      |
+| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>I</kbd>                    | Toggle italic                    |
+| <kbd>Alt</kbd>+<kbd>S</kbd> (on Windows)                         | Toggle strikethrough<sup>1</sup> |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>]</kbd>                | Toggle heading (uplevel)         |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>[</kbd>                | Toggle heading (downlevel)       |
+| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>M</kbd>                    | Toggle math environment          |
+| <kbd>Alt</kbd> + <kbd>C</kbd>                                    | Check/Uncheck task list item     |
+| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> | Toggle preview                   |
+| <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>K</kbd> <kbd>V</kbd>       | Toggle preview to side           |
