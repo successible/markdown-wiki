@@ -1,0 +1,26 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  Publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+
+      - name: Use Node.js 19
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install

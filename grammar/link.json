@@ -1,0 +1,16 @@
+{
+  "scopeName": "markdown.wiki.link",
+  "fileTypes": [],
+  "injectionSelector": "L:text.html.markdown",
+  "patterns": [{ "include": "#link" }],
+  "repository": {
+    "link": {
+      "match": "\\[\\[([_A-Za-z\\s\\d-]*)\\]\\]",
+      "captures": {
+        "1": {
+          "name": "string.other.link.title"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "scopeName": "markdown.wiki.note",
+  "fileTypes": [],
+  "injectionSelector": "L:text.html.markdown",
+  "patterns": [{ "include": "#note" }],
+  "repository": {
+    "note": {
+      "begin": "^(> (\\w)+:)",
+      "end": "\n",
+      "name": "markup.quote",
+      "beginCaptures": {
+        "1": {
+          "name": "markup.heading"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "\\s",
+          "end": "$",
+          "patterns": [
+            {
+              "include": "text.html.markdown"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/ltex.dictionary.en-US.txt
+*.vsix
+dist
+node_modules

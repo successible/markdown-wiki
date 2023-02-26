@@ -1,0 +1,149 @@
+{
+  "name": "markdown-wiki",
+  "displayName": "Markdown Wiki",
+  "description": "Create and manage a Markdown wiki",
+  "author": "Successible",
+  "publisher": "Successible",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/successible/markdown-wiki.git"
+  },
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.75.1",
+    "node": "19"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Markdown Wiki",
+      "properties": {
+        "Markdown Wiki.joblint": {
+          "type": "boolean",
+          "description": "Enable the joblint linter.",
+          "default": false
+        },
+        "Markdown Wiki.proselint": {
+          "type": "boolean",
+          "description": "Enable the proselint linter.",
+          "default": true
+        },
+        "Markdown Wiki.Write Good": {
+          "type": "boolean",
+          "description": "Enable the write-good linter.",
+          "default": false
+        }
+      }
+    },
+    "grammars": [
+      {
+        "scopeName": "markdown.wiki.link",
+        "path": "./grammar/link.json",
+        "injectTo": [
+          "text.html.markdown"
+        ]
+      },
+      {
+        "scopeName": "markdown.wiki.note",
+        "path": "./grammar/note.json",
+        "injectTo": [
+          "text.html.markdown"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "markdown-wiki.insertFootnoteInFile",
+        "title": "Insert Footnote in File"
+      },
+      {
+        "command": "markdown-wiki.reorderFootnotesInFile",
+        "title": "Reorder Footnotes in File"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "markdown-wiki.insertFootnoteInFile",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown-wiki.reorderFootnotesInFile",
+          "when": "editorLangId == markdown"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "markdown-wiki.insertFootnoteInFile",
+        "key": "ctrl+'",
+        "mac": "cmd+'"
+      },
+      {
+        "command": "markdown-wiki.reorderFootnotesInFile",
+        "key": "ctrl+shift+'",
+        "mac": "cmd+shift+'"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map && cp -r grammar dist/grammar",
+    "test": "pnpm run compile && pnpm run lint",
+    "lint": "eslint --fix src && npx prettier --check src && tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/command-exists": "1.2.0",
+    "@types/glob": "8.0.1",
+    "@types/lodash": "4.14.191",
+    "@types/mocha": "10.0.1",
+    "@types/node": "18.14.0",
+    "@types/pluralize": "0.0.29",
+    "@types/prettier": "2.7.2",
+    "@types/shelljs": "0.8.11",
+    "@types/valid-url": "1.0.4",
+    "@types/vscode": "1.75.1",
+    "@typescript-eslint/eslint-plugin": "5.52.0",
+    "@typescript-eslint/parser": "5.52.0",
+    "@vscode/test-electron": "2.2.3",
+    "@vscode/vsce": "2.18.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-sort": "2.4.0",
+    "eslint": "8.34.0",
+    "mocha": "10.2.0",
+    "ts-loader": "9.4.2",
+    "typescript": "4.9.5",
+    "webpack-cli": "5.0.1",
+    "webpack": "5.75.0"
+  },
+  "dependencies": {
+    "command-exists": "1.2.9",
+    "dayjs": "1.11.7",
+    "glob": "8.1.0",
+    "joblint": "2.3.2",
+    "lodash": "4.17.21",
+    "nanoid": "4.0.1",
+    "pluralize": "8.0.0",
+    "prettier": "2.8.4",
+    "remove-markdown": "0.5.0",
+    "sentence-splitter": "3.2.3",
+    "set-operations": "2.0.2",
+    "shelljs": "0.8.5",
+    "text-readability": "1.0.5",
+    "url-regex": "5.0.0",
+    "valid-url": "1.0.9",
+    "wordcount": "1.1.1",
+    "write-good": "1.0.8"
+  }
+}
