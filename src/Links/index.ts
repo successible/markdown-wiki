@@ -5,11 +5,12 @@ export const Links = async (
   context: vscode.ExtensionContext,
   diagnostics: vscode.DiagnosticCollection
 ) => {
+  const selectors = [
+    { language: 'markdown', scheme: 'file' },
+    { language: 'markdown', scheme: 'untitled' },
+  ]
   const linkProvider = vscode.languages.registerDocumentLinkProvider(
-    [
-      { language: 'markdown', scheme: 'file' },
-      { language: 'markdown', scheme: 'untitled' },
-    ],
+    selectors,
     new WikiLink(diagnostics)
   )
   context.subscriptions.push(linkProvider)
