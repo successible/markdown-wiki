@@ -7,7 +7,10 @@ export class WikiLink implements vscode.DocumentLinkProvider {
   constructor(diagnostics: vscode.DiagnosticCollection) {
     this.diagnostics = diagnostics
   }
-  // Provider all the relevant [[wiki links]] in the given document
+
+  // The provider has access to the entire document document
+  // It creates the desired document links per each page
+
   public provideDocumentLinks(document: vscode.TextDocument) {
     const wikiLinks: vscode.DocumentLink[] = []
     const allPossibleWikiLinks = getAllPossibleWikiLinks()

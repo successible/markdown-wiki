@@ -5,6 +5,7 @@ import { generatePossibleName } from './generatePossibleName'
 type AllPossibleLinks = Record<string, vscode.Uri>
 
 export const getAllPossibleWikiLinks = () => {
+  // This is how you can read all files in the workspace
   const allPossibleLinks: AllPossibleLinks = {}
   const folders = vscode.workspace.workspaceFolders
   if (!folders) {

@@ -1,10 +1,10 @@
 import { error, info } from '..'
 import urlRegex from 'url-regex'
 import * as vscode from 'vscode'
+import { READABILITY } from './analyzeDocument'
 import { getJoblintDiagnostics } from './getJoblintDiagnostics'
 import { getWriteGoodDiagnostics } from './getWriteGoodDiagnostics'
 import { removeMarkdown } from './removeMarkdown'
-import { READABILITY } from './runDiagnosticsOnDocument'
 
 // Library to analyze the markdown-wiki of text
 const rs = require('text-readability')
@@ -14,7 +14,7 @@ const count = require('wordcount')
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 
-export const runDiagnosticsOnSentence = (
+export const analyzeSentence = (
   document: vscode.TextDocument,
   paragraph: vscode.TextLine,
   sentence: string,

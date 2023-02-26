@@ -9,13 +9,13 @@ You can get this extension in two ways:
 
 This extension has three clusters of functionality:
 
-- Analysis
+- Analytics
 - Footnotes
-- Links
+- Linking
 
-Let's start with Analysis!
+Let's start with Analytics!
 
-## Analysis
+## Analytics
 
 This extension has many options for analyzing your writing.
 
@@ -51,7 +51,7 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 - Task: Reorder all the footnotes in a Markdown file
 - Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>'</kbd>
 
-## Links
+## Linking
 
 Many tools use a type of link called a wiki link with double square brackets. These represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
 

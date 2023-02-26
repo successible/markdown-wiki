@@ -1,14 +1,14 @@
 import { split } from 'sentence-splitter'
 import * as vscode from 'vscode'
+import { analyzeSentence } from './analyzeSentence'
 import { getProselintDiagnostics } from './getProselintDiagnostics'
-import { runDiagnosticsOnSentence } from './runDiagnosticsOnSentence'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
 export const JOBLINT = 'joblint'
 export const WRITEGOOD = 'write-good'
 
-export const runDiagnosticsOnDocument = async (
+export const analyzeDocument = async (
   document: vscode.TextDocument,
   options: { enableProselint: boolean } = { enableProselint: true }
 ): Promise<vscode.Diagnostic[]> => {
@@ -47,7 +47,7 @@ export const runDiagnosticsOnDocument = async (
           // For each sentence, analyze the markdown-wiki.
           // If an unreadable sentence is found, create a diagnostic.
           // Diagnostics are messages you see in the editor and Problem panel.
-          const findings = runDiagnosticsOnSentence(
+          const findings = analyzeSentence(
             document,
             paragraph,
             sentence.raw,

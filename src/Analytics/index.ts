@@ -1,31 +1,33 @@
 // Reference: https://github.com/microsoft/vscode-extension-samples/blob/main/code-actions-sample/src/diagnostics.ts
 
 import * as vscode from 'vscode'
+import { analyzeDocument } from './helpers/analyzeDocument'
+import { analyzeDocuments } from './helpers/analyzeDocuments'
 import { isMarkdownFile } from './helpers/isMarkdownFile'
-import { runDiagnosticsOnDocument } from './helpers/runDiagnosticsOnDocument'
 
 export const error = vscode.DiagnosticSeverity.Error
 export const info = vscode.DiagnosticSeverity.Information
 
-export const Analysis = async (
+export const Analytics = async (
   context: vscode.ExtensionContext,
-  analysis: vscode.DiagnosticCollection
+  analytics: vscode.DiagnosticCollection
 ): Promise<void> => {
   const editor = vscode.window.activeTextEditor
+
   if (editor && isMarkdownFile(editor.document.uri)) {
     const document = editor.document
-    analysis.set([[document.uri, await runDiagnosticsOnDocument(document)]])
+    analytics.set([[document.uri, await analyzeDocument(document)]])
   }
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeTextDocument(async (editor) => {
       if (isMarkdownFile(editor.document.uri)) {
         const document = editor.document
-        analysis.set([
+        analytics.set([
           [
             document.uri,
             // Proselint is too slow to run on every text change
-            await runDiagnosticsOnDocument(document, {
+            await analyzeDocument(document, {
               enableProselint: false,
             }),
           ],
@@ -36,19 +38,29 @@ export const Analysis = async (
   context.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
       if (isMarkdownFile(document.uri)) {
-        analysis.set([[document.uri, await runDiagnosticsOnDocument(document)]])
+        analytics.set([[document.uri, await analyzeDocument(document)]])
       }
     })
   )
   vscode.window.onDidChangeActiveTextEditor(async (editor) => {
     if (editor && isMarkdownFile(editor.document.uri)) {
       const document = editor.document
-      analysis.set([[document.uri, await runDiagnosticsOnDocument(document)]])
+      analytics.set([[document.uri, await analyzeDocument(document)]])
     }
   })
+
   context.subscriptions.push(
     vscode.workspace.onDidCloseTextDocument((document) => {
-      analysis.delete(document.uri)
+      analytics.delete(document.uri)
     })
   )
+
+  const name = 'markdown-wiki'
+  const commands = [
+    vscode.commands.registerCommand(
+      `${name}.analyzeDocuments`,
+      async () => await analyzeDocuments(analytics)
+    ),
+  ]
+  context.subscriptions.push(...commands)
 }

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import { WikiLink } from './services/WikiLink'
 
-export const Links = async (
+export const Linking = async (
   context: vscode.ExtensionContext,
   diagnostics: vscode.DiagnosticCollection
 ) => {

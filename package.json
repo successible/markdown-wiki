@@ -57,6 +57,18 @@
         ]
       }
     ],
+    "customEditors": [
+      {
+        "viewType": "markdown-wiki.Editor",
+        "displayName": "WYSIWYG Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
     "commands": [
       {
         "command": "markdown-wiki.insertFootnote",
@@ -65,6 +77,10 @@
       {
         "command": "markdown-wiki.reorderFootnotes",
         "title": "Reorder Footnotes"
+      },
+      {
+        "command": "markdown-wiki.analyzeDocuments",
+        "title": "Analyze Documents"
       }
     ],
     "menus": {
@@ -75,6 +91,10 @@
         },
         {
           "command": "markdown-wiki.reorderFootnotes",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown-wiki.analyzeDocuments",
           "when": "editorLangId == markdown"
         }
       ]
@@ -89,6 +109,11 @@
         "command": "markdown-wiki.reorderFootnotes",
         "key": "ctrl+shift+'",
         "mac": "cmd+shift+'"
+      },
+      {
+        "command": "workbench.action.reopenWithEditor",
+        "key": "alt+'",
+        "mac": "alt+'"
       }
     ]
   },
@@ -96,7 +121,7 @@
     "vscode:prepublish": "pnpm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map && cp -r grammar dist/grammar",
+    "package": "webpack --mode production --devtool hidden-source-map && cp -r grammar dist/grammar && cp -r media dist/media",
     "test": "pnpm run compile && pnpm run lint",
     "lint": "eslint --fix src && npx prettier --check src && tsc --noEmit"
   },

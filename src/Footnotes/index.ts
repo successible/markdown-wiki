@@ -4,14 +4,13 @@ import { reorderFootnotesInFile } from './helpers/reorderFootnotesInFile'
 
 export const Footnotes = async (context: vscode.ExtensionContext) => {
   const name = 'markdown-wiki'
-  const register = vscode.commands.registerCommand
 
   const commands = [
-    register(
+    vscode.commands.registerCommand(
       `${name}.insertFootnote`,
       async () => await insertFootnoteInFile()
     ),
-    register(
+    vscode.commands.registerCommand(
       `${name}.reorderFootnotes`,
       async () => await reorderFootnotesInFile()
     ),

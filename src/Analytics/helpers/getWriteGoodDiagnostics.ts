@@ -1,5 +1,5 @@
 import { error } from '..'
-import { Findings, WRITEGOOD } from './runDiagnosticsOnDocument'
+import { Findings, WRITEGOOD } from './analyzeDocument'
 
 // Naive linter for English prose for developers
 const writeGood = require('write-good')
