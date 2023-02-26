@@ -1,6 +1,6 @@
 import { split } from 'sentence-splitter'
 import * as vscode from 'vscode'
-import { getAllPossibleWikiLinks } from './getAllPossibleWikiLinks'
+import { getAllPossibleWikiLinks } from '../helpers/getAllPossibleWikiLinks'
 
 export class WikiLink implements vscode.DocumentLinkProvider {
   diagnostics: vscode.DiagnosticCollection

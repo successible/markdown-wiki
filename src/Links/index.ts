@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { WikiLink } from './WikiLink'
+import { WikiLink } from './services/WikiLink'
 
 export const Links = async (
   context: vscode.ExtensionContext,

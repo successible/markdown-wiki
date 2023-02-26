@@ -1,5 +1,6 @@
-import { error } from '.'
-import { Findings, JOBLINT } from './runDiagnosticsOnDocument'
+import { error } from '..'
+import { JOBLINT } from './runDiagnosticsOnDocument'
+import { Findings } from './runDiagnosticsOnSentence'
 
 // Library to detect sexism, culture, expectations, and recruiter fails.
 const joblint = require('joblint')

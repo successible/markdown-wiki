@@ -1,4 +1,4 @@
-import { error } from '.'
+import { error } from '..'
 import { Findings, WRITEGOOD } from './runDiagnosticsOnDocument'
 
 // Naive linter for English prose for developers

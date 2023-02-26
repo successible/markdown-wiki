@@ -1,8 +1,8 @@
 // Reference: https://github.com/microsoft/vscode-extension-samples/blob/main/code-actions-sample/src/diagnostics.ts
 
 import * as vscode from 'vscode'
-import { isMarkdownFile } from './isMarkdownFile'
-import { runDiagnosticsOnDocument } from './runDiagnosticsOnDocument'
+import { isMarkdownFile } from './helpers/isMarkdownFile'
+import { runDiagnosticsOnDocument } from './helpers/runDiagnosticsOnDocument'
 
 export const error = vscode.DiagnosticSeverity.Error
 export const info = vscode.DiagnosticSeverity.Information

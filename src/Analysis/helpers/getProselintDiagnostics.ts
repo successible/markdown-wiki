@@ -1,4 +1,4 @@
-import { info } from '.'
+import { info } from '..'
 import commandExists from 'command-exists'
 import shelljs from 'shelljs'
 import * as vscode from 'vscode'

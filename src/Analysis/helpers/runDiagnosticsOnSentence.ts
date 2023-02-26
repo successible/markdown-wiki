@@ -1,4 +1,4 @@
-import { error, info } from '.'
+import { error, info } from '..'
 import urlRegex from 'url-regex'
 import * as vscode from 'vscode'
 import { getJoblintDiagnostics } from './getJoblintDiagnostics'
