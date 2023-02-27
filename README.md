@@ -35,9 +35,9 @@ The extension can also analyze your writing using these libraries:
 - Proselint [^5]. Must be installed on your system
 - Write Good [^6]. Bundled with the extension
 
-> Note: All of these libraries are disabled by default. If desired, you can enable them in your VS Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
+> Note: All of these libraries are disabled by default. If desired, you can enable them in your Visual Studio Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
-You may want to more than just your open file. These commands make that possible.
+You may want to analyze more than just your open file. These commands make that possible.
 
 - `Analyze Files`: Analyze every file in your workspace with enabled libraries. This command will also check for missing wiki links and missing asset links.
 
@@ -59,11 +59,14 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 
 ## Linking
 
-Many tools use a type of link called a wiki link with double square brackets. These represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
+Wiki links represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
-Let's say you have a wiki link, [[security]], in a file called `cool.md`. If that link matches the name of another file, namely `security.md`, we will recognize it as a link. We will also handle variation in capitalization and pluralization. So you can write [[Security]] or [[securities]] in `cool.md` without error!
+- You have a wiki link, [[security]], in a file called `cool.md`. 
+- If that link matches the name of another file, `security.md`, we will recognize it as a link. 
+- We will also handle variation in capitalization and pluralization. 
+- So you can write [[Security]] or [[securities]] in `cool.md` without error!
 
-On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match at this time. For example, if you write `![puppy](puppy.png)` but `puppy.png` does not exist, we will throw an error.
+On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match. For example, if you write `![puppy](puppy.png)` but `puppy.png` does not exist, we will throw an error.
 
 [^1]: https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki
 [^2]: https://en.m.wikipedia.org/wiki/Automated_readability_index
