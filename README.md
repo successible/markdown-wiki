@@ -63,7 +63,7 @@ Many tools use a type of link called a wiki link with double square brackets. Th
 
 Let's say you have a wiki link, [[security]], in a file called `cool.md`. If that link matches the name of another file, namely `security.md`, we will recognize it as a link. We will also handle variation in capitalization and pluralization. So you can write [[Security]] or [[securities]] in `cool.md` without error!
 
-On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match at this time. For example, if you write ![puppy](puppy.png) but `puppy.png` does not exist, we will throw an error.
+On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match at this time. For example, if you write `![puppy](puppy.png)` but `puppy.png` does not exist, we will throw an error.
 
 [^1]: https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki
 [^2]: https://en.m.wikipedia.org/wiki/Automated_readability_index
