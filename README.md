@@ -61,7 +61,7 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 
 Wiki links represent an internal link to another file. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
-- You have a wiki link, [[security]], in a file called `cool.md`. 
+- You have the wiki link [[security]] in a file called `cool.md`. 
 - If that link matches the name of another file, `security.md`, we will recognize it as a link. 
 - We will also handle variation in capitalization and pluralization. 
 - So you can write [[Security]] or [[securities]] in `cool.md` without error!
