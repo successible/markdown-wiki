@@ -59,7 +59,7 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 
 ## Linking
 
-Wiki links represent an internal link to another file in the folder. They have become widely adopted because they are short and easy to read. Here's how we use them:
+Wiki links represent an internal link to another file. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
 - You have a wiki link, [[security]], in a file called `cool.md`. 
 - If that link matches the name of another file, `security.md`, we will recognize it as a link. 
