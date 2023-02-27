@@ -4,6 +4,7 @@ import * as vscode from 'vscode'
 import { analyzeDocument } from './analyzeDocument'
 
 export const analyzeDocuments = async (
+  context: vscode.ExtensionContext,
   analytics: vscode.DiagnosticCollection
 ) => {
   const start = dayjs()
@@ -22,7 +23,10 @@ export const analyzeDocuments = async (
           progress.report({ increment: (index + 1) / file.length })
           const openPath = vscode.Uri.file(file)
           const document = await vscode.workspace.openTextDocument(openPath)
-          diagnostics.push([document.uri, await analyzeDocument(document)])
+          diagnostics.push([
+            document.uri,
+            await analyzeDocument(context, document),
+          ])
         }
         analytics.set(diagnostics)
         const end = dayjs()

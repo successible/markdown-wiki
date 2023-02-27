@@ -2,9 +2,9 @@ import glob from 'glob'
 import * as vscode from 'vscode'
 import { generatePossibleName } from './generatePossibleName'
 
-type AllPossibleLinks = Record<string, vscode.Uri>
+export type AllPossibleLinks = Record<string, vscode.Uri>
 
-export const getAllPossibleWikiLinks = () => {
+export const getAllPossibleLinks = () => {
   // This is how you can read all files in the workspace
   const allPossibleLinks: AllPossibleLinks = {}
   const folders = vscode.workspace.workspaceFolders

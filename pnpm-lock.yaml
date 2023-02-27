@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@textlint/ast-node-types': 13.3.1
   '@types/command-exists': 1.2.0
   '@types/glob': 8.0.1
   '@types/lodash': 4.14.191
@@ -64,6 +65,7 @@ dependencies:
   write-good: 1.0.8_mbtr3ald3hcqvtwfvnckguo3q4
 
 devDependencies:
+  '@textlint/ast-node-types': 13.3.1
   '@types/command-exists': 1.2.0
   '@types/glob': 8.0.1
   '@types/lodash': 4.14.191
@@ -190,6 +192,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+
+  /@textlint/ast-node-types/13.3.1:
+    resolution: {integrity: sha512-/qeEjW3hIFpGwESsCkJRroja7mBOlo9wqyx8G4fwayq4FZRvJMm/9DhIo77jd/4wm/VSJcVVr+fs+rVa4jrY5A==}
+    dev: true
 
   /@textlint/ast-node-types/4.4.3:
     resolution: {integrity: sha512-qi2jjgO6Tn3KNPGnm6B7p6QTEPvY95NFsIAaJuwbulur8iJUEenp1OnoUfiDaC/g2WPPEFkcfXpmnu8XEMFo2A==}

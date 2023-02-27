@@ -1,6 +1,7 @@
 // Reference: https://github.com/microsoft/vscode-extension-samples/blob/main/code-actions-sample/src/diagnostics.ts
 
 import * as vscode from 'vscode'
+import { EXTENSION_NAME } from '../extension'
 import { analyzeDocument } from './helpers/analyzeDocument'
 import { analyzeDocuments } from './helpers/analyzeDocuments'
 import { isMarkdownFile } from './helpers/isMarkdownFile'
@@ -16,7 +17,7 @@ export const Analytics = async (
 
   if (editor && isMarkdownFile(editor.document.uri)) {
     const document = editor.document
-    analytics.set([[document.uri, await analyzeDocument(document)]])
+    analytics.set([[document.uri, await analyzeDocument(context, document)]])
   }
 
   context.subscriptions.push(
@@ -27,7 +28,7 @@ export const Analytics = async (
           [
             document.uri,
             // Proselint is too slow to run on every text change
-            await analyzeDocument(document, {
+            await analyzeDocument(context, document, {
               enableProselint: false,
             }),
           ],
@@ -38,14 +39,16 @@ export const Analytics = async (
   context.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
       if (isMarkdownFile(document.uri)) {
-        analytics.set([[document.uri, await analyzeDocument(document)]])
+        analytics.set([
+          [document.uri, await analyzeDocument(context, document)],
+        ])
       }
     })
   )
   vscode.window.onDidChangeActiveTextEditor(async (editor) => {
     if (editor && isMarkdownFile(editor.document.uri)) {
       const document = editor.document
-      analytics.set([[document.uri, await analyzeDocument(document)]])
+      analytics.set([[document.uri, await analyzeDocument(context, document)]])
     }
   })
 
@@ -55,11 +58,10 @@ export const Analytics = async (
     })
   )
 
-  const name = 'markdown-wiki'
   const commands = [
     vscode.commands.registerCommand(
-      `${name}.analyzeDocuments`,
-      async () => await analyzeDocuments(analytics)
+      `${EXTENSION_NAME}.analyzeDocuments`,
+      async () => await analyzeDocuments(context, analytics)
     ),
   ]
   context.subscriptions.push(...commands)

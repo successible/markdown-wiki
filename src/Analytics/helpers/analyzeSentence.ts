@@ -2,6 +2,7 @@ import { error, info } from '..'
 import urlRegex from 'url-regex'
 import * as vscode from 'vscode'
 import { READABILITY } from './analyzeDocument'
+import { getConfig } from './getConfig'
 import { getJoblintDiagnostics } from './getJoblintDiagnostics'
 import { getWriteGoodDiagnostics } from './getWriteGoodDiagnostics'
 import { removeMarkdown } from './removeMarkdown'
@@ -20,8 +21,6 @@ export const analyzeSentence = (
   sentence: string,
   lineIndex: number
 ): vscode.Diagnostic[] | null => {
-  const config = vscode.workspace.getConfiguration('Markdown Wiki')
-
   const sentenceStart = paragraph.text.indexOf(sentence)
   const sentenceEnd = sentenceStart + sentence.length
 
@@ -41,19 +40,24 @@ export const analyzeSentence = (
 
   // Collect the findings
 
-  if (Boolean(config.get('joblint'))) {
+  const config = getConfig()
+  const readability = Boolean(config.get('Readability'))
+  const joblint = Boolean(config.get('joblint'))
+  const writeGood = Boolean(config.get('Write Good'))
+
+  if (joblint) {
     findings.push(...getJoblintDiagnostics(sentence))
   }
 
-  if (Boolean(config.get('Write Good'))) {
+  if (writeGood) {
     findings.push(...getWriteGoodDiagnostics(sentence))
   }
 
-  if (nWords > 25) {
+  if (nWords > 25 && readability) {
     findings.push(['This sentence is more than 25 words', error, READABILITY])
   }
 
-  if (score >= 10 && sentenceStart !== -1 && nWords > 11) {
+  if (score >= 10 && sentenceStart !== -1 && nWords > 11 && readability) {
     const isVeryHard = score >= 14
     const message = isVeryHard
       ? 'This sentence is very hard to read.'
