@@ -1,10 +1,10 @@
 # 📙 Markdown Wiki
 
-Manage a Markdown wiki using Visual Studio Code.
+Keep a wiki in Visual Studio Code.
 
 You can get this extension in two ways:
 
-- Going directly to the Visual Studio Code marketplace [^1].
+- Going directly to the Visual Studio marketplace [^1].
 - Searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
 
 This extension has three clusters of functionality:
