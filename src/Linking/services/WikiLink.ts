@@ -11,7 +11,7 @@ export class WikiLink implements vscode.DocumentLinkProvider {
   // That way, we do not need to iterate through the document twice.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async provideDocumentLinks(document: vscode.TextDocument) {
-    const links = await this.context.workspaceState.get('links')
+    const links = await this.context.workspaceState.get('wikiLinks')
     return links as vscode.DocumentLink[]
   }
 }

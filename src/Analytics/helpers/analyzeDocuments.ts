@@ -1,38 +1,61 @@
-import dayjs from 'dayjs'
-import glob from 'glob'
+import fs from 'fs'
+import { difference } from 'set-operations'
 import * as vscode from 'vscode'
 import { analyzeDocument } from './analyzeDocument'
+import { getAllFilePaths } from './getAllFilePaths'
 
 export const analyzeDocuments = async (
   context: vscode.ExtensionContext,
-  analytics: vscode.DiagnosticCollection
+  analytics: vscode.DiagnosticCollection,
+  mode: 'analyze' | 'delete'
 ) => {
-  const start = dayjs()
+  const diagnostics = [] as [vscode.Uri, vscode.Diagnostic[]][]
+  const assetLinks: string[] = []
+  let orphanedAssets
+
   vscode.window.withProgress(
     {
-      cancellable: false,
+      cancellable: true,
       location: vscode.ProgressLocation.Notification,
-      title: 'Linting the workspace',
+      title: `Running the ${mode} command`,
     },
     async (progress) => {
-      if (vscode.workspace.workspaceFolders) {
-        const workspace = vscode.workspace.workspaceFolders[0]
-        const diagnostics = [] as [vscode.Uri, vscode.Diagnostic[]][]
-        const files = glob.sync(`${workspace.uri.path}/**/*.md`, {})
-        for (const [index, file] of files.entries()) {
-          progress.report({ increment: (index + 1) / file.length })
-          const openPath = vscode.Uri.file(file)
-          const document = await vscode.workspace.openTextDocument(openPath)
-          diagnostics.push([
-            document.uri,
-            await analyzeDocument(context, document),
-          ])
+      const files = await getAllFilePaths()
+
+      // The increment is summed up automatically by progress.report
+      const increment = (1 / files.length) * 100
+      for (const entry of files.entries()) {
+        progress.report({ increment: increment })
+        const openPath = vscode.Uri.file(entry[1])
+        const document = await vscode.workspace.openTextDocument(openPath)
+        const result = await analyzeDocument(context, document)
+        assetLinks.push(...result.assetLinks)
+        if (mode === 'analyze') {
+          diagnostics.push([document.uri, result.diagnostics])
         }
-        analytics.set(diagnostics)
-        const end = dayjs()
-        vscode.window.showInformationMessage(
-          `The workspace was analyzed in ${end.diff(start, 'seconds')} seconds!`
+      }
+
+      if (mode === 'delete') {
+        const allAssets = await getAllFilePaths(
+          '**/*.{png,svg,jpeg,jpg,gif,wav,mp3}'
         )
+        orphanedAssets = difference(allAssets, assetLinks)
+        if (Array.isArray(orphanedAssets)) {
+          for (const imagePath of orphanedAssets) {
+            fs.unlinkSync(imagePath)
+          }
+        }
+      }
+
+      if (mode === 'analyze') {
+        await analytics.set(diagnostics)
+      }
+
+      const showMessage = vscode.window.showInformationMessage
+      if (mode === 'analyze') {
+        showMessage(`Analysis complete. Check the Problems tab for results.`)
+      } else {
+        showMessage(`Removed ${orphanedAssets.length} orphaned assets`)
       }
     }
   )

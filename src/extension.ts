@@ -14,7 +14,7 @@ export const EXTENSION_NAME = 'markdown-wiki'
 
 export const activate = async (context: vscode.ExtensionContext) => {
   // Clear the cache used by Linking
-  await context.workspaceState.update('links', {})
+  await context.workspaceState.update('wikiLinks', {})
 
   // Create the diagnostics used by Analytics
   const analytics = vscode.languages.createDiagnosticCollection('analytics')

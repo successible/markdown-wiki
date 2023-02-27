@@ -17,38 +17,35 @@ export const Analytics = async (
 
   if (editor && isMarkdownFile(editor.document.uri)) {
     const document = editor.document
-    analytics.set([[document.uri, await analyzeDocument(context, document)]])
+    const { diagnostics } = await analyzeDocument(context, document)
+    analytics.set([[document.uri, diagnostics]])
   }
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeTextDocument(async (editor) => {
       if (isMarkdownFile(editor.document.uri)) {
         const document = editor.document
-        analytics.set([
-          [
-            document.uri,
-            // Proselint is too slow to run on every text change
-            await analyzeDocument(context, document, {
-              enableProselint: false,
-            }),
-          ],
-        ])
+        const { diagnostics } = await analyzeDocument(context, document, {
+          // Proselint is too slow to run on every text change
+          enableProselint: false,
+        })
+        analytics.set([[document.uri, diagnostics]])
       }
     })
   )
   context.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
       if (isMarkdownFile(document.uri)) {
-        analytics.set([
-          [document.uri, await analyzeDocument(context, document)],
-        ])
+        const { diagnostics } = await analyzeDocument(context, document)
+        analytics.set([[document.uri, diagnostics]])
       }
     })
   )
   vscode.window.onDidChangeActiveTextEditor(async (editor) => {
     if (editor && isMarkdownFile(editor.document.uri)) {
       const document = editor.document
-      analytics.set([[document.uri, await analyzeDocument(context, document)]])
+      const { diagnostics } = await analyzeDocument(context, document)
+      analytics.set([[document.uri, diagnostics]])
     }
   })
 
@@ -60,8 +57,12 @@ export const Analytics = async (
 
   const commands = [
     vscode.commands.registerCommand(
-      `${EXTENSION_NAME}.analyzeDocuments`,
-      async () => await analyzeDocuments(context, analytics)
+      `${EXTENSION_NAME}.analyzeFiles`,
+      async () => await analyzeDocuments(context, analytics, 'analyze')
+    ),
+    vscode.commands.registerCommand(
+      `${EXTENSION_NAME}.deleteOrphanAssets`,
+      async () => await analyzeDocuments(context, analytics, 'delete')
     ),
   ]
   context.subscriptions.push(...commands)

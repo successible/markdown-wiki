@@ -1,6 +1,7 @@
 import { TxtNode } from '@textlint/ast-node-types'
 import { split } from 'sentence-splitter'
 import * as vscode from 'vscode'
+import { findAssetLinksInSentence } from '../../Linking/helpers/findIAssetLinksInSentence'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
 import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
 import { analyzeSentence } from './analyzeSentence'
@@ -16,7 +17,7 @@ export const analyzeDocument = async (
   context: vscode.ExtensionContext,
   document: vscode.TextDocument,
   options: { enableProselint: boolean } = { enableProselint: true }
-): Promise<vscode.Diagnostic[]> => {
+) => {
   const { enableProselint } = options
   const diagnostics: vscode.Diagnostic[] = []
   const config = getConfig()
@@ -26,8 +27,9 @@ export const analyzeDocument = async (
     diagnostics.push(...(await getProselintDiagnostics(document)))
   }
 
-  const allPossibleLinks = getAllPossibleLinks()
-  const links: vscode.DocumentLink[] = []
+  const allPossibleLinks = await getAllPossibleLinks()
+  const wikiLinks: vscode.DocumentLink[] = []
+  const assetLinks: string[] = []
 
   let enableLint = true
   // Loop through every line in the text
@@ -38,15 +40,23 @@ export const analyzeDocument = async (
     const paragraph = document.lineAt(lineIndex)
     const quote = paragraph.text.startsWith('> Quote:')
     const sentences = split(paragraph.text)
-    sentences.forEach((sentence) => {
+    for (const sentence of sentences) {
       // Find all the wiki links
-      const result = findWikiLinksInSentence(
+      const wikiLinkResults = findWikiLinksInSentence(
         sentence as TxtNode,
         lineIndex,
         allPossibleLinks
       )
-      diagnostics.push(...result.missingLinks)
-      links.push(...result.links)
+      diagnostics.push(...wikiLinkResults.missingLinks)
+      wikiLinks.push(...wikiLinkResults.links)
+
+      // Find all the missing asset links
+      const assetLinkResults = await findAssetLinksInSentence(
+        sentence as TxtNode,
+        lineIndex
+      )
+      diagnostics.push(...assetLinkResults.missingLinks)
+      assetLinks.push(...assetLinkResults.links)
 
       // Don't lint the contents of a ```code``` block
       // When you see a ```, disable linting until you see the closing ```
@@ -55,11 +65,11 @@ export const analyzeDocument = async (
       // Start of code block or quote
       if (enableLint && (codeBlock || quote)) {
         enableLint = false
-        return
+        continue
         // End of the code block.
       } else if (!enableLint && codeBlock) {
         enableLint = true
-        return
+        continue
       } else {
         if (enableLint === true) {
           // For each sentence, analyze the markdown-wiki.
@@ -74,13 +84,15 @@ export const analyzeDocument = async (
           findings?.forEach((f) => diagnostics.push(f))
         }
       }
-    })
+    }
+
     // Because the quote is only one line, which need to enabling linting again
     if (quote) {
       enableLint = true
     }
   }
 
-  await context.workspaceState.update('links', links)
-  return diagnostics
+  await context.workspaceState.update('wikiLinks', wikiLinks)
+
+  return { assetLinks, diagnostics }
 }

@@ -37,6 +37,12 @@ The extension can also analyze your writing using these libraries:
 
 > Note: All of these libraries are disabled by default. If desired, you can enable them in your VS Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
+You may want to more than just your open file. These commands make that possible.
+
+- `Analyze Files`: Analyze every file in your workspace with enabled libraries. This command will also check for missing wiki links and missing asset links.
+
+- `Delete Orphaned Assets`: Delete any asset not linked in a Markdown file. Specifically, this command will delete any files of type `png`, `jpeg`, `jpg`, `svg`, `gif`, `wav`, or `mp3`. This command is destructive, so use it carefully!
+
 ## Footnotes
 
 Managing Markdown footnotes is a pain. Use these commands to automate that task away!
@@ -57,7 +63,7 @@ Many tools use a type of link called a wiki link with double square brackets. Th
 
 Let's say you have a wiki link, [[security]], in a file called `cool.md`. If that link matches the name of another file, namely `security.md`, we will recognize it as a link. We will also handle variation in capitalization and pluralization. So you can write [[Security]] or [[securities]] in `cool.md` without error!
 
-On the flip side, if there is no match, we will flag the link as a broken link.
+On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match at this time. For example, if you write ![puppy](puppy.png) but `puppy.png` does not exist, we will throw an error.
 
 [^1]: https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki
 [^2]: https://en.m.wikipedia.org/wiki/Automated_readability_index
