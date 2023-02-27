@@ -61,10 +61,10 @@ Managing Markdown footnotes is a pain. Use these commands to automate that task 
 
 Wiki links represent an internal link to another file. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
-- You have the wiki link [[security]] in a file called `cool.md`. 
-- If that link matches the name of another file, `security.md`, we will recognize it as a link. 
-- We will also handle variation in capitalization and pluralization. 
-- So you can write [[Security]] or [[securities]] in `cool.md` without error!
+- You have the wiki link `[[security]]` in a file called `cool.md`.
+- If that link matches the name of another file, `security.md`, we will recognize it as a link.
+- We will also handle variation in capitalization and pluralization.
+- So you can write `[[Security]]` or `[[securities]]` in `cool.md` without error!
 
 On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match. For example, if you write `![puppy](puppy.png)` but `puppy.png` does not exist, we will throw an error.
 
