@@ -66,7 +66,7 @@ Wiki links represent an internal link to another file. They have become widely a
 - We will also handle variation in capitalization and pluralization.
 - So you can write `[[Security]]` or `[[securities]]` in `cool.md` without error!
 
-On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match. For example, if you write `![icon](icon.png)` but `icon.png` does not exist, we will throw an error.
+On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any image link without a match. For example, if you write `![icon](/icon.png)` but `icon.png` does not exist, we will throw an error. Just make sure that each image link is an absolute link. Otherwise, it will be flagged as missing by default!
 
 [^1]: https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki
 [^2]: https://en.m.wikipedia.org/wiki/Automated_readability_index
