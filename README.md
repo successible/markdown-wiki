@@ -1,6 +1,6 @@
 # 📙 Markdown Wiki
 
-Create and manage a Markdown wiki using Visual Studio Code.
+Manage a Markdown wiki using Visual Studio Code.
 
 You can get this extension in two ways:
 
