@@ -27,7 +27,7 @@ If a sentence is greater than 11 words, we flag it with:
 - Error: "Very hard to read" if the `ARI >= 14`
 - Error: If the sentence is longer than 25 words
 
-> Note: The average reader can only understand text at an 8th grade level. This is `ARI < 10` [^3]. The average reader will also find a sentence with more than 25 words very hard to read [^4].
+> Note: The average reader only understands text at an 8th grade level. This is `ARI < 10` [^3]. The average reader also finds a sentence with more than 25 words very hard to read [^4].
 
 The extension can also analyze your writing using these libraries:
 
