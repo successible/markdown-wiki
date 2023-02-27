@@ -1,7 +1,7 @@
 {
   "name": "markdown-wiki",
   "displayName": "Markdown Wiki",
-  "description": "Create and manage a Markdown wiki",
+  "description": "Keep a wiki in Visual Studio Code",
   "author": "Successible",
   "publisher": "Successible",
   "version": "0.0.0",
