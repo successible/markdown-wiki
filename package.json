@@ -68,7 +68,7 @@
         "displayName": "WYSIWYG Editor",
         "selector": [
           {
-            "filenamePattern": "*.md"
+            "filenamePattern": "*.mdz"
           }
         ],
         "priority": "option"
