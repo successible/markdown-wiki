@@ -1,6 +1,6 @@
-import { info } from '..'
 import commandExists from 'command-exists'
 import shelljs from 'shelljs'
+import { info } from '..'
 import * as vscode from 'vscode'
 
 // Hide the output of the Proselint command

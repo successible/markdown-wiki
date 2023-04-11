@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-
 import { Analytics } from './Analytics'
 import { Editor } from './Editor'
 import { Footnotes } from './Footnotes'

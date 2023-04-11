@@ -1,5 +1,5 @@
-import { error, info } from '..'
 import urlRegex from 'url-regex'
+import { error, info } from '..'
 import * as vscode from 'vscode'
 import { READABILITY } from './analyzeDocument'
 import { getConfig } from './getConfig'
