@@ -1,7 +1,4 @@
-import { customAlphabet } from 'nanoid'
-
 export const generateFootnoteText = () => {
-  const nanoid = customAlphabet('1234567890abcdef', 10)
-  const replacement = `[^${nanoid(6)}]`
+  const replacement = `[^${Math.random().toString(18).slice(2)}]`
   return replacement
 }

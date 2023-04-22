@@ -1,5 +1,4 @@
 .DS_Store
-.vscode/ltex.dictionary.en-US.txt
 *.vsix
-dist
+out
 node_modules
