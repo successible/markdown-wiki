@@ -7,12 +7,6 @@ import { getJoblintDiagnostics } from './getJoblintDiagnostics'
 import { getWriteGoodDiagnostics } from './getWriteGoodDiagnostics'
 import { removeMarkdown } from './removeMarkdown'
 
-// Library to analyze the markdown-wiki of text
-const rs = require('text-readability')
-
-// Count the number of words in a string
-const count = require('wordcount')
-
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 
 export const analyzeSentence = (
@@ -27,8 +21,17 @@ export const analyzeSentence = (
   // We must analyze markdown-wiki only on plaintext, otherwise stuff like [links](really-long-url.com)
   // Will artificially inflate the readability score.
   const plainText = String(removeMarkdown(sentence)).replace(urlRegex(), '')
-  const score = Number(rs.automatedReadabilityIndex(plainText))
-  const nWords = count(plainText)
+
+  const nCharacters = plainText.replace(/ /g, '').length || 1
+  const nWords = plainText.trim().split(/\s+/).length || 1
+  const sentences = 1 // We apply ARI only to individual sentences
+  const averageCharacterPerWord = nCharacters / nWords
+  const averageWordPerSentence = nWords / sentences
+
+  // ARI: https://en.wikipedia.org/wiki/Automated_readability_index
+  const ARI =
+    4.71 * averageCharacterPerWord + 0.5 * averageWordPerSentence - 21.43
+
   const range = new vscode.Range(
     lineIndex,
     sentenceStart,
@@ -57,8 +60,8 @@ export const analyzeSentence = (
     findings.push(['This sentence is more than 25 words', error, READABILITY])
   }
 
-  if (score >= 10 && sentenceStart !== -1 && nWords > 11 && readability) {
-    const isVeryHard = score >= 14
+  if (ARI >= 10 && sentenceStart !== -1 && nWords > 11 && readability) {
+    const isVeryHard = ARI >= 14
     const message = isVeryHard
       ? 'This sentence is very hard to read.'
       : 'This sentence is hard to read.'

@@ -132,7 +132,7 @@
   "scripts": {
     "compile": "tsc -p ./",
     "lint": "eslint --fix src && npx prettier --check src && tsc --noEmit",
-    "package": "npm compile && cp -r grammar out/grammar && cp -r media out/media",
+    "package": "npm run compile && cp -r grammar out/grammar && cp -r media out/media",
     "pretest": "npm run compile && npm run lint",
     "test": "npm run compile && npm run lint",
     "vscode:prepublish": "npm run package",
@@ -141,7 +141,6 @@
   "devDependencies": {
     "@textlint/ast-node-types": "13.3.2",
     "@types/command-exists": "1.2.0",
-    "@types/glob": "8.1.0",
     "@types/lodash": "4.14.194",
     "@types/mocha": "10.0.1",
     "@types/node": "18.15.11",
@@ -161,14 +160,13 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-sort": "2.10.0",
-    "glob": "8.1.0",
     "mocha": "10.2.0",
     "typescript": "5.0.4"
   },
   "dependencies": {
     "command-exists": "1.2.9",
     "dayjs": "1.11.7",
-    "glob": "10.1.0",
+    "glob": "10.2.0",
     "joblint": "2.3.2",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
@@ -177,10 +175,8 @@
     "sentence-splitter": "4.2.0",
     "set-operations": "2.0.2",
     "shelljs": "0.8.5",
-    "text-readability": "1.0.5",
     "url-regex-safe": "3.0.0",
     "valid-url": "1.0.9",
-    "wordcount": "1.1.1",
     "write-good": "1.0.8"
   }
 }
