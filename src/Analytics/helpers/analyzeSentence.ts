@@ -1,4 +1,4 @@
-import urlRegex from 'url-regex'
+import urlRegex from 'url-regex-safe'
 import { error, info } from '..'
 import * as vscode from 'vscode'
 import { READABILITY } from './analyzeDocument'

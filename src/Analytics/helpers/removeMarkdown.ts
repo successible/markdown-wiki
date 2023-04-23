@@ -1,4 +1,4 @@
-import urlRegex from 'url-regex'
+import urlRegex from 'url-regex-safe'
 // Library to convert Markdown to plain-text
 const removeMarkdownLib = require('remove-markdown')
 
