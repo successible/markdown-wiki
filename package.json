@@ -130,12 +130,9 @@
     ]
   },
   "scripts": {
-    "compile": "tsc -p ./",
     "lint": "eslint --fix src && npx prettier --check src && tsc --noEmit",
-    "package": "npm run compile && cp -r grammar out/grammar && cp -r media out/media",
-    "pretest": "npm run compile && npm run lint",
-    "test": "npm run compile && npm run lint",
-    "vscode:prepublish": "npm run package",
+    "build": "tsc -p ./ && cp -r grammar out/grammar && cp -r media out/media",
+    "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
