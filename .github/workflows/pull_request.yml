@@ -13,18 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 8
-
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Run the pretest suite
-        run: pnpm test
+        run: npm test

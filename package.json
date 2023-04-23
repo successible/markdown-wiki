@@ -132,10 +132,10 @@
   "scripts": {
     "compile": "tsc -p ./",
     "lint": "eslint --fix src && npx prettier --check src && tsc --noEmit",
-    "package": "pnpm compile && cp -r grammar out/grammar && cp -r media out/media",
-    "pretest": "pnpm run compile && pnpm run lint",
-    "test": "pnpm run compile && pnpm run lint",
-    "vscode:prepublish": "pnpm run package",
+    "package": "npm compile && cp -r grammar out/grammar && cp -r media out/media",
+    "pretest": "npm run compile && npm run lint",
+    "test": "npm run compile && npm run lint",
+    "vscode:prepublish": "npm run package",
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
