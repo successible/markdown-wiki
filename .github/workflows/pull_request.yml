@@ -22,5 +22,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run the pretest suite
-        run: npm run test
+      - name: Run the linter, formatter, and TypeScript compiler
+        run: npm run lint && npm run build
