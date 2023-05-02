@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "lib": ["ESNext"],
     "module": "commonjs",
     "outDir": "out",
