@@ -11,9 +11,9 @@ export const getJoblintDiagnostics = (sentence: string): Findings => {
     issues: [
       {
         name: string // Short name for the rule that was triggered
-        reason: string // A longer description of why this rule was triggered
-        solution: string // A short description of how to solve this issue
-      }
+        reason: string // A longer description of why the rule was triggered
+        solution: string // A short description of how to solve the issue
+      },
     ]
   } = joblint(sentence)
 
