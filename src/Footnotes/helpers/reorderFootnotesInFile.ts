@@ -1,6 +1,5 @@
+import prettier from '@prettier/sync'
 import * as fs from 'fs'
-import parserMarkdown from 'prettier/parser-markdown'
-import prettier from 'prettier/standalone'
 import * as vscode from 'vscode'
 import { generateFootnoteText } from './generateFootnoteText'
 import { parseFileForFootnotes } from './parseFileForFootnotes'
@@ -47,12 +46,13 @@ export const reorderFootnotesInFile = async () => {
       })
 
       // Finally, we format the contents and overwrite the old file
-      const formattedNewContents = await prettier.format(newContents, {
-        parser: 'markdown',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        plugins: [parserMarkdown as any],
-      })
-      fs.writeFileSync(file, formattedNewContents)
+      console.log(prettier)
+      fs.writeFileSync(
+        file,
+        prettier.format(newContents, {
+          parser: 'markdown',
+        })
+      )
       vscode.window.showInformationMessage('Footnotes reordered!')
     }
   }
