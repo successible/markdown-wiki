@@ -39,23 +39,16 @@ The extension can also analyze your writing using these libraries:
 
 You may want to analyze more than just your open file. These commands make that possible.
 
-- `Analyze Files`: Analyze every file in your workspace with enabled libraries. This command will also check for missing wiki links and missing asset links.
+- `Analyze Files`: Analyze every `.md` file in your workspace with enabled libraries. This command will also check for three other things. One, missing wiki links. Two, missing asset links. Three, missing or unmatched footnotes.
 
 - `Delete Orphaned Assets`: Delete any asset not linked in a Markdown file. Specifically, this command will delete any files of type `png`, `jpeg`, `jpg`, `svg`, `gif`, `wav`, or `mp3`. This command is destructive, so use it carefully!
 
 ## Footnotes
 
-Managing Markdown footnotes is a pain. Use these commands to automate that task away!
+Managing Markdown footnotes is a pain.
 
-### Insert Footnote
-
-- Task: Insert a `url` on your clipboard as a Markdown footnote
-- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>'</kbd>
-
-### Reorder Footnotes
-
-- Task: Reorder all the footnotes in a Markdown file
-- Shortcut: <kbd>Ctrl/Cmd</kbd> + <kbd>Shift</kbd> + <kbd>'</kbd>
+- We check for missing or unmatched footnotes in a file on every save.
+- We insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
 
 ## Linking
 

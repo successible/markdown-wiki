@@ -1,12 +1,18 @@
 import * as fs from 'fs'
 import { difference } from 'set-operations'
 import * as vscode from 'vscode'
-import { endnoteRegex, footnoteRegex } from './reorderFootnotesInFile'
+import { error } from '../../Analytics'
 
-export const parseFileForFootnotes = (file: string) => {
+export const footnoteRegex = /(\[\^\w+\])(?!(: ))/g
+export const endnoteRegex = /(\[\^\w+\]): (.*)/g
+
+export const auditFootnotesInFile = async (
+  file: string
+): Promise<vscode.Diagnostic[]> => {
   // Using regex to parse the footnotes and the endnotes
   // Look for missing footnotes and endnotes.
 
+  const diagnostics: vscode.Diagnostic[] = []
   const contents = String(fs.readFileSync(file))
   const footnotes = []
   for (const match of contents.matchAll(footnoteRegex)) {
@@ -23,15 +29,25 @@ export const parseFileForFootnotes = (file: string) => {
     urls[endnote] = url
   }
 
+  const createDiagnostics = (message: string) => {
+    const diagnostic = new vscode.Diagnostic(
+      new vscode.Range(0, 0, 0, 0),
+      message,
+      error
+    )
+    diagnostic.code = 'footnote'
+    diagnostics.push(diagnostic)
+  }
+
   const missingFootnotes = difference(footnotes, endnotes)
   if (
     (Array.isArray(missingFootnotes) && missingFootnotes.length > 0) ||
     (missingFootnotes instanceof Set && missingFootnotes.size)
   ) {
-    const message = 'Unmatched footnotes'
-    const error = `${message}: ${Array.from(missingFootnotes).join(' ')}`
-    vscode.window.showErrorMessage(error)
-    return null
+    for (const missingFootnote of Array.from(missingFootnotes)) {
+      const error = `Unmatched footnotes: ${missingFootnote}`
+      createDiagnostics(error)
+    }
   }
 
   const missingEndnotes = difference(endnotes, footnotes)
@@ -39,11 +55,11 @@ export const parseFileForFootnotes = (file: string) => {
     (Array.isArray(missingEndnotes) && missingEndnotes.length > 0) ||
     (missingEndnotes instanceof Set && missingEndnotes.size)
   ) {
-    const message = 'Unmatched endnotes'
-    const error = `${message}: ${Array.from(missingEndnotes).join(' ')}`
-    vscode.window.showErrorMessage(error)
-    return null
+    for (const missingEndnote of Array.from(missingEndnotes)) {
+      const error = `Unmatched endnote: ${missingEndnote}`
+      createDiagnostics(error)
+    }
   }
 
-  return { contents, endnotes, footnotes, urls }
+  return diagnostics
 }

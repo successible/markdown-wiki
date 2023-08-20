@@ -1,6 +1,7 @@
 import { TxtNode } from '@textlint/ast-node-types'
 import { split } from 'sentence-splitter'
 import * as vscode from 'vscode'
+import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
 import { findAssetLinksInSentence } from '../../Linking/helpers/findIAssetLinksInSentence'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
 import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
@@ -22,6 +23,8 @@ export const analyzeDocument = async (
   const diagnostics: vscode.Diagnostic[] = []
   const config = getConfig()
   const proselint = config.get('proselint')
+
+  diagnostics.push(...(await auditFootnotesInFile(document.fileName)))
 
   if (enableProselint && proselint) {
     diagnostics.push(...(await getProselintDiagnostics(document)))
