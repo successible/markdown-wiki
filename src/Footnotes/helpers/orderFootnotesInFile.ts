@@ -18,7 +18,7 @@ export const orderFootnotesInFile = async (filePath: string) => {
     )
   } else if (commandExists.sync('pandoc --help')) {
     return vscode.window.showErrorMessage(
-      'You must have pandoc installed to order footnotes.'
+      'You must have pandoc installed to order footnotes and endnotes.'
     )
   } else {
     // Pandoc will reorder the footnotes and endnotes automatically
