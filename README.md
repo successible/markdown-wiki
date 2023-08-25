@@ -48,7 +48,8 @@ You may want to analyze more than just your open file. These commands make that 
 Managing Markdown footnotes is a pain.
 
 - We check for missing or unmatched footnotes in a file on every save.
-- We insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
+- You can insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
+- You can convert any footnotes into ordered numbers via `Ctrl/Cmd+ shift + '`.
 
 ## Linking
 

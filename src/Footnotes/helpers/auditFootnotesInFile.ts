@@ -6,14 +6,12 @@ import { error } from '../../Analytics'
 export const footnoteRegex = /(\[\^\w+\])(?!(: ))/g
 export const endnoteRegex = /(\[\^\w+\]): (.*)/g
 
-export const auditFootnotesInFile = async (
-  file: string
-): Promise<vscode.Diagnostic[]> => {
+export const auditFootnotesInFile = async (filePath: string) => {
   // Using regex to parse the footnotes and the endnotes
   // Look for missing footnotes and endnotes.
 
   const diagnostics: vscode.Diagnostic[] = []
-  const contents = String(fs.readFileSync(file))
+  const contents = String(fs.readFileSync(filePath))
   const footnotes = []
   for (const match of contents.matchAll(footnoteRegex)) {
     const footnote = match[1]
@@ -61,5 +59,5 @@ export const auditFootnotesInFile = async (
     }
   }
 
-  return diagnostics
+  return { contents, diagnostics, endnotes, footnotes, urls }
 }

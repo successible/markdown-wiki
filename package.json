@@ -79,6 +79,10 @@
         "title": "Insert Footnote"
       },
       {
+        "command": "markdown-wiki.orderFootnotes",
+        "title": "order Footnotes"
+      },
+      {
         "command": "markdown-wiki.analyzeFiles",
         "title": "Analyze Files"
       },
@@ -91,6 +95,10 @@
       "commandPalette": [
         {
           "command": "markdown-wiki.insertFootnote",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown-wiki.orderFootnotes",
           "when": "editorLangId == markdown"
         },
         {
@@ -108,6 +116,11 @@
         "command": "markdown-wiki.insertFootnote",
         "key": "ctrl+'",
         "mac": "cmd+'"
+      },
+      {
+        "command": "markdown-wiki.orderFootnotes",
+        "key": "ctrl+shift+'",
+        "mac": "cmd+shift+'"
       },
       {
         "command": "workbench.action.reopenWithEditor",

@@ -24,7 +24,9 @@ export const analyzeDocument = async (
   const config = getConfig()
   const proselint = config.get('proselint')
 
-  diagnostics.push(...(await auditFootnotesInFile(document.fileName)))
+  diagnostics.push(
+    ...(await auditFootnotesInFile(document.fileName)).diagnostics
+  )
 
   if (enableProselint && proselint) {
     diagnostics.push(...(await getProselintDiagnostics(document)))
