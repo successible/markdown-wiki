@@ -38,7 +38,5 @@ export const orderFootnotesInFile = async (filePath: string) => {
           .replaceAll('\\$', '$')
           .replaceAll('\\~', '~')
     )
-
-    vscode.window.showInformationMessage('Footnotes ordered!')
   }
 }

@@ -49,9 +49,9 @@ Managing Markdown footnotes is a pain.
 
 - Automatically check missing or unmatched footnotes in a file on every save.
 
-- Insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
-
 - Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work [^8].
+
+- Insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`. Your footnotes and endnotes will be ordered automatically after insertion.
 
 ## Linking
 

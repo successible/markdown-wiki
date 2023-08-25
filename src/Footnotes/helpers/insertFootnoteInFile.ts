@@ -1,6 +1,7 @@
 import { isWebUri } from 'valid-url'
 import * as vscode from 'vscode'
 import { generateFootnoteText } from './generateFootnoteText'
+import { orderFootnotesInFile } from './orderFootnotesInFile'
 
 export const insertFootnoteInFile = async () => {
   const editor = vscode.window.activeTextEditor
@@ -28,5 +29,7 @@ export const insertFootnoteInFile = async () => {
 
     await vscode.workspace.applyEdit(edit)
     await editor.document.save()
+
+    await orderFootnotesInFile(editor.document.fileName)
   }
 }
