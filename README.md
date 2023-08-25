@@ -31,9 +31,9 @@ If a sentence is greater than 11 words, we flag it with:
 
 The extension can also analyze your writing using these libraries:
 
-- Joblint [^5]. Bundled with the extension
-- Proselint [^6]. Must be installed on your system
-- Write Good [^7]. Bundled with the extension
+- Joblint [^5]. Bundled with the extension.
+- Proselint [^6]. Must be installed on your system.
+- Write Good [^7]. Bundled with the extension.
 
 > Note: All of these libraries are disabled by default. If desired, you can enable them in your Visual Studio Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
@@ -51,7 +51,7 @@ Managing Markdown footnotes is a pain.
 
 - Insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
 
-- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work.
+- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work [^8].
 
 ## Linking
 
