@@ -47,9 +47,11 @@ You may want to analyze more than just your open file. These commands make that 
 
 Managing Markdown footnotes is a pain.
 
-- We check for missing or unmatched footnotes in a file on every save.
-- You can insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
-- You can convert any footnotes into ordered numbers via `Ctrl/Cmd+ shift + '`.
+- Automatically check missing or unmatched footnotes in a file on every save.
+
+- Insert a `url` on your clipboard as a Markdown footnote, like `[^as1d]` via `Ctrl/Cmd+ '`.
+
+- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work.
 
 ## Linking
 
@@ -69,3 +71,4 @@ On the flip side, if there is no match, we will flag the link as a broken link. 
 [^5]: https://github.com/rowanmanning/joblint
 [^6]: https://github.com/amperser/proselint
 [^7]: https://github.com/btford/write-good
+[^8]: https://pandoc.org/installing.html
