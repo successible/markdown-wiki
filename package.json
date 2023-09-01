@@ -174,7 +174,7 @@
     "sentence-splitter": "4.2.1",
     "set-operations": "2.0.2",
     "shelljs": "0.8.5",
-    "url-regex-safe": "3.0.0",
+    "url-regex-safe": "4.0.0",
     "uuid": "9.0.0",
     "valid-url": "1.0.9",
     "write-good": "1.0.8"
