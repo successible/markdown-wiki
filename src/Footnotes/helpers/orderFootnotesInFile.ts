@@ -3,9 +3,14 @@ import { execSync } from 'child_process'
 import commandExists from 'command-exists'
 import * as fs from 'fs'
 import * as vscode from 'vscode'
-import { auditFootnotesInFile } from './auditFootnotesInFile'
+import { auditFootnotesInFile, endnoteRegex } from './auditFootnotesInFile'
 
 export const orderFootnotesInFile = async (filePath: string) => {
+  const editor = vscode.window.activeTextEditor
+  if (!editor) {
+    return
+  }
+
   const { contents, diagnostics } = await auditFootnotesInFile(filePath)
   let frontmatter = ''
   if (contents.indexOf('---') === 0) {
@@ -21,6 +26,9 @@ export const orderFootnotesInFile = async (filePath: string) => {
       'You must have pandoc installed to order footnotes and endnotes.'
     )
   } else {
+    // Make sure the the first endnote is always at least two lines from the footnote
+    // Otherwise, pandoc will glitch.
+    fs.writeFileSync(filePath, contents.replace(endnoteRegex, '\n\n$1: $2'))
     // Pandoc will reorder the footnotes and endnotes automatically
     execSync(`pandoc -f markdown ${filePath} --wrap=none -o ${filePath}`)
 
@@ -38,5 +46,16 @@ export const orderFootnotesInFile = async (filePath: string) => {
           .replaceAll('\\$', '$')
           .replaceAll('\\~', '~')
     )
+    const selection = editor.selection.active
+    console.log(selection.line)
+    // Move the cursor back the original place.
+    setTimeout(() => {
+      editor.selections = [
+        new vscode.Selection(
+          new vscode.Position(selection.line, selection.character - 4),
+          new vscode.Position(selection.line, selection.character - 4)
+        ),
+      ]
+    }, 100)
   }
 }

@@ -12,12 +12,6 @@ export const insertFootnoteInFile = async () => {
       return vscode.window.showErrorMessage(message)
     }
     const selection = editor.selection.active
-    const cursor = editor.document.offsetAt(selection)
-    if (cursor === 0) {
-      const message = 'You must have your cursor in the document'
-      return vscode.window.showErrorMessage(message)
-    }
-
     const edit = new vscode.WorkspaceEdit()
     const replacement = generateFootnoteText()
     edit.insert(editor.document.uri, selection, replacement)
