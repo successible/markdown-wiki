@@ -140,7 +140,7 @@
     "@types/command-exists": "1.2.2",
     "@types/lodash": "4.14.200",
     "@types/mocha": "10.0.3",
-    "@types/node": "18.18.7",
+    "@types/node": "20.8.9",
     "@types/pluralize": "0.0.32",
     "@types/prettier": "2.7.3",
     "@types/shelljs": "0.8.14",
