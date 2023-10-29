@@ -1,4 +1,5 @@
 .DS_Store
+.tool-versions
 *.vsix
-out
 node_modules
+out
