@@ -2,7 +2,7 @@
   "name": "markdown-wiki",
   "displayName": "Markdown Wiki",
   "description": "Keep a wiki in Visual Studio Code",
-  "author": "Successible",
+  "author": "Paul Zakin",
   "publisher": "Successible",
   "version": "0.0.0",
   "private": true,
@@ -13,7 +13,7 @@
   },
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.82.0"
+    "vscode": "^1.83.0"
   },
   "main": "./out/extension.js",
   "activationEvents": [
