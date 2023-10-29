@@ -6,8 +6,8 @@ on:
       - 'main'
 
 jobs:
-  Publish:
-    runs-on: ubuntu-22.04
+  Main:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,6 +20,3 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Publish the extension
-        run: npx vsce publish --no-update-package-json --no-git-tag-version -p ${{ secrets.AZURE_TOKEN }} $(git rev-parse --short ${{ github.event.pull_request.head.sha }})
