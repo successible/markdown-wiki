@@ -1,4 +1,4 @@
-# Security policy
+# Markdown Wiki security policy
 
 ## Supported versions
 
@@ -6,9 +6,9 @@ Markdown Wiki uses a **rolling release** model. This means only the most recent 
 
 ## Reporting a vulnerability
 
-If you find a vulnerability, **do not create an issue** in GitHub. Instead, email `contact@successible.net`. I'll draft [a GitHub security advisory](https://docs.github.com/en/code-security/repository-security-advisories/creating-a-repository-security-advisory). Then, I'll collaborate with you to get the patch released as quickly as possible.
+If you find a vulnerability, **do not create an issue** in GitHub. Instead, email `contact@successible.net`. We will communicate with you to address the security vulnerability.
 
 Once, the patch is ready to go, we will:
 
-- Push the code to main.
-- Publish the security advisory to GitHub.
+- Push the code to main and tag it for release.
+- Add a disclosure to the GitHub Release notes.
