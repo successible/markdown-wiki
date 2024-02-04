@@ -4,8 +4,8 @@ Keep a wiki in Visual Studio Code.
 
 You can get this extension in two ways:
 
-- Going directly to the Visual Studio marketplace [^1].
-- Searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
+- By going directly to the Visual Studio marketplace [^1].
+- By searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
 
 This extension has three clusters of functionality:
 
