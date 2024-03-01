@@ -136,7 +136,7 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@textlint/ast-node-types": "13.4.1",
+    "@textlint/ast-node-types": "14.0.3",
     "@types/command-exists": "1.2.3",
     "@types/lodash": "4.14.202",
     "@types/mocha": "10.0.6",
@@ -148,8 +148,8 @@
     "@types/uuid": "9.0.8",
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.86.0",
-    "@typescript-eslint/eslint-plugin": "6.21.0",
-    "@typescript-eslint/parser": "6.21.0",
+    "@typescript-eslint/eslint-plugin": "7.1.0",
+    "@typescript-eslint/parser": "7.1.0",
     "@vscode/test-electron": "2.3.9",
     "@vscode/vsce": "2.24.0",
     "eslint": "8.57.0",
