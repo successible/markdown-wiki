@@ -1,7 +1,7 @@
-import { TxtNode } from '@textlint/ast-node-types'
+import type { TxtNode } from '@textlint/ast-node-types'
 import * as vscode from 'vscode'
 import { info } from '../../Analytics'
-import { AllPossibleLinks } from './getAllPossibleLinks'
+import type { AllPossibleLinks } from './getAllPossibleLinks'
 
 export const findWikiLinksInSentence = (
   sentence: TxtNode,

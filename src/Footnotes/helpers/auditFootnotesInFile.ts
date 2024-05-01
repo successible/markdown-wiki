@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import * as fs from 'node:fs'
 import { difference } from 'set-operations'
 import * as vscode from 'vscode'
 import { error } from '../../Analytics'

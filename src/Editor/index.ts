@@ -1,4 +1,4 @@
-import * as vscode from 'vscode'
+import type * as vscode from 'vscode'
 import { Editor as EditorService } from './service/Editor'
 
 export const Editor = async (context: vscode.ExtensionContext) => {

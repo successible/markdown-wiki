@@ -1,6 +1,6 @@
-import { TxtNode } from '@textlint/ast-node-types'
+import type { TxtNode } from '@textlint/ast-node-types'
 import { split } from 'sentence-splitter'
-import * as vscode from 'vscode'
+import type * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
 import { findAssetLinksInSentence } from '../../Linking/helpers/findIAssetLinksInSentence'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
@@ -70,11 +70,9 @@ export const analyzeDocument = async (
       // Start of code block or quote
       if (enableLint && (codeBlock || quote)) {
         enableLint = false
-        continue
         // End of the code block.
       } else if (!enableLint && codeBlock) {
         enableLint = true
-        continue
       } else {
         if (enableLint === true) {
           // For each sentence, analyze the markdown-wiki.

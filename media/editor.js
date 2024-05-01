@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-check
 
 const manageEditor = () => {
@@ -24,7 +23,7 @@ const manageEditor = () => {
   window.addEventListener('message', (event) => {
     const message = event.data // The json data that the extension sent
     switch (message.type) {
-      case 'update':
+      case 'update': {
         const text = message.text
         updateContent(text)
         // Do something to the HTML
@@ -32,6 +31,7 @@ const manageEditor = () => {
         // This state is returned in the call to `vscode.getState` below when a webview is reloaded.
         vscode.setState({ text })
         return
+      }
     }
   })
 

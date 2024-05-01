@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { difference } from 'set-operations'
 import * as vscode from 'vscode'
 import { analyzeDocument } from './analyzeDocument'
@@ -53,7 +53,7 @@ export const analyzeDocuments = async (
 
       const showMessage = vscode.window.showInformationMessage
       if (mode === 'analyze') {
-        showMessage(`Analysis complete. Check the Problems tab for results.`)
+        showMessage('Analysis complete. Check the Problems tab for results.')
       } else {
         showMessage(`Removed ${orphanedAssets.length} orphaned assets`)
       }

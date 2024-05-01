@@ -1,6 +1,6 @@
 import { error } from '..'
 import { JOBLINT } from './analyzeDocument'
-import { Findings } from './analyzeSentence'
+import type { Findings } from './analyzeSentence'
 
 // Library to detect sexism, culture, expectations, and recruiter fails.
 const joblint = require('joblint')

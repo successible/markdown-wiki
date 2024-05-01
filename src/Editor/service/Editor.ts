@@ -1,6 +1,6 @@
 // Reference: https://github.com/microsoft/vscode-extension-samples/tree/main/custom-editor-sample
 
-import path from 'path'
+import path from 'node:path'
 import * as vscode from 'vscode'
 import { getNonce } from '../helpers/getNonce'
 
