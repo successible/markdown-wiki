@@ -1,5 +1,5 @@
-import { TxtNode } from '@textlint/ast-node-types'
-import fs from 'fs'
+import fs from 'node:fs'
+import type { TxtNode } from '@textlint/ast-node-types'
 import * as vscode from 'vscode'
 import { info } from '../../Analytics'
 

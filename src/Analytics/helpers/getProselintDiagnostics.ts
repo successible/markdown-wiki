@@ -1,7 +1,7 @@
 import commandExists from 'command-exists'
 import shelljs from 'shelljs'
-import { info } from '..'
 import * as vscode from 'vscode'
+import { info } from '..'
 
 // Hide the output of the Proselint command
 // You can always log it in the callback as needed
@@ -94,7 +94,6 @@ export const getProselintDiagnostics = async (
     )
     const diagnostics = await proselintPromise
     return diagnostics
-  } else {
-    return [] as vscode.Diagnostic[]
   }
+  return [] as vscode.Diagnostic[]
 }

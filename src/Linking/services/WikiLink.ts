@@ -1,4 +1,4 @@
-import * as vscode from 'vscode'
+import type * as vscode from 'vscode'
 
 export class WikiLink implements vscode.DocumentLinkProvider {
   context: vscode.ExtensionContext
@@ -9,7 +9,6 @@ export class WikiLink implements vscode.DocumentLinkProvider {
   // The provider returns the number of links to be added on the page
   // The links are created in analyzeDocument and stored in the cache there
   // That way, we do not need to iterate through the document twice.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async provideDocumentLinks(document: vscode.TextDocument) {
     const links = await this.context.workspaceState.get('wikiLinks')
     return links as vscode.DocumentLink[]
