@@ -13,10 +13,12 @@
   },
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.87.0"
+    "vscode": "^1.88.0"
   },
   "main": "./out/extension.js",
-  "activationEvents": ["onLanguage:markdown"],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
   "contributes": {
     "configuration": {
       "title": "Markdown Wiki",
@@ -47,12 +49,16 @@
       {
         "scopeName": "markdown.wiki.link",
         "path": "./grammar/link.json",
-        "injectTo": ["text.html.markdown"]
+        "injectTo": [
+          "text.html.markdown"
+        ]
       },
       {
         "scopeName": "markdown.wiki.note",
         "path": "./grammar/note.json",
-        "injectTo": ["text.html.markdown"]
+        "injectTo": [
+          "text.html.markdown"
+        ]
       }
     ],
     "customEditors": [
