@@ -130,7 +130,7 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.0",
+    "@biomejs/biome": "1.8.1",
     "@textlint/ast-node-types": "14.0.4",
     "@types/command-exists": "1.2.3",
     "@types/lodash": "4.17.5",
