@@ -145,7 +145,7 @@
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.15",
     "@types/url-regex-safe": "1.0.2",
-    "@types/uuid": "9.0.8",
+    "@types/uuid": "10.0.0",
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.90.0",
     "@vscode/test-electron": "2.4.0",
@@ -166,7 +166,7 @@
     "set-operations": "2.0.2",
     "shelljs": "0.8.5",
     "url-regex-safe": "4.0.0",
-    "uuid": "9.0.1",
+    "uuid": "10.0.0",
     "valid-url": "1.0.9",
     "write-good": "1.0.8"
   }
