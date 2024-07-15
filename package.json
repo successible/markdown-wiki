@@ -149,7 +149,7 @@
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.91.0",
     "@vscode/test-electron": "2.4.1",
-    "@vscode/vsce": "2.29.0",
+    "@vscode/vsce": "2.30.0",
     "mocha": "10.6.0",
     "typescript": "5.5.3"
   },
@@ -157,7 +157,7 @@
     "@prettier/sync": "0.5.2",
     "command-exists": "1.2.9",
     "dayjs": "1.11.11",
-    "glob": "10.4.3",
+    "glob": "10.4.5",
     "joblint": "2.3.2",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
