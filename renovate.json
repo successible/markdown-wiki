@@ -5,20 +5,20 @@
   "configMigration": true,
   "packageRules": [
     {
-      "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupSlug": "all-minor-patch",
       "groupName": "all non-major dependencies",
       "schedule": ["before 6:00am on Monday"],
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": ["*"]
     },
     {
-      "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["major"],
       "groupSlug": "all-major",
       "groupName": "all major dependencies",
       "schedule": ["on the first day of the month before 6:00am"],
-      "automerge": false
+      "automerge": false,
+      "matchPackageNames": ["*"]
     }
   ],
   "lockFileMaintenance": {
