@@ -15,15 +15,15 @@ jobs:
 
       - name: Use Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: latest
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install -g pnpm; pnpm install
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Lint the extension
         run: cd src && npx tsc && npx biome check --fix --unsafe
 
       - name: Build the extension
-        run: npm run build
+        run: pnpm build
