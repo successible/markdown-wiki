@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v4
 
       - name: Install dependencies
-        run: npm install -g pnpm; pnpm install
+        run: npm install
 
       - name: Publish
         run: npx vsce publish --no-update-package-json --no-git-tag-version -p ${{ secrets.AZURE_TOKEN }} ${{ github.ref_name }}
