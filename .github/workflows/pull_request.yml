@@ -20,7 +20,7 @@ jobs:
         run: npm install -g pnpm; pnpm install
 
       - name: Lint the extension
-        run: cd src && npx tsc && npx biome check --fix --unsafe
+        run: cd src && npx tsc && npx biome check
 
       - name: Build the extension
         run: pnpm build
