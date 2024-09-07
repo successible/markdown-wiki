@@ -1,5 +1,4 @@
 import fs from 'node:fs'
-import { difference } from 'set-operations'
 import * as vscode from 'vscode'
 import { analyzeDocument } from './analyzeDocument'
 import { getAllFilePaths } from './getAllFilePaths'
@@ -39,7 +38,7 @@ export const analyzeDocuments = async (
         const allAssets = await getAllFilePaths(
           '**/*.{png,svg,jpeg,jpg,gif,wav,mp3}'
         )
-        orphanedAssets = difference(allAssets, assetLinks)
+        orphanedAssets = allAssets.filter((x) => !assetLinks.includes(x))
         if (Array.isArray(orphanedAssets)) {
           for (const imagePath of orphanedAssets) {
             fs.unlinkSync(imagePath)

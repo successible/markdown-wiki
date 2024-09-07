@@ -1,7 +1,6 @@
 import { execSync } from 'node:child_process'
 import * as fs from 'node:fs'
 import prettier from '@prettier/sync'
-import commandExists from 'command-exists'
 import * as vscode from 'vscode'
 import { auditFootnotesInFile, endnoteRegex } from './auditFootnotesInFile'
 
@@ -22,7 +21,10 @@ export const orderFootnotesInFile = async (filePath: string) => {
       'You have missing or unmatched footnotes. Aborting operation.'
     )
   }
-  if (commandExists.sync('pandoc --help')) {
+  const pandocExists = execSync('pandoc --help', {
+    encoding: 'utf-8',
+  }).toString()
+  if (!pandocExists.includes('pandoc [OPTIONS] [FILES]')) {
     return vscode.window.showErrorMessage(
       'You must have pandoc installed to order footnotes and endnotes.'
     )

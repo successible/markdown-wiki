@@ -15,12 +15,12 @@ jobs:
 
       - name: Use Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: latest
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install -g pnpm; pnpm install
 
-      - name: Run the linter, formatter, and TypeScript compiler
-        run: npm run lint && npm run build
+      - name: Lint the extension
+        run: cd src && npx tsc && npx biome check
+
+      - name: Build the extension
+        run: pnpm build

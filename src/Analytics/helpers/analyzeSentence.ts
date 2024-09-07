@@ -1,13 +1,14 @@
-import urlRegex from 'url-regex-safe'
 import * as vscode from 'vscode'
 import { error, info } from '..'
 import { READABILITY } from './analyzeDocument'
 import { getConfig } from './getConfig'
-import { getJoblintDiagnostics } from './getJoblintDiagnostics'
-import { getWriteGoodDiagnostics } from './getWriteGoodDiagnostics'
 import { removeMarkdown } from './removeMarkdown'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
+
+// Source: https://urlregex.com/index.html
+export const URLRegex =
+  /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
 
 export const analyzeSentence = (
   document: vscode.TextDocument,
@@ -20,7 +21,7 @@ export const analyzeSentence = (
 
   // We must analyze markdown-wiki only on plaintext, otherwise stuff like [links](really-long-url.com)
   // Will artificially inflate the readability score.
-  const plainText = String(removeMarkdown(sentence)).replace(urlRegex(), '')
+  const plainText = String(removeMarkdown(sentence)).replace(URLRegex, '')
 
   const nCharacters = plainText.replace(/ /g, '').length || 1
   const nWords = plainText.trim().split(/\s+/).length || 1
@@ -45,16 +46,6 @@ export const analyzeSentence = (
 
   const config = getConfig()
   const readability = Boolean(config.get('Readability'))
-  const joblint = Boolean(config.get('joblint'))
-  const writeGood = Boolean(config.get('Write Good'))
-
-  if (joblint) {
-    findings.push(...getJoblintDiagnostics(sentence))
-  }
-
-  if (writeGood) {
-    findings.push(...getWriteGoodDiagnostics(sentence))
-  }
 
   if (nWords > 25 && readability) {
     findings.push(['This sentence is more than 25 words', error, READABILITY])

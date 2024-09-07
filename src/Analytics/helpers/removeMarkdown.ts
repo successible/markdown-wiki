@@ -1,4 +1,4 @@
-import urlRegex from 'url-regex-safe'
+import { URLRegex } from './analyzeSentence'
 
 // Library to convert Markdown to plain-text
 const removeMarkdownLib = require('remove-markdown')
@@ -8,7 +8,7 @@ export const removeMarkdown = (markdown: string) => {
   // As remove-markdown doesn't recognize footnotes. Instead, it just leaves URLs in the document.
   return (
     String(removeMarkdownLib(markdown))
-      .replace(urlRegex(), '')
+      .replace(URLRegex, '')
       .replaceAll('[[', '')
       .replaceAll(']]', '')
       // Pandoc will escape the [[]] links

@@ -1,4 +1,4 @@
-import commandExists from 'command-exists'
+import { execSync } from 'node:child_process'
 import shelljs from 'shelljs'
 import * as vscode from 'vscode'
 import { info } from '..'
@@ -48,8 +48,11 @@ export const getProselintDiagnostics = async (
     }
   }
 
+  const proselintExists = execSync('proselint --help', { encoding: 'utf-8' })
+    .toString()
+    .includes('proselint [OPTIONS] [PATHS]')
   // Lint the entire document using proselint
-  if (commandExists.sync('proselint')) {
+  if (proselintExists) {
     // We need to wrap shelljs.exec in a Promise. That way, the getProselintDiagnostics function
     // Waits until diagnostics is full, then returns it. Otherwise, the function will return
     // An empty array while Proselint is still running.

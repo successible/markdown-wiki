@@ -1,5 +1,4 @@
 import * as fs from 'node:fs'
-import { difference } from 'set-operations'
 import * as vscode from 'vscode'
 import { error } from '../../Analytics'
 
@@ -12,13 +11,13 @@ export const auditFootnotesInFile = async (filePath: string) => {
 
   const diagnostics: vscode.Diagnostic[] = []
   const contents = String(fs.readFileSync(filePath))
-  const footnotes = []
+  const footnotes: string[] = []
   for (const match of contents.matchAll(footnoteRegex)) {
     const footnote = match[1]
     footnotes.push(footnote)
   }
 
-  const endnotes = []
+  const endnotes: string[] = []
   const urls: Record<string, string> = {}
   for (const match of contents.matchAll(endnoteRegex)) {
     const endnote = match[1]
@@ -37,7 +36,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     diagnostics.push(diagnostic)
   }
 
-  const missingFootnotes = difference(footnotes, endnotes)
+  const missingFootnotes = footnotes.filter((x) => !endnotes.includes(x))
   if (
     (Array.isArray(missingFootnotes) && missingFootnotes.length > 0) ||
     (missingFootnotes instanceof Set && missingFootnotes.size)
@@ -48,7 +47,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     }
   }
 
-  const missingEndnotes = difference(endnotes, footnotes)
+  const missingEndnotes = endnotes.filter((x) => !footnotes.includes(x))
   if (
     (Array.isArray(missingEndnotes) && missingEndnotes.length > 0) ||
     (missingEndnotes instanceof Set && missingEndnotes.size)
