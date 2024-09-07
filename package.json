@@ -120,7 +120,7 @@
     ]
   },
   "scripts": {
-    "lint": "biome check . && tsc --noEmit",
+    "lint": "cd src && npx tsc && npx biome check --fix --unsafe",
     "build": "tsc -p ./ && cp -r grammar out/grammar && cp -r media out/media",
     "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./"

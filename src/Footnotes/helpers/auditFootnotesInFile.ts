@@ -36,7 +36,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     diagnostics.push(diagnostic)
   }
 
-  const missingFootnotes = footnotes.filter(x => !endnotes.includes(x))
+  const missingFootnotes = footnotes.filter((x) => !endnotes.includes(x))
   if (
     (Array.isArray(missingFootnotes) && missingFootnotes.length > 0) ||
     (missingFootnotes instanceof Set && missingFootnotes.size)
@@ -47,7 +47,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     }
   }
 
-  const missingEndnotes = endnotes.filter(x => !footnotes.includes(x));
+  const missingEndnotes = endnotes.filter((x) => !footnotes.includes(x))
   if (
     (Array.isArray(missingEndnotes) && missingEndnotes.length > 0) ||
     (missingEndnotes instanceof Set && missingEndnotes.size)

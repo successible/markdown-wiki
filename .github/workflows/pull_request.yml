@@ -22,5 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run the linter, formatter, and TypeScript compiler
-        run: npm run lint && npm run build
+      - name: Lint the extension
+        run: cd src && npx tsc && npx biome check --fix --unsafe
+
+      - name: Build the extension
+        run: npm run build

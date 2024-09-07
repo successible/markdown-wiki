@@ -1,4 +1,4 @@
-import { URLRegex } from "./analyzeSentence"
+import { URLRegex } from './analyzeSentence'
 
 // Library to convert Markdown to plain-text
 const removeMarkdownLib = require('remove-markdown')

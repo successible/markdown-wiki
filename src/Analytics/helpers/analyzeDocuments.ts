@@ -38,7 +38,7 @@ export const analyzeDocuments = async (
         const allAssets = await getAllFilePaths(
           '**/*.{png,svg,jpeg,jpg,gif,wav,mp3}'
         )
-        orphanedAssets =  allAssets.filter(x => !assetLinks.includes(x))
+        orphanedAssets = allAssets.filter((x) => !assetLinks.includes(x))
         if (Array.isArray(orphanedAssets)) {
           for (const imagePath of orphanedAssets) {
             fs.unlinkSync(imagePath)
