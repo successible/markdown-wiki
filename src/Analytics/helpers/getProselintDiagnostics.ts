@@ -48,7 +48,7 @@ export const getProselintDiagnostics = async (
     }
   }
 
-  const proselintExists = execSync('proselint --help', {"encoding": "utf-8"}).toString()
+  const proselintExists = execSync('proselint --help', {"encoding": "utf-8"}).toString().includes("proselint [OPTIONS] [PATHS]")
   // Lint the entire document using proselint
   if (proselintExists) {
     // We need to wrap shelljs.exec in a Promise. That way, the getProselintDiagnostics function

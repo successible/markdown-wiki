@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import { error, info } from '..'
 import { READABILITY } from './analyzeDocument'
 import { getConfig } from './getConfig'
-import { getWriteGoodDiagnostics } from './getWriteGoodDiagnostics'
 import { removeMarkdown } from './removeMarkdown'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
@@ -47,11 +46,6 @@ export const analyzeSentence = (
 
   const config = getConfig()
   const readability = Boolean(config.get('Readability'))
-  const writeGood = Boolean(config.get('Write Good'))
-
-  if (writeGood) {
-    findings.push(...getWriteGoodDiagnostics(sentence))
-  }
 
   if (nWords > 25 && readability) {
     findings.push(['This sentence is more than 25 words', error, READABILITY])

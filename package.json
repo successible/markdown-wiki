@@ -32,11 +32,6 @@
           "type": "boolean",
           "description": "Enable proselint",
           "default": false
-        },
-        "Markdown Wiki.Write Good": {
-          "type": "boolean",
-          "description": "Enable Write Good",
-          "default": false
         }
       }
     },
