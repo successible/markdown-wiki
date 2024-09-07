@@ -141,8 +141,7 @@
     "sentence-splitter": "5.0.0",
     "shelljs": "0.8.5",
     "uuid": "10.0.0",
-    "valid-url": "1.0.9",
-    "write-good": "1.0.8"
+    "valid-url": "1.0.9"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

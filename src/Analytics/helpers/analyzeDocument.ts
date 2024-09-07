@@ -11,7 +11,6 @@ import { getProselintDiagnostics } from './getProselintDiagnostics'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
-export const WRITEGOOD = 'write-good'
 
 export const analyzeDocument = async (
   context: vscode.ExtensionContext,

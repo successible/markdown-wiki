@@ -32,7 +32,6 @@ If a sentence is greater than 11 words, we flag it with:
 The extension can also analyze your writing using these libraries:
 
 - Proselint [^6]. Must be installed on your system.
-- Write Good [^7]. Bundled with the extension.
 
 > Note: All of these libraries are disabled by default. If desired, you can enable them in your Visual Studio Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
@@ -72,7 +71,5 @@ On the flip side, if there is no match, we will flag the link as a broken link. 
 [^4]: https://insidegovuk.blog.gov.uk/2014/08/04/sentence-length-why-25-words-is-our-limit/
 
 [^6]: https://github.com/amperser/proselint
-
-[^7]: https://github.com/btford/write-good
 
 [^8]: https://pandoc.org/installing.html
