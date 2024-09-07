@@ -24,11 +24,14 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "complexity": {
-        "noForEach": "off"
+      "correctness": {
+        "useExhaustiveDependencies": "off"
       },
       "suspicious": {
-        "noImplicitAnyLet": "off"
+        "noExplicitAny": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
       }
     }
   }

@@ -10,7 +10,7 @@ export const analyzeDocuments = async (
 ) => {
   const diagnostics = [] as [vscode.Uri, vscode.Diagnostic[]][]
   const assetLinks: string[] = []
-  let orphanedAssets
+  let orphanedAssets: string[]
 
   vscode.window.withProgress(
     {
