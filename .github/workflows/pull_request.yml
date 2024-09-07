@@ -19,9 +19,6 @@ jobs:
       - name: Install dependencies
         run: npm install -g pnpm; pnpm install
 
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Lint the extension
         run: cd src && npx tsc && npx biome check --fix --unsafe
 
