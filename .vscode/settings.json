@@ -6,5 +6,12 @@
     "out": true
   },
   "typescript.tsc.autoDetect": "off",
-  "cSpell.words": ["biomejs", "joblint", "proselint", "textlint", "WRITEGOOD"]
+  "cSpell.words": [
+    "biomejs",
+    "joblint",
+    "Pandoc",
+    "proselint",
+    "textlint",
+    "WRITEGOOD"
+  ]
 }
