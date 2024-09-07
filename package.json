@@ -28,11 +28,6 @@
           "description": "Enable Readability",
           "default": true
         },
-        "Markdown Wiki.joblint": {
-          "type": "boolean",
-          "description": "Enable joblint",
-          "default": false
-        },
         "Markdown Wiki.proselint": {
           "type": "boolean",
           "description": "Enable proselint",
@@ -158,7 +153,6 @@
     "command-exists": "1.2.9",
     "dayjs": "1.11.13",
     "glob": "11.0.0",
-    "joblint": "2.3.2",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
     "remove-markdown": "0.5.5",

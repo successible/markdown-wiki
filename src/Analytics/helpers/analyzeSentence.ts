@@ -3,7 +3,6 @@ import * as vscode from 'vscode'
 import { error, info } from '..'
 import { READABILITY } from './analyzeDocument'
 import { getConfig } from './getConfig'
-import { getJoblintDiagnostics } from './getJoblintDiagnostics'
 import { getWriteGoodDiagnostics } from './getWriteGoodDiagnostics'
 import { removeMarkdown } from './removeMarkdown'
 
@@ -45,12 +44,7 @@ export const analyzeSentence = (
 
   const config = getConfig()
   const readability = Boolean(config.get('Readability'))
-  const joblint = Boolean(config.get('joblint'))
   const writeGood = Boolean(config.get('Write Good'))
-
-  if (joblint) {
-    findings.push(...getJoblintDiagnostics(sentence))
-  }
 
   if (writeGood) {
     findings.push(...getWriteGoodDiagnostics(sentence))
