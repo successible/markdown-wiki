@@ -138,16 +138,16 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
+    "@biomejs/biome": "1.9.1",
     "@textlint/ast-node-types": "14.2.0",
     "@types/lodash": "4.17.7",
-    "@types/node": "22.5.4",
+    "@types/node": "22.5.5",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.15",
     "@types/uuid": "10.0.0",
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.93.0",
     "@vscode/vsce": "3.1.0",
-    "typescript": "5.5.4"
+    "typescript": "5.6.2"
   }
 }
