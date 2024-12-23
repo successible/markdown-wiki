@@ -131,7 +131,7 @@
     "glob": "11.0.0",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
-    "remove-markdown": "0.5.5",
+    "remove-markdown": "0.6.0",
     "sentence-splitter": "5.0.0",
     "shelljs": "0.8.5",
     "uuid": "11.0.3",
