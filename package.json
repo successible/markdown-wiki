@@ -128,13 +128,13 @@
   "dependencies": {
     "@prettier/sync": "0.5.2",
     "dayjs": "1.11.13",
-    "glob": "11.0.0",
+    "glob": "11.0.1",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
     "remove-markdown": "0.6.0",
     "sentence-splitter": "5.0.0",
     "shelljs": "0.8.5",
-    "uuid": "11.0.4",
+    "uuid": "11.0.5",
     "valid-url": "1.0.9"
   },
   "devDependencies": {
@@ -148,6 +148,6 @@
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.96.0",
     "@vscode/vsce": "3.2.1",
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   }
 }
