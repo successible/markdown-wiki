@@ -141,12 +141,12 @@
     "@biomejs/biome": "1.9.4",
     "@textlint/ast-node-types": "14.4.2",
     "@types/lodash": "4.17.15",
-    "@types/node": "22.13.0",
+    "@types/node": "22.13.1",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.15",
     "@types/uuid": "10.0.0",
     "@types/valid-url": "1.0.7",
-    "@types/vscode": "1.96.0",
+    "@types/vscode": "1.97.0",
     "@vscode/vsce": "3.2.2",
     "typescript": "5.7.3"
   }
