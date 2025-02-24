@@ -134,14 +134,14 @@
     "remove-markdown": "0.6.0",
     "sentence-splitter": "5.0.0",
     "shelljs": "0.8.5",
-    "uuid": "11.0.5",
+    "uuid": "11.1.0",
     "valid-url": "1.0.9"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@textlint/ast-node-types": "14.4.2",
     "@types/lodash": "4.17.15",
-    "@types/node": "22.13.4",
+    "@types/node": "22.13.5",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.15",
     "@types/uuid": "10.0.0",
