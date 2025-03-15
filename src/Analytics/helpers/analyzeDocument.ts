@@ -3,7 +3,7 @@ import { split } from 'sentence-splitter'
 import type * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
-import {  getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
+import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
 import { analyzeSentence } from './analyzeSentence'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
@@ -12,14 +12,19 @@ export const READABILITY = 'readability'
 export const analyzeDocument = async (
   context: vscode.ExtensionContext,
   document: vscode.TextDocument,
-  mode: "onDidLoadTextDocument" | "onDidChangeTextDocument" | "onDidSaveTextDocument" | "onDidChangeActiveTextEditor"
+  mode:
+    | 'onDidLoadTextDocument'
+    | 'onDidChangeTextDocument'
+    | 'onDidSaveTextDocument'
+    | 'onDidChangeActiveTextEditor'
 ) => {
   const diagnostics: vscode.Diagnostic[] = []
   diagnostics.push(
     ...(await auditFootnotesInFile(document.fileName)).diagnostics
   )
 
-  const allPossibleLinks = mode !== "onDidChangeTextDocument" ? await getAllPossibleLinks() : {}
+  const allPossibleLinks =
+    mode !== 'onDidChangeTextDocument' ? await getAllPossibleLinks() : {}
 
   let enableLint = true
   // Loop through every line in the text
@@ -32,7 +37,7 @@ export const analyzeDocument = async (
     const sentences = split(paragraph.text)
     for (const sentence of sentences) {
       // Find all the wiki links
-      if (mode !== "onDidChangeTextDocument") {
+      if (mode !== 'onDidChangeTextDocument') {
         const wikiLinkResults = findWikiLinksInSentence(
           sentence as TxtNode,
           lineIndex,

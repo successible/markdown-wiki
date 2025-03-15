@@ -23,7 +23,11 @@ export const analyzeDocuments = async (
         progress.report({ increment: increment })
         const openPath = vscode.Uri.file(entry[1])
         const document = await vscode.workspace.openTextDocument(openPath)
-        const result = await analyzeDocument(context, document, "onDidLoadTextDocument")
+        const result = await analyzeDocument(
+          context,
+          document,
+          'onDidLoadTextDocument'
+        )
         diagnostics.push([document.uri, result.diagnostics])
       }
 
