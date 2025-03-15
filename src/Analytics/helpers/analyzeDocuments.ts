@@ -1,21 +1,18 @@
-import fs from 'node:fs'
 import * as vscode from 'vscode'
 import { analyzeDocument } from './analyzeDocument'
 import { getAllFilePaths } from './getAllFilePaths'
 
 export const analyzeDocuments = async (
   context: vscode.ExtensionContext,
-  analytics: vscode.DiagnosticCollection,
+  analytics: vscode.DiagnosticCollection
 ) => {
   const diagnostics = [] as [vscode.Uri, vscode.Diagnostic[]][]
-  const assetLinks: string[] = []
-  let orphanedAssets: string[]
 
   vscode.window.withProgress(
     {
       cancellable: true,
       location: vscode.ProgressLocation.Notification,
-      title: `Running the analyze command`,
+      title: 'Running the analyze command',
     },
     async (progress) => {
       const files = await getAllFilePaths()
@@ -26,8 +23,11 @@ export const analyzeDocuments = async (
         progress.report({ increment: increment })
         const openPath = vscode.Uri.file(entry[1])
         const document = await vscode.workspace.openTextDocument(openPath)
-        const result = await analyzeDocument(context, document)
-        assetLinks.push(...result.assetLinks)
+        const result = await analyzeDocument(
+          context,
+          document,
+          'onDidLoadTextDocument'
+        )
         diagnostics.push([document.uri, result.diagnostics])
       }
 

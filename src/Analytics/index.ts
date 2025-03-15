@@ -17,7 +17,11 @@ export const Analytics = async (
 
   if (editor && isMarkdownFile(editor.document.uri)) {
     const document = editor.document
-    const { diagnostics } = await analyzeDocument(context, document)
+    const { diagnostics } = await analyzeDocument(
+      context,
+      document,
+      'onDidLoadTextDocument'
+    )
     analytics.set([[document.uri, diagnostics]])
   }
 
@@ -25,10 +29,11 @@ export const Analytics = async (
     vscode.workspace.onDidChangeTextDocument(async (editor) => {
       if (isMarkdownFile(editor.document.uri)) {
         const document = editor.document
-        const { diagnostics } = await analyzeDocument(context, document, {
-          // Proselint is too slow to run on every text change
-          enableProselint: false,
-        })
+        const { diagnostics } = await analyzeDocument(
+          context,
+          document,
+          'onDidChangeTextDocument'
+        )
         analytics.set([[document.uri, diagnostics]])
       }
     })
@@ -36,7 +41,11 @@ export const Analytics = async (
   context.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
       if (isMarkdownFile(document.uri)) {
-        const { diagnostics } = await analyzeDocument(context, document)
+        const { diagnostics } = await analyzeDocument(
+          context,
+          document,
+          'onDidSaveTextDocument'
+        )
         analytics.set([[document.uri, diagnostics]])
       }
     })
@@ -44,7 +53,11 @@ export const Analytics = async (
   vscode.window.onDidChangeActiveTextEditor(async (editor) => {
     if (editor && isMarkdownFile(editor.document.uri)) {
       const document = editor.document
-      const { diagnostics } = await analyzeDocument(context, document)
+      const { diagnostics } = await analyzeDocument(
+        context,
+        document,
+        'onDidChangeActiveTextEditor'
+      )
       analytics.set([[document.uri, diagnostics]])
     }
   })
