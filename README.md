@@ -11,25 +11,14 @@ You can get this extension in two ways:
 
 We recommend these extensions for a better editing experience:
 
-- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for Markdown keyboard shortcuts and a better preview.
-
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for Markdown keyboard shortcuts and a better Markdown preview.
 - [LTeX – LanguageTool grammar/spell checking](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) for checking grammar and spelling.
-
-- [Markdown Footnote](https://marketplace.visualstudio.com/items?itemName=houkanshan.vscode-markdown-footnote) for preview of footnotes.
+- [Markdown Footnote](https://marketplace.visualstudio.com/items?itemName=houkanshan.vscode-markdown-footnote) for previewing footnotes.
 
 We recommend these programs for enhanced functionality.
 
-- [Git](https://git-scm.com/). To track changes to your files.
-
-- [Pandoc](https://pandoc.org/installing.html). To automatically order footnotes and endnotes.
-
-## Keyboard Shortcuts
-
-This extension only adds two shortcuts: both for managing footnotes. Other shortcuts are added by Markdown All in One (if installed), covered [here](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one#keyboard-shortcuts).
-
-- `Ctrl/Cmd+ '`. Insert a `url` on your clipboard as a Markdown footnote. Your footnotes and endnotes will be ordered automatically after insertion.
-
-- `Ctrl/Cmd+ shift + '`. Automatically order footnotes and endnotes. [Pandoc](https://pandoc.org/installing.html) must be installed on your system for this command to work.
+- [Git](https://git-scm.com/) for tracking changes to your files.
+- [Pandoc](https://pandoc.org/installing.html) for automatically ordering footnotes and endnotes.
 
 ## Usage
 
@@ -39,23 +28,28 @@ This extension is essentially a "read only" analysis tool. It has three clusters
 - Footnotes
 - Wiki Links
 
-Each of these clusters "just work". They will apply automatically on any text change to any Markdown file in any VS Code workspace. You do not need to do any configuration. And, none of these clusters will make any changes to your files.
+Each of these clusters "just work". They will apply automatically on any text change or save to any Markdown file in any VS Code workspace. You do not need to add any configuration. And none of these clusters will make any changes to your files.
+
+## Keyboard Shortcuts
+
+This extension only adds two shortcuts. Both are for managing footnotes. Other shortcuts are added by Markdown All in One (if installed), covered [here](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one#keyboard-shortcuts).
+
+- `Ctrl/Cmd+ '`. Insert a `url` on your clipboard as a Markdown footnote. Your footnotes and endnotes will be ordered automatically after insertion.
+- `Ctrl/Cmd+ shift + '`. Automatically order footnotes and endnotes. [Pandoc](https://pandoc.org/installing.html) must be installed on your system for this command to work.
 
 ## Readability
 
 ![Readability](./readability.png)
 
-This extension uses the automated readability index (ARI) to check readability [^2]. It will automatically apply this check on every text change.
+This extension uses the automated readability index (ARI) to check readability [^2]. It will automatically apply this check on every text change. If a sentence is greater than 11 words, we flag it with:
 
-If a sentence is greater than 11 words, we flag it with:
-
-- Warning: "Hard to read" if the `ARI >= 10` and `ARI < 14`
-- Error: "Very hard to read" if the `ARI >= 14`
-- Error: If the sentence is longer than 25 words
+- Warning (Blue): "Hard to read" if the `ARI >= 10` and `ARI < 14`
+- Error (Red): "Very hard to read" if the `ARI >= 14`
+- Error (Red): If the sentence is longer than 25 words
 
 > Note: The average reader only understands text at an 8th grade level. This is `ARI < 10` [^3]. The average reader also finds a sentence with more than 25 words very hard to read [^4].
 
-> Note: In the VS Code Command Palette, you can use `Analyze Files`. This will apply ARI to every `.md` file in your workspace. This command will also check two, other things. One, missing wiki links. Two, missing or unmatched footnotes and endnotes.
+> Note: In the VS Code Command Palette, you can use `Analyze Files`. This will apply ARI to every Markdown file in your workspace. This command will also check two, other things. One, missing wiki links. Two, missing or unmatched footnotes and endnotes.
 
 ## Footnotes
 
@@ -64,9 +58,7 @@ If a sentence is greater than 11 words, we flag it with:
 Managing Markdown footnotes is a pain. This extension makes it a bit easier.
 
 - Automatically check missing or unmatched footnotes in a file on every save.
-
 - Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work.
-
 - Insert a `url` on your clipboard as a Markdown footnote via `Ctrl/Cmd+ '`. Your footnotes and endnotes will be ordered automatically after insertion.
 
 ## Wiki Links
