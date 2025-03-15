@@ -32,6 +32,7 @@ export const findWikiLinksInSentence = (
       // Example: Catch blue-green deploys with the file is called blue-green-deploys.md
       allPossibleLinks[title.replaceAll('-', ' ')]
 
+
     if (link) {
       links.push(new vscode.DocumentLink(range, link))
     } else {

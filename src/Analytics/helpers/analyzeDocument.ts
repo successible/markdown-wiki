@@ -2,12 +2,9 @@ import type { TxtNode } from '@textlint/ast-node-types'
 import { split } from 'sentence-splitter'
 import type * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
-import { findAssetLinksInSentence } from '../../Linking/helpers/findIAssetLinksInSentence'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
-import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
+import {  getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
 import { analyzeSentence } from './analyzeSentence'
-import { getConfig } from './getConfig'
-import { getProselintDiagnostics } from './getProselintDiagnostics'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
@@ -15,24 +12,14 @@ export const READABILITY = 'readability'
 export const analyzeDocument = async (
   context: vscode.ExtensionContext,
   document: vscode.TextDocument,
-  options: { enableProselint: boolean } = { enableProselint: true }
+  mode: "onDidLoadTextDocument" | "onDidChangeTextDocument" | "onDidSaveTextDocument" | "onDidChangeActiveTextEditor"
 ) => {
-  const { enableProselint } = options
   const diagnostics: vscode.Diagnostic[] = []
-  const config = getConfig()
-  const proselint = config.get('proselint')
-
   diagnostics.push(
     ...(await auditFootnotesInFile(document.fileName)).diagnostics
   )
 
-  if (enableProselint && proselint) {
-    diagnostics.push(...(await getProselintDiagnostics(document)))
-  }
-
-  const allPossibleLinks = await getAllPossibleLinks()
-  const wikiLinks: vscode.DocumentLink[] = []
-  const assetLinks: string[] = []
+  const allPossibleLinks = mode !== "onDidChangeTextDocument" ? await getAllPossibleLinks() : {}
 
   let enableLint = true
   // Loop through every line in the text
@@ -45,22 +32,14 @@ export const analyzeDocument = async (
     const sentences = split(paragraph.text)
     for (const sentence of sentences) {
       // Find all the wiki links
-      const wikiLinkResults = findWikiLinksInSentence(
-        sentence as TxtNode,
-        lineIndex,
-        allPossibleLinks
-      )
-      diagnostics.push(...wikiLinkResults.missingLinks)
-      wikiLinks.push(...wikiLinkResults.links)
-
-      // Find all the missing asset links
-      const assetLinkResults = await findAssetLinksInSentence(
-        sentence as TxtNode,
-        lineIndex
-      )
-      diagnostics.push(...assetLinkResults.missingLinks)
-      assetLinks.push(...assetLinkResults.links)
-
+      if (mode !== "onDidChangeTextDocument") {
+        const wikiLinkResults = findWikiLinksInSentence(
+          sentence as TxtNode,
+          lineIndex,
+          allPossibleLinks
+        )
+        diagnostics.push(...wikiLinkResults.missingLinks)
+      }
       // Don't lint the contents of a ```code``` block
       // When you see a ```, disable linting until you see the closing ```
       // That ensures you skip the body of the code block
@@ -93,7 +72,5 @@ export const analyzeDocument = async (
     }
   }
 
-  await context.workspaceState.update('wikiLinks', wikiLinks)
-
-  return { assetLinks, diagnostics }
+  return { diagnostics }
 }

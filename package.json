@@ -27,11 +27,6 @@
           "type": "boolean",
           "description": "Enable Readability",
           "default": true
-        },
-        "Markdown Wiki.proselint": {
-          "type": "boolean",
-          "description": "Enable proselint",
-          "default": false
         }
       }
     },
@@ -103,11 +98,6 @@
         "command": "markdown-wiki.orderFootnotes",
         "key": "ctrl+shift+'",
         "mac": "cmd+shift+'"
-      },
-      {
-        "command": "workbench.action.reopenWithEditor",
-        "key": "alt+'",
-        "mac": "alt+'"
       }
     ]
   },

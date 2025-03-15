@@ -2,24 +2,50 @@
 
 Keep a wiki in Visual Studio Code.
 
+## Installation
+
 You can get this extension in two ways:
 
 - By going directly to the Visual Studio marketplace [^1].
 - By searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
 
-This extension has three clusters of functionality:
+We recommend these extensions for a better editing experience:
 
-- Analytics
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for Markdown keyboard shortcuts and a better preview.
+
+- [LTeX – LanguageTool grammar/spell checking](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) for checking grammar and spelling.
+
+- [Markdown Footnote](https://marketplace.visualstudio.com/items?itemName=houkanshan.vscode-markdown-footnote) for preview of footnotes.
+
+We recommend these programs for enhanced functionality.
+
+- [Git](https://git-scm.com/). To track changes to your files.
+
+- [Pandoc](https://pandoc.org/installing.html). To automatically order footnotes and endnotes.
+
+## Keyboard Shortcuts
+
+This extension only adds two shortcuts: both for managing footnotes. Other shortcuts are added by Markdown All in One (if installed), covered [here](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one#keyboard-shortcuts).
+
+- `Ctrl/Cmd+ '`. Insert a `url` on your clipboard as a Markdown footnote. Your footnotes and endnotes will be ordered automatically after insertion.
+
+- `Ctrl/Cmd+ shift + '`. Automatically order footnotes and endnotes. [Pandoc](https://pandoc.org/installing.html) must be installed on your system for this command to work.
+
+## Usage
+
+This extension is essentially a "read only" analysis tool. It has three clusters of functionality.
+
+- Readability
 - Footnotes
-- Linking
+- Wiki Links
 
-Let's start with Analytics!
+Each of these clusters "just work". They will apply automatically on any text change to any Markdown file in any VS Code workspace. You do not need to do any configuration. And, none of these clusters will make any changes to your files.
 
-## Analytics
+## Readability
 
-This extension has many options for analyzing your writing.
+![Readability](./readability.png)
 
-The first (and most important) is `ARI`. `ARI` stands for automated readability index. We use it to check to readability. [^2]. Here's how:
+This extension uses the automated readability index (ARI) to check readability [^2]. It will automatically apply this check on every text change.
 
 If a sentence is greater than 11 words, we flag it with:
 
@@ -29,36 +55,30 @@ If a sentence is greater than 11 words, we flag it with:
 
 > Note: The average reader only understands text at an 8th grade level. This is `ARI < 10` [^3]. The average reader also finds a sentence with more than 25 words very hard to read [^4].
 
-The extension can also analyze your writing using these libraries:
-
-- Proselint [^6]. Must be installed on your system.
-
-> Note: All of these libraries are disabled by default. If desired, you can enable them in your Visual Studio Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
-
-You may want to analyze more than just your open file. This command make that possible.
-
-- `Analyze Files`: Analyze every `.md` file in your workspace with enabled libraries. This command will also check for three other things. One, missing wiki links. Two, missing asset links. Three, missing or unmatched footnotes.
+> Note: In the VS Code Command Palette, you can use `Analyze Files`. This will apply ARI to every `.md` file in your workspace. This command will also check two, other things. One, missing wiki links. Two, missing or unmatched footnotes and endnotes.
 
 ## Footnotes
 
-Managing Markdown footnotes is a pain.
+![Footnotes](./footnotes.png)
+
+Managing Markdown footnotes is a pain. This extension makes it a bit easier.
 
 - Automatically check missing or unmatched footnotes in a file on every save.
 
-- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work [^8].
+- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work.
 
 - Insert a `url` on your clipboard as a Markdown footnote via `Ctrl/Cmd+ '`. Your footnotes and endnotes will be ordered automatically after insertion.
 
-## Linking
+## Wiki Links
+
+![Wiki Links](./wiki-links.png)
 
 Wiki links represent an internal link to another file. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
 - You have the wiki link `[[security]]` in a file called `cool.md`.
 - If that link matches the name of another file, `security.md`, we will recognize it as a link.
-- We will also handle variation in capitalization and pluralization.
+- The extension will also handle variation in capitalization and pluralization.
 - So you can write `[[Security]]` or `[[securities]]` in `cool.md` without error!
-
-On the flip side, if there is no match, we will flag the link as a broken link. We will also flag any asset link without a match. For example, if you write `![icon](/icon.png)` but `icon.png` does not exist, we will throw an error. Just make sure that each asset link is an absolute link. Otherwise, it will be flagged as missing by default!
 
 [^1]: https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki
 
@@ -67,7 +87,3 @@ On the flip side, if there is no match, we will flag the link as a broken link. 
 [^3]: https://readable.com/blog/what-is-the-average-persons-reading-level/
 
 [^4]: https://insidegovuk.blog.gov.uk/2014/08/04/sentence-length-why-25-words-is-our-limit/
-
-[^6]: https://github.com/amperser/proselint
-
-[^8]: https://pandoc.org/installing.html
