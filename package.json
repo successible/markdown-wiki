@@ -46,18 +46,6 @@
         ]
       }
     ],
-    "customEditors": [
-      {
-        "viewType": "markdown-wiki.Editor",
-        "displayName": "WYSIWYG Editor",
-        "selector": [
-          {
-            "filenamePattern": "*.mdz"
-          }
-        ],
-        "priority": "option"
-      }
-    ],
     "commands": [
       {
         "command": "markdown-wiki.insertFootnote",
