@@ -35,11 +35,9 @@ The extension can also analyze your writing using these libraries:
 
 > Note: All of these libraries are disabled by default. If desired, you can enable them in your Visual Studio Code Settings. `proselint` can also be a bit slow, so it does not run on every text change. Instead, you need to save the document for `proselint` to run.
 
-You may want to analyze more than just your open file. These commands make that possible.
+You may want to analyze more than just your open file. This command make that possible.
 
 - `Analyze Files`: Analyze every `.md` file in your workspace with enabled libraries. This command will also check for three other things. One, missing wiki links. Two, missing asset links. Three, missing or unmatched footnotes.
-
-- `Delete Orphaned Assets`: Delete any asset not linked in a Markdown file. Specifically, this command will delete any files of type `png`, `jpeg`, `jpg`, `svg`, `gif`, `wav`, or `mp3`. This command is destructive, so use it carefully!
 
 ## Footnotes
 

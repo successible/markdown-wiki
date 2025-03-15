@@ -58,11 +58,7 @@ export const Analytics = async (
   const commands = [
     vscode.commands.registerCommand(
       `${EXTENSION_NAME}.analyzeFiles`,
-      async () => await analyzeDocuments(context, analytics, 'analyze')
-    ),
-    vscode.commands.registerCommand(
-      `${EXTENSION_NAME}.deleteOrphanAssets`,
-      async () => await analyzeDocuments(context, analytics, 'delete')
+      async () => await analyzeDocuments(context, analytics)
     ),
   ]
   context.subscriptions.push(...commands)

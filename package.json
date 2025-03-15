@@ -75,10 +75,6 @@
       {
         "command": "markdown-wiki.analyzeFiles",
         "title": "Analyze Files"
-      },
-      {
-        "command": "markdown-wiki.deleteOrphanAssets",
-        "title": "Delete Orphan Assets"
       }
     ],
     "menus": {
@@ -93,10 +89,6 @@
         },
         {
           "command": "markdown-wiki.analyzeFiles",
-          "when": "editorLangId == markdown"
-        },
-        {
-          "command": "markdown-wiki.deleteOrphanAssets",
           "when": "editorLangId == markdown"
         }
       ]

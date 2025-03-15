@@ -6,7 +6,6 @@ import { getAllFilePaths } from './getAllFilePaths'
 export const analyzeDocuments = async (
   context: vscode.ExtensionContext,
   analytics: vscode.DiagnosticCollection,
-  mode: 'analyze' | 'delete'
 ) => {
   const diagnostics = [] as [vscode.Uri, vscode.Diagnostic[]][]
   const assetLinks: string[] = []
@@ -16,7 +15,7 @@ export const analyzeDocuments = async (
     {
       cancellable: true,
       location: vscode.ProgressLocation.Notification,
-      title: `Running the ${mode} command`,
+      title: `Running the analyze command`,
     },
     async (progress) => {
       const files = await getAllFilePaths()
@@ -29,33 +28,12 @@ export const analyzeDocuments = async (
         const document = await vscode.workspace.openTextDocument(openPath)
         const result = await analyzeDocument(context, document)
         assetLinks.push(...result.assetLinks)
-        if (mode === 'analyze') {
-          diagnostics.push([document.uri, result.diagnostics])
-        }
+        diagnostics.push([document.uri, result.diagnostics])
       }
 
-      if (mode === 'delete') {
-        const allAssets = await getAllFilePaths(
-          '**/*.{png,svg,jpeg,jpg,gif,wav,mp3}'
-        )
-        orphanedAssets = allAssets.filter((x) => !assetLinks.includes(x))
-        if (Array.isArray(orphanedAssets)) {
-          for (const imagePath of orphanedAssets) {
-            fs.unlinkSync(imagePath)
-          }
-        }
-      }
-
-      if (mode === 'analyze') {
-        await analytics.set(diagnostics)
-      }
-
+      await analytics.set(diagnostics)
       const showMessage = vscode.window.showInformationMessage
-      if (mode === 'analyze') {
-        showMessage('Analysis complete. Check the Problems tab for results.')
-      } else {
-        showMessage(`Removed ${orphanedAssets.length} orphaned assets`)
-      }
+      showMessage('Analysis complete. Check the Problems tab for results.')
     }
   )
 }
