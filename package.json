@@ -101,7 +101,7 @@
     "glob": "11.0.2",
     "lodash": "4.17.21",
     "pluralize": "8.0.0",
-    "remove-markdown": "0.6.0",
+    "remove-markdown": "0.6.2",
     "sentence-splitter": "5.0.0",
     "shelljs": "0.9.2",
     "uuid": "11.1.0",
@@ -109,7 +109,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@textlint/ast-node-types": "14.6.0",
+    "@textlint/ast-node-types": "14.7.1",
     "@types/lodash": "4.17.16",
     "@types/node": "22.15.3",
     "@types/pluralize": "0.0.33",
