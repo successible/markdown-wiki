@@ -103,7 +103,7 @@
     "pluralize": "8.0.0",
     "remove-markdown": "0.6.2",
     "sentence-splitter": "5.0.0",
-    "shelljs": "0.9.2",
+    "shelljs": "0.10.0",
     "uuid": "11.1.0",
     "valid-url": "1.0.9"
   },
@@ -111,12 +111,12 @@
     "@biomejs/biome": "1.9.4",
     "@textlint/ast-node-types": "14.7.1",
     "@types/lodash": "4.17.16",
-    "@types/node": "22.15.3",
+    "@types/node": "22.15.17",
     "@types/pluralize": "0.0.33",
-    "@types/shelljs": "0.8.15",
+    "@types/shelljs": "0.8.16",
     "@types/uuid": "10.0.0",
     "@types/valid-url": "1.0.7",
-    "@types/vscode": "1.99.1",
+    "@types/vscode": "1.100.0",
     "@vscode/vsce": "3.3.2",
     "typescript": "5.8.3"
   }
