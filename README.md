@@ -11,9 +11,9 @@ You can get this extension in two ways:
 
 We recommend these extensions for a better editing experience:
 
-- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for Markdown keyboard shortcuts and a better Markdown preview.
-- [LTeX – LanguageTool grammar/spell checking](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) for checking grammar and spelling.
-- [Markdown Footnote](https://marketplace.visualstudio.com/items?itemName=houkanshan.vscode-markdown-footnote) for previewing footnotes.
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one). For Markdown keyboard shortcuts and a better Markdown preview.
+- [LTeX – LanguageTool grammar/spell checking](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex). For checking grammar and spelling.
+- [Markdown Footnote](https://marketplace.visualstudio.com/items?itemName=houkanshan.vscode-markdown-footnote). For previewing footnotes.
 
 We recommend these programs for enhanced functionality.
 
