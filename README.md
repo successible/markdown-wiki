@@ -22,7 +22,7 @@ We recommend these programs for enhanced functionality.
 
 ## Usage
 
-This extension is essentially a "read only" analysis tool. It has three clusters of functionality.
+This extension is a "read only" analysis tool. It has three clusters of functionality.
 
 - Readability
 - Footnotes
