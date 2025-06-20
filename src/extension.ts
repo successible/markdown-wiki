@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import { Analytics } from './Analytics'
-import { Editor } from './Editor'
 import { Footnotes } from './Footnotes'
 import { Linking } from './Linking'
 
@@ -21,7 +20,6 @@ export const activate = async (context: vscode.ExtensionContext) => {
 
   // Enable all the services
   await Analytics(context, analytics)
-  await Editor(context)
   await Footnotes(context)
   await Linking(context)
 

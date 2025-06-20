@@ -8,15 +8,16 @@ import { analyzeSentence } from './analyzeSentence'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
+export type DocumentMode =
+  | 'onDidLoadTextDocument'
+  | 'onDidChangeTextDocument'
+  | 'onDidSaveTextDocument'
+  | 'onDidChangeActiveTextEditor'
 
 export const analyzeDocument = async (
   context: vscode.ExtensionContext,
   document: vscode.TextDocument,
-  mode:
-    | 'onDidLoadTextDocument'
-    | 'onDidChangeTextDocument'
-    | 'onDidSaveTextDocument'
-    | 'onDidChangeActiveTextEditor'
+  mode: DocumentMode
 ) => {
   const diagnostics: vscode.Diagnostic[] = []
   diagnostics.push(

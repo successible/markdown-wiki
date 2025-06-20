@@ -100,6 +100,7 @@
     "dayjs": "1.11.13",
     "glob": "11.0.3",
     "lodash": "4.17.21",
+    "p-debounce": "4.0.0",
     "pluralize": "8.0.0",
     "remove-markdown": "0.6.2",
     "sentence-splitter": "5.0.0",
