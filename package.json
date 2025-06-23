@@ -111,8 +111,8 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@textlint/ast-node-types": "14.8.4",
-    "@types/lodash": "4.17.17",
-    "@types/node": "22.15.31",
+    "@types/lodash": "4.17.18",
+    "@types/node": "22.15.32",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.16",
     "@types/uuid": "10.0.0",
