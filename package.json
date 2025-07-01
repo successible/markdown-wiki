@@ -109,8 +109,8 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@textlint/ast-node-types": "14.8.4",
+    "@biomejs/biome": "2.0.6",
+    "@textlint/ast-node-types": "15.1.0",
     "@types/lodash": "4.17.19",
     "@types/node": "22.15.34",
     "@types/pluralize": "0.0.33",
