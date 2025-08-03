@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": ["out", "**/*.json"]
+    "includes": ["**", "!**/out", "!**/*.json"]
   },
   "formatter": {
     "enabled": true,
@@ -17,9 +17,7 @@
       "trailingCommas": "es5"
     }
   },
-  "organizeImports": {
-    "enabled": true
-  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {

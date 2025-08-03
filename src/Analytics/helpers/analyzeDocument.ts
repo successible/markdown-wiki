@@ -15,7 +15,7 @@ export type DocumentMode =
   | 'onDidChangeActiveTextEditor'
 
 export const analyzeDocument = async (
-  context: vscode.ExtensionContext,
+  _context: vscode.ExtensionContext,
   document: vscode.TextDocument,
   mode: DocumentMode
 ) => {

@@ -1,7 +1,6 @@
 import pDebounce from 'p-debounce'
 import type * as vscode from 'vscode'
-import { type DocumentMode, analyzeDocument } from './analyzeDocument'
-import { isMarkdownFile } from './isMarkdownFile'
+import { analyzeDocument, type DocumentMode } from './analyzeDocument'
 
 export const debouncedAnalyzeDocument = pDebounce(
   async (

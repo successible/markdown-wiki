@@ -17,7 +17,7 @@ export const getAllFilePaths = async (
     const path = globSync(`${folders[0].uri.path}/.gitignore`, {})[0]
     const gitignore = await open(vscode.Uri.file(path))
     toIgnore = gitignore.getText().split('\n') as string[]
-  } catch (e) {}
+  } catch (_e) {}
 
   const paths = globSync(`${folders[0].uri.path}/${customGlob}`, {})
     // Do not grab any markdown file that has been gitignored

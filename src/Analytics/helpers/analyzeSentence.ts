@@ -8,10 +8,10 @@ export type Findings = [string, vscode.DiagnosticSeverity, string][]
 
 // Source: https://urlregex.com/index.html
 export const URLRegex =
-  /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
+  /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www\.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w\-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[.!/\\\w]*))?)/
 
 export const analyzeSentence = (
-  document: vscode.TextDocument,
+  _document: vscode.TextDocument,
   paragraph: vscode.TextLine,
   sentence: string,
   lineIndex: number
