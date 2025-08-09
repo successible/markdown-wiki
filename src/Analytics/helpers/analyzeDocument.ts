@@ -1,6 +1,6 @@
 import type { TxtNode } from '@textlint/ast-node-types'
 import { split } from 'sentence-splitter'
-import * as vscode from 'vscode'
+import type * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
 import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
@@ -15,9 +15,10 @@ export type DocumentMode =
   | 'onDidChangeActiveTextEditor'
 
 export const analyzeDocument = async (
-  context: vscode.ExtensionContext,
+  _context: vscode.ExtensionContext,
   document: vscode.TextDocument,
-  mode: DocumentMode
+  mode: DocumentMode,
+  statusBar: vscode.StatusBarItem | null
 ) => {
   const diagnostics: vscode.Diagnostic[] = []
   diagnostics.push(
@@ -88,14 +89,12 @@ export const analyzeDocument = async (
     .filter(Boolean)
     .filter((s) => s !== ' ' && !s.includes('title:'))
   const wordsToCount = sentencesToCount.flatMap((s) => s.split(' '))
-  const analysisStatusBar = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Right,
-    1000
-  )
-  analysisStatusBar.text = `Words: ${wordsToCount.length}`
-  analysisStatusBar.tooltip = `Sentences: ${sentencesToCount.length}`
-  analysisStatusBar.show()
-  context.subscriptions.push(analysisStatusBar)
+
+  if (statusBar) {
+    statusBar.text = `Words: ${wordsToCount.length}`
+    statusBar.tooltip = `Sentences: ${sentencesToCount.length}`
+    statusBar.show()
+  }
 
   return { diagnostics }
 }

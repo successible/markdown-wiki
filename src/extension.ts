@@ -18,8 +18,14 @@ export const activate = async (context: vscode.ExtensionContext) => {
   const analytics = vscode.languages.createDiagnosticCollection('analytics')
   context.subscriptions.push(analytics)
 
+  // Create the status bar
+  const statusBar = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  )
+
   // Enable all the services
-  await Analytics(context, analytics)
+  await Analytics(context, analytics, statusBar)
   await Footnotes(context)
   await Linking(context)
 
