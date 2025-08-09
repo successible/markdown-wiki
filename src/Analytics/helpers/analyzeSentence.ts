@@ -15,7 +15,7 @@ export const analyzeSentence = (
   paragraph: vscode.TextLine,
   sentence: string,
   lineIndex: number
-): vscode.Diagnostic[] | null => {
+): { sentence: string; diagnostics: vscode.Diagnostic[] } => {
   const sentenceStart = paragraph.text.indexOf(sentence)
   const sentenceEnd = sentenceStart + sentence.length
 
@@ -63,12 +63,13 @@ export const analyzeSentence = (
   // Assemble the findings into vscode.Diagnostics
 
   if (findings.length >= 1) {
-    return findings.flatMap((finding) => {
+    const diagnostics = findings.flatMap((finding) => {
       const [message, severity, code] = finding
       const diagnostic = new vscode.Diagnostic(range, message, severity)
       diagnostic.code = code
       return diagnostic
     })
+    return { sentence: plainText, diagnostics }
   }
-  return null
+  return { sentence: plainText, diagnostics: [] }
 }
