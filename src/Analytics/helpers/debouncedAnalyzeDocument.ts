@@ -7,9 +7,15 @@ export const debouncedAnalyzeDocument = pDebounce(
     context: vscode.ExtensionContext,
     document: vscode.TextDocument,
     analytics: vscode.DiagnosticCollection,
-    mode: DocumentMode
+    mode: DocumentMode,
+    statusBar: vscode.StatusBarItem
   ) => {
-    const { diagnostics } = await analyzeDocument(context, document, mode)
+    const { diagnostics } = await analyzeDocument(
+      context,
+      document,
+      mode,
+      statusBar
+    )
     analytics.set([[document.uri, diagnostics]])
     return diagnostics
   },

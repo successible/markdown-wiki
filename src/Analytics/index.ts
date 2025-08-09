@@ -11,7 +11,8 @@ export const info = vscode.DiagnosticSeverity.Information
 
 export const Analytics = async (
   context: vscode.ExtensionContext,
-  analytics: vscode.DiagnosticCollection
+  analytics: vscode.DiagnosticCollection,
+  statusBar: vscode.StatusBarItem
 ): Promise<void> => {
   const editor = vscode.window.activeTextEditor
   if (editor && isMarkdownFile(editor.document.uri)) {
@@ -19,7 +20,8 @@ export const Analytics = async (
       context,
       editor.document,
       analytics,
-      'onDidLoadTextDocument'
+      'onDidLoadTextDocument',
+      statusBar
     )
   }
 
@@ -30,7 +32,8 @@ export const Analytics = async (
           context,
           editor.document,
           analytics,
-          'onDidChangeTextDocument'
+          'onDidChangeTextDocument',
+          statusBar
         )
       }
     })
@@ -43,7 +46,8 @@ export const Analytics = async (
           context,
           document,
           analytics,
-          'onDidSaveTextDocument'
+          'onDidSaveTextDocument',
+          statusBar
         )
       }
     })
@@ -55,7 +59,8 @@ export const Analytics = async (
         context,
         editor.document,
         analytics,
-        'onDidChangeActiveTextEditor'
+        'onDidChangeActiveTextEditor',
+        statusBar
       )
     }
   })

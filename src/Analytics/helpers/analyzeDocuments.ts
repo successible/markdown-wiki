@@ -26,7 +26,8 @@ export const analyzeDocuments = async (
         const result = await analyzeDocument(
           context,
           document,
-          'onDidLoadTextDocument'
+          'onDidLoadTextDocument',
+          null
         )
         diagnostics.push([document.uri, result.diagnostics])
       }
