@@ -23,9 +23,9 @@ export const activate = async (context: vscode.ExtensionContext) => {
   await Footnotes(context)
   await Linking(context)
 
-  console.log('Markdown Wiki activated!!')
+  console.log('Markdown Wiki activated!')
 }
 
 export function deactivate() {
-  console.log('Markdown Wiki deactivated!!')
+  console.log('Markdown Wiki deactivated!')
 }
