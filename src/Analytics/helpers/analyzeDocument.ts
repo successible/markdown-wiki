@@ -1,6 +1,6 @@
 import type { TxtNode } from '@textlint/ast-node-types'
 import { split } from 'sentence-splitter'
-import type * as vscode from 'vscode'
+import * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
 import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
@@ -15,7 +15,7 @@ export type DocumentMode =
   | 'onDidChangeActiveTextEditor'
 
 export const analyzeDocument = async (
-  _context: vscode.ExtensionContext,
+  context: vscode.ExtensionContext,
   document: vscode.TextDocument,
   mode: DocumentMode
 ) => {
@@ -32,6 +32,11 @@ export const analyzeDocument = async (
   // Any amount of text WITHOUT a \n character (new line) is treated as one line
   // Word Wrap will make a long line of text look like a paragraph.
   // Hence, to avoid confusion, I call a line of text a paragraph.
+
+  const analysis = {
+    sentences: [] as string[],
+  }
+
   for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
     const paragraph = document.lineAt(lineIndex)
     const quote = paragraph.text.startsWith('> Quote:')
@@ -61,13 +66,14 @@ export const analyzeDocument = async (
           // For each sentence, analyze the markdown-wiki.
           // If an unreadable sentence is found, create a diagnostic.
           // Diagnostics are messages you see in the editor and Problem panel.
-          const findings = analyzeSentence(
+          const result = analyzeSentence(
             document,
             paragraph,
             sentence.raw,
             lineIndex
           )
-          findings?.forEach((f) => diagnostics.push(f))
+          result.diagnostics?.forEach((f) => diagnostics.push(f))
+          analysis.sentences.push(result.sentence)
         }
       }
     }
@@ -77,6 +83,19 @@ export const analyzeDocument = async (
       enableLint = true
     }
   }
+
+  const sentencesToCount = analysis.sentences
+    .filter(Boolean)
+    .filter((s) => s !== ' ' && !s.includes('title:'))
+  const wordsToCount = sentencesToCount.flatMap((s) => s.split(' '))
+  const analysisStatusBar = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right,
+    1000
+  )
+  analysisStatusBar.text = `Words: ${wordsToCount.length}`
+  analysisStatusBar.tooltip = `Sentences: ${sentencesToCount.length}`
+  analysisStatusBar.show()
+  context.subscriptions.push(analysisStatusBar)
 
   return { diagnostics }
 }
