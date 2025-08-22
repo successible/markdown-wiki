@@ -21,6 +21,8 @@ export const orderFootnotesInFile = async (filePath: string) => {
       'You have missing or unmatched footnotes. Aborting operation.'
     )
   }
+
+  // Throw an error if Pandoc does not exist
   const pandocExists = execSync('pandoc --help', {
     encoding: 'utf-8',
   }).toString()
@@ -29,6 +31,7 @@ export const orderFootnotesInFile = async (filePath: string) => {
       'You must have pandoc installed to order footnotes and endnotes.'
     )
   }
+
   // Make sure the the first endnote is always at least two lines from the footnote
   // Otherwise, pandoc will glitch.
   fs.writeFileSync(filePath, contents.replace(endnoteRegex, '\n\n$1: $2'))
