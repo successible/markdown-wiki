@@ -57,8 +57,8 @@ Managing Markdown footnotes is a pain. This extension makes it a bit easier.
 
 - Automatically check missing or unmatched footnotes in a file on every save.
 - Hover over a footnote to see a popup of the `url` of the endnote.
-- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. `pandoc` must be installed on your system for this command to work.
-- Insert a `url` on your clipboard as a Markdown footnote via `Ctrl/Cmd+ '`. `pandoc` must be installed on your system for this command to work.
+- Insert a `url` on your clipboard as a Markdown footnote. [Pandoc](https://pandoc.org/installing.html) must be installed for this command to work.
+- Automatically order footnotes and endnotes. [Pandoc](https://pandoc.org/installing.html) must be installed for this command to work.
 
 ## Wiki Links
 
