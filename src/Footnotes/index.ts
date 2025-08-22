@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import { EXTENSION_NAME } from '../extension'
 import { insertFootnoteInFile } from './helpers/insertFootnoteInFile'
 import { orderFootnotesInFile } from './helpers/orderFootnotesInFile'
+import FootnoteHover from './services/FootnoteHover'
 
 export const Footnotes = async (context: vscode.ExtensionContext) => {
   const commands = [
@@ -21,5 +22,11 @@ export const Footnotes = async (context: vscode.ExtensionContext) => {
     ),
   ]
 
+  context.subscriptions.push(
+    vscode.languages.registerHoverProvider(
+      { language: 'markdown' },
+      new FootnoteHover()
+    )
+  )
   context.subscriptions.push(...commands)
 }
