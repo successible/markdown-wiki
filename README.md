@@ -30,10 +30,9 @@ Each of these clusters apply automatically on any change or save to a Markdown f
 
 ## Keyboard Shortcuts
 
-This extension only adds two shortcuts. Both are for managing footnotes.
+This extension only adds two shortcuts. Both are for managing footnotes. `pandoc` must be installed for these commands to work.
 
 - `Ctrl/Cmd+ '`. Insert a `url` on your clipboard as a Markdown footnote. Your footnotes and endnotes will be ordered automatically after insertion.
-
 - `Ctrl/Cmd+ shift + '`. Automatically order footnotes and endnotes. [Pandoc](https://pandoc.org/installing.html) must be installed on your system for this command to work.
 
 ## Readability
@@ -57,9 +56,9 @@ This extension uses the automated readability index (ARI) to check readability [
 Managing Markdown footnotes is a pain. This extension makes it a bit easier.
 
 - Automatically check missing or unmatched footnotes in a file on every save.
-- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. Pandoc must be installed on your system for this command to work.
-- Insert a `url` on your clipboard as a Markdown footnote via `Ctrl/Cmd+ '`. Your footnotes and endnotes will be ordered automatically after insertion.
 - Hover over a footnote to see a popup of the `url` of the endnote.
+- Automatically order footnotes and endnotes via `Ctrl/Cmd+ shift + '`. `pandoc` must be installed on your system for this command to work.
+- Insert a `url` on your clipboard as a Markdown footnote via `Ctrl/Cmd+ '`. `pandoc` must be installed on your system for this command to work.
 
 ## Wiki Links
 
