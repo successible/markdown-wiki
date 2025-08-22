@@ -91,9 +91,9 @@
   },
   "scripts": {
     "lint": "cd src && npx tsc && npx biome check --fix --unsafe",
-    "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outfile=out/extension.js --sourcemap",
+    "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outfile=out/extension.js",
     "copy": "cp -r grammar out/grammar",
-    "build": "npx tsc --noEmit && npm run bundle && npm run copy",
+    "build": "rm -rf out; npx tsc --noEmit && npm run bundle && npm run copy",
     "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./"
   },
