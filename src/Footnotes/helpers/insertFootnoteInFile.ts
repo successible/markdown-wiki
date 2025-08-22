@@ -13,7 +13,7 @@ export const insertFootnoteInFile = async () => {
     }).toString()
     if (!pandocExists.includes('pandoc [OPTIONS] [FILES]')) {
       return vscode.window.showErrorMessage(
-        'You must have pandoc installed to order insert footnotes and endnotes.'
+        'You must have pandoc installed to order insert footnotes.'
       )
     }
 
