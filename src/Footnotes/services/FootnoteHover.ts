@@ -29,7 +29,6 @@ export const footnoteRefRegex = /\[\^(?<key>\S+?)\](?!:)/g
 export const footnoteContentRegex = /^\[\^(?<key>\S+?)\](?=: +)/gm
 
 export type GotoLineColumnArgs = { line: number; column: number }
-type PeekType = 'definition' | 'references'
 
 export function internalGotoLineColumn(
   editor: vscode.TextEditor,
@@ -51,29 +50,7 @@ function buildFootnoteContentRegex(name: string) {
   )
 }
 
-function buildPeekCommandUri(
-  startPosition: Position,
-  peekType = 'definition' as PeekType
-) {
-  const peekUri = vscode.Uri.parse(
-    'command:_vscode-markdown-footnote.peek'
-  ).with({
-    query: JSON.stringify({
-      startPosition: positionToSimplePosition(startPosition),
-      peekType,
-    }),
-  })
-  return peekUri
-}
-
-function positionToSimplePosition(pos: Position) {
-  return {
-    line: pos.line,
-    column: pos.character,
-  }
-}
-
-export default class FootnoteHoverService implements vscode.HoverProvider {
+export default class FootnoteHover implements vscode.HoverProvider {
   public provideHover(
     document: vscode.TextDocument,
     position: vscode.Position
@@ -113,11 +90,9 @@ export default class FootnoteHoverService implements vscode.HoverProvider {
       return null
     }
 
-    const peekUri = buildPeekCommandUri(range.start, 'definition')
-    const peekAlt = 'Open a peek editor for quick viewing and editing'
-    const content = `${match.groups!.content}\n\n[Peek](${peekUri} "${peekAlt}")`
-
-    return new vscode.Hover(wrapMarkdownString(content), range)
+    // biome-ignore lint/style/noNonNullAssertion: Used by original author
+    const content = `${match.groups!.content}`
+    return new vscode.Hover(wrapMarkdownString(`${content}`), range)
   }
 
   private footnoteContentHoverProvider(
@@ -132,11 +107,7 @@ export default class FootnoteHoverService implements vscode.HoverProvider {
       return null
     }
 
-    const peekUri = buildPeekCommandUri(range.start, 'references')
-    const peekAlt = 'Open a peek editor for quick viewing and editing'
-    const content = `[Peek](${peekUri} "${peekAlt}")`
-
-    return new vscode.Hover(wrapMarkdownString(content), range)
+    return new vscode.Hover(wrapMarkdownString(''), range)
   }
 }
 
