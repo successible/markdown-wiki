@@ -91,7 +91,9 @@
   },
   "scripts": {
     "lint": "cd src && npx tsc && npx biome check --fix --unsafe",
-    "build": "tsc -p ./ && cp -r grammar out/grammar && cp -r media out/media",
+    "bundle": "esbuild src/extension.ts --bundle --platform=node --external:vscode --outfile=out/extension.js --sourcemap",
+    "copy": "cp -r grammar out/grammar",
+    "build": "npx tsc --noEmit && npm run bundle && npm run copy",
     "vscode:prepublish": "npm run build",
     "watch": "tsc -watch -p ./"
   },
@@ -119,6 +121,7 @@
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.102.0",
     "@vscode/vsce": "3.6.0",
+    "esbuild": "0.25.9",
     "typescript": "5.9.2"
   }
 }

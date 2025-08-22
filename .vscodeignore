@@ -1,8 +1,6 @@
-.vscode/**
-.vscode-test/**
-src/**
-.gitignore
-.yarnrc
-**/tsconfig.json
-**/*.map
-**/*.ts
+*
+!.vscodeignore
+!package.json
+!README.md
+!LICENSE
+!out/**
