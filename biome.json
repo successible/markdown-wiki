@@ -26,7 +26,8 @@
         "useExhaustiveDependencies": "off"
       },
       "suspicious": {
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "useIterableCallbackReturn": "off"
       },
       "complexity": {
         "noForEach": "off"
