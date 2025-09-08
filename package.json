@@ -97,7 +97,7 @@
   },
   "dependencies": {
     "@prettier/sync": "0.6.1",
-    "dayjs": "1.11.13",
+    "dayjs": "1.11.18",
     "glob": "11.0.3",
     "lodash": "4.17.21",
     "p-debounce": "4.0.0",
