@@ -13,7 +13,7 @@
   },
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.104.0"
+    "vscode": "^1.105.0"
   },
   "main": "./out/extension.js",
   "activationEvents": [
