@@ -100,7 +100,7 @@
     "dayjs": "1.11.18",
     "glob": "11.0.3",
     "lodash": "4.17.21",
-    "p-debounce": "5.0.0",
+    "p-debounce": "5.1.0",
     "pluralize": "8.0.0",
     "remove-markdown": "0.6.2",
     "sentence-splitter": "5.0.0",
@@ -109,7 +109,7 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.0",
+    "@biomejs/biome": "2.3.1",
     "@textlint/ast-node-types": "15.2.3",
     "@types/lodash": "4.17.20",
     "@types/node": "24.9.1",
