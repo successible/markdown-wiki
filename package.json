@@ -97,7 +97,7 @@
   },
   "dependencies": {
     "@prettier/sync": "0.6.1",
-    "dayjs": "1.11.18",
+    "dayjs": "1.11.19",
     "glob": "11.0.3",
     "lodash": "4.17.21",
     "p-debounce": "5.1.0",
@@ -109,10 +109,10 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.1",
+    "@biomejs/biome": "2.3.3",
     "@textlint/ast-node-types": "15.2.3",
     "@types/lodash": "4.17.20",
-    "@types/node": "24.9.1",
+    "@types/node": "24.10.0",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.17",
     "@types/valid-url": "1.0.7",
