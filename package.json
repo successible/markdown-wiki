@@ -109,14 +109,14 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.4",
-    "@textlint/ast-node-types": "15.3.0",
+    "@biomejs/biome": "2.3.6",
+    "@textlint/ast-node-types": "15.4.0",
     "@types/lodash": "4.17.20",
-    "@types/node": "24.10.0",
+    "@types/node": "24.10.1",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.8.17",
     "@types/valid-url": "1.0.7",
-    "@types/vscode": "1.105.0",
+    "@types/vscode": "1.106.0",
     "@vscode/vsce": "3.7.0",
     "typescript": "5.9.3"
   }
