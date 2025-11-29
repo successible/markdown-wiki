@@ -1,27 +1,24 @@
-import { globSync } from 'glob'
+import { glob } from 'glob'
+import ignore from 'ignore'
 import * as vscode from 'vscode'
 
 export const getAllFilePaths = async (
   customGlob = '**/*.md'
 ): Promise<string[]> => {
-  const open = vscode.workspace.openTextDocument
-
   const folders = vscode.workspace.workspaceFolders
-  if (!folders) {
-    return []
+  if (!folders) return []
+  const root = folders[0].uri.fsPath
+
+  // Load .gitignore if present
+  const ig = ignore()
+  try {
+    const gitignorePath = `${root}/.gitignore`
+    const doc = await vscode.workspace.openTextDocument(gitignorePath)
+    ig.add(doc.getText())
+  } catch (_) {
+    // ignore if missing
   }
 
-  let toIgnore = [] as string[]
-  try {
-    // If the workspace has a .gitignore in the root, use it exclude the paths to glob through
-    const path = globSync(`${folders[0].uri.path}/.gitignore`, {})[0]
-    const gitignore = await open(vscode.Uri.file(path))
-    toIgnore = gitignore.getText().split('\n') as string[]
-  } catch (_e) {}
-
-  const paths = globSync(`${folders[0].uri.path}/${customGlob}`, {})
-    // Do not grab any markdown file that has been gitignored
-    .filter((p) => toIgnore.filter((i) => p.includes(i)).length === 0)
-
-  return paths
+  const files = await glob(`${root}/${customGlob}`, { nodir: true })
+  return files.filter((f) => !ig.ignores(f.replace(`${root}/`, '')))
 }
