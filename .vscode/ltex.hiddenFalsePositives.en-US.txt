@@ -1,7 +1,0 @@
-{"rule":"ALL_IN_ONE_HYPHEN","sentence":"^\\QMarkdown All in One for Markdown keyboard shortcuts and a better preview.\\E$"}
-{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI am sentence with very big words like indubitably, inconceivable, and autophagy.\\E$"}
-{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI am a simple sentence that keeps going on and on and on and on and on and on and on and on and on and on.\\E$"}
-{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI am sentence with even bigger words like indubitably, inconceivable, and autophagy.\\E$"}
-{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI am sentence with even bigger words like malapropism, bibulous, captious, valetudinarian, and embonpoint.\\E$"}
-{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI am a sentence with a footnote ^2 and no endnote.\\E$"}
-{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QI am a sentence that is missing the footnote, but the endnote remains.\\E$"}

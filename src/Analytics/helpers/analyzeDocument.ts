@@ -1,11 +1,13 @@
 import { execSync } from 'node:child_process'
 import type { TxtNode } from '@textlint/ast-node-types'
+import { set } from 'lodash'
 import { split } from 'sentence-splitter'
 import * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
 import { findWikiLinksInSentence } from '../../Linking/helpers/findWikiLinksInSentence'
 import { getAllPossibleLinks } from '../../Linking/helpers/getAllPossibleLinks'
 import { analyzeSentence } from './analyzeSentence'
+import { getConfig } from './getConfig'
 
 export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
@@ -14,6 +16,7 @@ export type DocumentMode =
   | 'onDidChangeTextDocument'
   | 'onDidSaveTextDocument'
   | 'onDidChangeActiveTextEditor'
+  | 'onCommand'
 
 export const analyzeDocument = async (
   _context: vscode.ExtensionContext,
@@ -21,6 +24,9 @@ export const analyzeDocument = async (
   mode: DocumentMode,
   statusBar: vscode.StatusBarItem | null
 ) => {
+  const config = getConfig()
+  const ExcludedWords = (config.get('excludedWords') || []) as string[]
+
   const diagnostics: vscode.Diagnostic[] = []
   diagnostics.push(
     ...(await auditFootnotesInFile(document.fileName)).diagnostics
@@ -146,22 +152,50 @@ export const analyzeDocument = async (
         )
       } else {
         const result = (await response.json()) as {
-          matches: { message: string; shortMessage: string; sentence: string }[]
+          matches: {
+            message: string
+            shortMessage: string
+            sentence: string
+            context: { text: string; length: number; offset: number }
+          }[]
         }
-        result.matches
-          .filter((m) => m.shortMessage !== 'Spelling mistake')
-          .map((m) => {
-            const match = analysis.raw.find((raw) => {
-              return raw.sentence === m.sentence
-            })
+        result.matches.map((m) => {
+          let word: string = ''
+          const match = analysis.raw.find((raw) => {
+            return raw.sentence === m.sentence
+          })
+          if (m.shortMessage === 'Spelling mistake') {
+            word = m.context.text.slice(
+              m.context.offset,
+              m.context.offset + m.context.length
+            )
+          }
+
+          if (
+            m.shortMessage === 'Spelling mistake' &&
+            word &&
+            !ExcludedWords.includes(word)
+          ) {
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
-              `Message: ${m.message}\nSentence:\n${m.sentence}`,
+              `Mispelled Word: ${word}`,
+              vscode.DiagnosticSeverity.Error
+            )
+            set(diagnostic, '_word', word)
+            diagnostic.code = 'spelling'
+            diagnostics.push(diagnostic)
+          }
+
+          if (m.shortMessage !== 'Spelling mistake') {
+            const diagnostic = new vscode.Diagnostic(
+              match ? match.range : new vscode.Range(0, 0, 0, 0),
+              `${m.message}`,
               vscode.DiagnosticSeverity.Error
             )
             diagnostic.code = 'grammar'
             diagnostics.push(diagnostic)
-          })
+          }
+        })
       }
     } catch (e) {
       vscode.window.showErrorMessage(

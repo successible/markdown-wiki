@@ -53,7 +53,6 @@ export const orderFootnotesInFile = async (filePath: string) => {
         .replaceAll('\\~', '~')
   )
   const selection = editor.selection.active
-  console.log(selection.line)
   // Move the cursor back the original place.
   setTimeout(() => {
     editor.selections = [

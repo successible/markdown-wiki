@@ -35,7 +35,7 @@ export const analyzeSentence = (
   // Collect the findings
 
   const config = getConfig()
-  const readability = Boolean(config.get('Readability'))
+  const readability = Boolean(config.get('readability'))
 
   if (nWords > 25 && readability) {
     findings.push(['This sentence is more than 25 words', error, READABILITY])

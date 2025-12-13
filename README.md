@@ -10,15 +10,11 @@ You can get this extension in two ways:
 
 2. By searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
 
-We recommend these VSCode extensions for a better editing experience:
-
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker). For checking spelling.
-
 We recommend installing these programs on your computer for enhanced functionality.
 
 - [Git](https://git-scm.com/) for tracking changes to your files.
 
-- [LanguageTool](https://dev.languagetool.org/http-server.html) for checking grammar. You can install it with Homebrew via `brew install languagetool`. You will also need to start it via `brew services start languagetool`.
+- [LanguageTool](https://dev.languagetool.org/http-server.html) for checking spelling and grammar. You can install it with Homebrew via `brew install languagetool`. You will also need to start it via `brew services start languagetool`.
 
 - [Pandoc](https://pandoc.org/installing.html) for automatically ordering footnotes and endnotes. You can install it with Homebrew via `brew install pandoc.`
 
@@ -27,7 +23,7 @@ We recommend installing these programs on your computer for enhanced functionali
 This extension has four clusters of functionality.
 
 - Readability
-- Grammar
+- Spelling & Grammar
 - Footnotes
 - Wiki Links
 
@@ -54,11 +50,13 @@ This extension uses the automated readability index (ARI) to check readability [
 
 > Note: In the VS Code Command Palette, you can use `Analyze Files`. This will apply ARI to every Markdown file in your workspace. This command will also check for two other things. One, missing wiki links. Two, missing or unmatched footnotes and endnotes.
 
-## Grammar
+## Spelling & Grammar
 
-![Grammar](./grammar.png)
+![Spelling & Grammar](./spelling-and-grammar.png)
 
-This extension uses the excellent [LanguageTool Server](https://dev.languagetool.org/http-server.html) to check grammar. It will flag any grammatical errors with the same Error (Red) as Readability. The LanguageTool Server must be installed and running on your computer for this to work.
+This extension uses the excellent [LanguageTool Server](https://dev.languagetool.org/http-server.html). It will flag any spelling and grammatical errors with the same Error (Red) as Readability. The LanguageTool Server must be installed and running on your computer for this to work.
+
+If you hover over a sentence with a mispelled word, you can add it to a list of excluded words via a VSCode "Quick Fix". The command for a VSCode "Quick Fix" is `Ctrl/Cmd` + `.`. The excluded words are stored in your settings under `Markdown Wiki.excludedWords`.
 
 ## Footnotes
 

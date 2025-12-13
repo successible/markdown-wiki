@@ -23,10 +23,15 @@
     "configuration": {
       "title": "Markdown Wiki",
       "properties": {
-        "Markdown Wiki.Readability": {
+        "Markdown Wiki.readability": {
           "type": "boolean",
-          "description": "Enable Readability",
+          "description": "Enable the checking of readability.",
           "default": true
+        },
+        "Markdown Wiki.excludedWords": {
+          "type": "array",
+          "description": "Words to exclude from the spell checker.",
+          "default": []
         }
       }
     },
@@ -53,11 +58,19 @@
       },
       {
         "command": "markdown-wiki.orderFootnotes",
-        "title": "order Footnotes"
+        "title": "Order Footnotes"
       },
       {
         "command": "markdown-wiki.analyzeFiles",
         "title": "Analyze Files"
+      },
+      {
+        "command": "markdown-wiki.analyzeFile",
+        "title": "Analyze File"
+      },
+      {
+        "command": "markdown-wiki.excludeWord",
+        "title": "Exclude Word"
       }
     ],
     "menus": {

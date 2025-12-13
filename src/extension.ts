@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import { Analytics } from './Analytics'
 import { Footnotes } from './Footnotes'
 import { Linking } from './Linking'
+import { SpellChecker } from './SpellChecker'
 
 export const EXTENSION_NAME = 'markdown-wiki'
 
@@ -28,6 +29,7 @@ export const activate = async (context: vscode.ExtensionContext) => {
   await Analytics(context, analytics, statusBar)
   await Footnotes(context)
   await Linking(context)
+  await SpellChecker(context)
 
   console.log('Markdown Wiki activated!')
 }
