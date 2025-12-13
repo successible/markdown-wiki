@@ -23,10 +23,10 @@ export const orderFootnotesInFile = async (filePath: string) => {
   }
 
   // Throw an error if Pandoc does not exist
-  const pandocExists = execSync('pandoc --help', {
+  const pandocExists = execSync('which pandoc', {
     encoding: 'utf-8',
   }).toString()
-  if (!pandocExists.includes('pandoc [OPTIONS] [FILES]')) {
+  if (!pandocExists.includes('bin/pandoc')) {
     return vscode.window.showErrorMessage(
       'You must have pandoc installed to order footnotes and endnotes.'
     )

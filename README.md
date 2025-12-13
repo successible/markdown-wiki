@@ -6,23 +6,28 @@ Keep a wiki in Visual Studio Code.
 
 You can get this extension in two ways:
 
-- By going directly to the [Visual Studio marketplace](https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki).
-- By searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
+1. By going directly to the [Visual Studio marketplace](https://marketplace.visualstudio.com/items?itemName=successible.markdown-wiki).
 
-We recommend these extensions for a better editing experience:
+2. By searching `markdown-wiki` in the Extensions Tab of Visual Studio Code.
 
-- [LTeX -- LanguageTool grammar/spell checking](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex). For checking grammar and spelling.
+We recommend these VSCode extensions for a better editing experience:
 
-We recommend these programs for enhanced functionality.
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker). For checking spelling.
+
+We recommend installing these programs on your computer for enhanced functionality.
 
 - [Git](https://git-scm.com/) for tracking changes to your files.
-- [Pandoc](https://pandoc.org/installing.html) for automatically ordering footnotes and endnotes.
+
+- [LanguageTool](https://dev.languagetool.org/http-server.html) for checking grammar. You can install it with homebrew via `brew install languagetool`. You will also need to start it via `brew services start languagetool`.
+
+- [Pandoc](https://pandoc.org/installing.html) for automatically ordering footnotes and endnotes. You can install it with homebrew via `brew install pandoc`
 
 ## Usage
 
 This extension has three clusters of functionality.
 
 - Readability
+- Grammar
 - Footnotes
 - Wiki Links
 
@@ -48,6 +53,12 @@ This extension uses the automated readability index (ARI) to check readability [
 > Note: The average reader only understands text at an 8th grade level. This is `ARI < 10` [^2]. The average reader also finds a sentence with more than 25 words very hard to read [^3].
 
 > Note: In the VS Code Command Palette, you can use `Analyze Files`. This will apply ARI to every Markdown file in your workspace. This command will also check for two, other things. One, missing wiki links. Two, missing or unmatched footnotes and endnotes.
+
+## Grammar
+
+![Grammar](./grammar.png)
+
+This extension uses the excellent [LanguageTool Server](https://dev.languagetool.org/http-server.html) to check grammar. It will flag any grammatical error with same Error (Red) as Readability. The LanguageTool Server must be installed and running on your computer for this to work.
 
 ## Footnotes
 

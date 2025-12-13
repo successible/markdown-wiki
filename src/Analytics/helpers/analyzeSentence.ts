@@ -12,13 +12,10 @@ export const URLRegex =
 
 export const analyzeSentence = (
   _document: vscode.TextDocument,
-  paragraph: vscode.TextLine,
   sentence: string,
-  lineIndex: number
+  sentenceStart: number,
+  range: vscode.Range
 ): { sentence: string; diagnostics: vscode.Diagnostic[] } => {
-  const sentenceStart = paragraph.text.indexOf(sentence)
-  const sentenceEnd = sentenceStart + sentence.length
-
   // We must analyze markdown-wiki only on plaintext, otherwise stuff like [links](really-long-url.com)
   // Will artificially inflate the readability score.
   const plainText = String(removeMarkdown(sentence)).replace(URLRegex, '')
@@ -32,13 +29,6 @@ export const analyzeSentence = (
   // ARI: https://en.wikipedia.org/wiki/Automated_readability_index
   const ARI =
     4.71 * averageCharacterPerWord + 0.5 * averageWordPerSentence - 21.43
-
-  const range = new vscode.Range(
-    lineIndex,
-    sentenceStart,
-    lineIndex,
-    sentenceEnd
-  )
 
   const findings = [] as Findings
 
