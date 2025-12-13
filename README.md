@@ -37,8 +37,8 @@ Each of these clusters applies automatically on any change or save to a Markdown
 
 This extension only adds two shortcuts. Both are for managing footnotes. [Pandoc](https://pandoc.org/installing.html) must be installed for these commands to work.
 
-- `Ctrl/Cmd+ '`. Insert a `URL` on your clipboard as a Markdown footnote.
-- `Ctrl/Cmd+ shift + '`. Automatically order footnotes and endnotes.
+- `Ctrl/Cmd` + `'`. Insert a `URL` on your clipboard as a Markdown footnote.
+- `Ctrl/Cmd` + `shift` + `'`. Automatically order footnotes and endnotes.
 
 ## Readability
 
@@ -80,7 +80,7 @@ Wiki links represent an internal link to another file with a double bracket synt
 - You have the wiki link `[[security]]` in a file called `cool.md`.
 - If that link matches the name of another file, `security.md`, we will recognize it as a link.
 - The extension will also handle variations in capitalization and pluralization.
-- So you can write `[[Security]]` or `[[securities]]` in `cool.md,` and it will match!
+- So you can write `[[Security]]` or `[[securities]]` in `cool.md` and it will match!
 
 [^1]: https://en.m.wikipedia.org/wiki/Automated_readability_index
 
