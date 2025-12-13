@@ -76,6 +76,23 @@ export const Analytics = async (
       `${EXTENSION_NAME}.analyzeFiles`,
       async () => await analyzeDocuments(context, analytics)
     ),
+    vscode.commands.registerCommand(
+      `${EXTENSION_NAME}.analyzeFile`,
+      async () => {
+        const editor = vscode.window.activeTextEditor
+        if (editor && isMarkdownFile(editor.document.uri)) {
+          await debouncedAnalyzeDocument(
+            context,
+            editor.document,
+            analytics,
+            'onCommand',
+            statusBar
+          )
+        } else {
+          vscode.window.showInformationMessage('No markdown file is active.')
+        }
+      }
+    ),
   ]
 
   context.subscriptions.push(...commands)

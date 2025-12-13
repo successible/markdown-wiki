@@ -65,6 +65,10 @@
         "title": "Analyze Files"
       },
       {
+        "command": "markdown-wiki.analyzeFile",
+        "title": "Analyze File"
+      },
+      {
         "command": "markdown-wiki.excludeWord",
         "title": "Exclude Word"
       }

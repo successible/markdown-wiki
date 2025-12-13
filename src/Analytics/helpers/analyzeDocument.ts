@@ -1,5 +1,6 @@
 import { execSync } from 'node:child_process'
 import type { TxtNode } from '@textlint/ast-node-types'
+import { set } from 'lodash'
 import { split } from 'sentence-splitter'
 import * as vscode from 'vscode'
 import { auditFootnotesInFile } from '../../Footnotes/helpers/auditFootnotesInFile'
@@ -15,6 +16,7 @@ export type DocumentMode =
   | 'onDidChangeTextDocument'
   | 'onDidSaveTextDocument'
   | 'onDidChangeActiveTextEditor'
+  | 'onCommand'
 
 export const analyzeDocument = async (
   _context: vscode.ExtensionContext,
@@ -176,10 +178,10 @@ export const analyzeDocument = async (
           ) {
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
-              `Spelling: ${word}\nSentence:\n${m.sentence}`,
+              `Mispelled Word: ${word}`,
               vscode.DiagnosticSeverity.Error
             )
-            diagnostic.source = word
+            set(diagnostic, '_word', word)
             diagnostic.code = 'spelling'
             diagnostics.push(diagnostic)
           }
@@ -187,7 +189,7 @@ export const analyzeDocument = async (
           if (m.shortMessage !== 'Spelling mistake') {
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
-              `Grammar: ${m.message}\nSentence:\n${m.sentence}`,
+              `${m.message}`,
               vscode.DiagnosticSeverity.Error
             )
             diagnostic.code = 'grammar'

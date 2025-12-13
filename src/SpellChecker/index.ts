@@ -1,4 +1,4 @@
-import { uniq } from 'lodash'
+import { get, uniq } from 'lodash'
 import * as vscode from 'vscode'
 import { getConfig } from '../Analytics/helpers/getConfig'
 
@@ -11,13 +11,13 @@ export const SpellChecker = (context: vscode.ExtensionContext) => {
       )
       if (spelling.length === 0) return
       const fix = new vscode.CodeAction(
-        `Exclude ${spelling[0].source} from the spell checker`,
+        `Exclude ${get(spelling[0], '_word')} from the spell checker`,
         vscode.CodeActionKind.QuickFix
       )
       fix.command = {
         title: 'Exclude the word from the spell checker',
         command: 'markdown-wiki.excludeWord',
-        arguments: [spelling[0].source],
+        arguments: [get(spelling[0], '_word')],
       }
       return [fix]
     },
@@ -50,6 +50,10 @@ export const SpellChecker = (context: vscode.ExtensionContext) => {
           vscode.window.showInformationMessage(
             `Added "${wordToExclude}" to excluded words!`
           )
+          const editor = vscode.window.activeTextEditor
+          if (editor) {
+            await vscode.commands.executeCommand(`markdown-wiki.analyzeFile`)
+          }
         }
       }
     )
