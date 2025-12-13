@@ -1,8 +1,0 @@
-Joblint
-endnotes
-vscode-markdown-footnote
-houkanshan
-LTeX
-VSCode
-embonpoint
-endnote
