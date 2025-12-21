@@ -42,7 +42,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     (missingFootnotes instanceof Set && missingFootnotes.size)
   ) {
     for (const missingFootnote of Array.from(missingFootnotes)) {
-      const error = `Unmatched footnotes: ${missingFootnote}`
+      const error = `👇📝 Footnote: Unmatched footnotes: ${missingFootnote}`
       createDiagnostics(error)
     }
   }
@@ -53,7 +53,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     (missingEndnotes instanceof Set && missingEndnotes.size)
   ) {
     for (const missingEndnote of Array.from(missingEndnotes)) {
-      const error = `Unmatched endnote: ${missingEndnote}`
+      const error = `🔚📝 Endnote: Unmatched endnote: ${missingEndnote}`
       createDiagnostics(error)
     }
   }

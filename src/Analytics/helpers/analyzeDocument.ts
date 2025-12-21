@@ -18,6 +18,26 @@ export type DocumentMode =
   | 'onDidChangeActiveTextEditor'
   | 'onCommand'
 
+export type LanguageServerMatch = {
+  message: string
+  shortMessage: string
+  replacements: { value: string }[]
+  offset: number
+  length: number
+  context: { text: string; offset: number; length: number }
+  sentence: string
+  type: { typeName: string }
+  rule: {
+    id: string
+    description: string
+    issueType: string
+    urls: { value: string }[]
+    category: { id: string; name: string }
+  }
+  ignoreForIncompleteSentence: boolean
+  contextForSureMatch: number
+}
+
 export const analyzeDocument = async (
   _context: vscode.ExtensionContext,
   document: vscode.TextDocument,
@@ -152,12 +172,7 @@ export const analyzeDocument = async (
         )
       } else {
         const result = (await response.json()) as {
-          matches: {
-            message: string
-            shortMessage: string
-            sentence: string
-            context: { text: string; length: number; offset: number }
-          }[]
+          matches: LanguageServerMatch[]
         }
         result.matches.map((m) => {
           let word: string = ''
@@ -178,21 +193,41 @@ export const analyzeDocument = async (
           ) {
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
-              `Mispelled Word: ${word}`,
+              `🔤 Spelling: ${word}`,
               vscode.DiagnosticSeverity.Error
             )
             set(diagnostic, '_word', word)
             diagnostic.code = 'spelling'
+            diagnostic.relatedInformation = [
+              new vscode.DiagnosticRelatedInformation(
+                new vscode.Location(document.uri, diagnostic.range),
+                [
+                  `⚖️ Rule: ${m.rule.description}`,
+                  `📝 Sentence: ${m.sentence}`,
+                  `💡 Suggestion: ${m.replacements.map((r) => r.value).join(' or ')}`,
+                ].join('\n')
+              ),
+            ]
             diagnostics.push(diagnostic)
           }
 
           if (m.shortMessage !== 'Spelling mistake') {
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
-              `${m.message}`,
+              `📐 Grammar: ${m.message}`,
               vscode.DiagnosticSeverity.Error
             )
             diagnostic.code = 'grammar'
+            diagnostic.relatedInformation = [
+              new vscode.DiagnosticRelatedInformation(
+                new vscode.Location(document.uri, diagnostic.range),
+                [
+                  `⚖️ Rule: ${m.rule.description}`,
+                  `📝 Sentence: ${m.sentence}`,
+                  `💡 Suggestion: ${m.replacements.map((r) => r.value).join(' or ')}`,
+                ].join('\n')
+              ),
+            ]
             diagnostics.push(diagnostic)
           }
         })
