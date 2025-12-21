@@ -56,7 +56,7 @@ This extension uses the automated readability index (ARI) to check readability [
 
 This extension uses the excellent [LanguageTool Server](https://dev.languagetool.org/http-server.html). It will flag any spelling and grammatical errors with the same Error (Red) as Readability. The LanguageTool Server must be installed and running on your computer for this to work.
 
-If you hover over a sentence with a mispelled word, you can add it to a list of excluded words via a VSCode "Quick Fix". The command for a VSCode "Quick Fix" is `Ctrl/Cmd` + `.`. The excluded words are stored in your settings under `Markdown Wiki.excludedWords`.
+If you hover over a sentence with a misspelled word, you can add it to a list of excluded words via a VSCode "Quick Fix". The command for a VSCode "Quick Fix" is `Ctrl/Cmd` + `.`. The excluded words are stored in your settings under `Markdown Wiki.excludedWords`.
 
 ## Footnotes
 

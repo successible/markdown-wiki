@@ -38,14 +38,18 @@ export const analyzeSentence = (
   const readability = Boolean(config.get('readability'))
 
   if (nWords > 25 && readability) {
-    findings.push(['This sentence is more than 25 words', error, READABILITY])
+    findings.push([
+      '🧹 Readability: This sentence is more than 25 words',
+      error,
+      READABILITY,
+    ])
   }
 
   if (ARI >= 10 && sentenceStart !== -1 && nWords > 11 && readability) {
     const isVeryHard = ARI >= 14
     const message = isVeryHard
-      ? 'This sentence is very hard to read.'
-      : 'This sentence is hard to read.'
+      ? '🧹 Readability: This sentence is very hard to read.'
+      : '🧹 Readability: This sentence is hard to read.'
     const severity = isVeryHard ? error : info
     findings.push([message, severity, READABILITY])
   }

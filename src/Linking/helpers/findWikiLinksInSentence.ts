@@ -35,7 +35,7 @@ export const findWikiLinksInSentence = (
     if (link) {
       links.push(new vscode.DocumentLink(range, link))
     } else {
-      const message = 'This file does not exist'
+      const message = '📄❌ Missing: This file does not exist'
       missingLinks.push(new vscode.Diagnostic(range, message, info))
     }
   }
