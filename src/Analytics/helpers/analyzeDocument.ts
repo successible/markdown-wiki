@@ -176,21 +176,25 @@ export const analyzeDocument = async (
         }
         result.matches.map((m) => {
           let word: string = ''
-          const match = analysis.raw.find((raw) => {
-            return raw.sentence === m.sentence
-          })
           if (m.shortMessage === 'Spelling mistake') {
             word = m.context.text.slice(
               m.context.offset,
               m.context.offset + m.context.length
             )
           }
-
           if (
             m.shortMessage === 'Spelling mistake' &&
             word &&
             !ExcludedWords.includes(word)
           ) {
+            const match = analysis.raw
+              .filter((raw) => raw.sentence !== '')
+              .find((raw) => {
+                return (
+                  m.sentence.includes(raw.sentence) &&
+                  raw.sentence.includes(word)
+                )
+              })
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
               `🔤 Spelling: ${word}`,
@@ -212,10 +216,15 @@ export const analyzeDocument = async (
           }
 
           if (m.shortMessage !== 'Spelling mistake') {
+            const match = analysis.raw
+              .filter((raw) => raw.sentence !== '')
+              .find((raw) => {
+                return m.sentence === raw.sentence
+              })
             const diagnostic = new vscode.Diagnostic(
               match ? match.range : new vscode.Range(0, 0, 0, 0),
               `📐 Grammar: ${m.message}`,
-              vscode.DiagnosticSeverity.Error
+              vscode.DiagnosticSeverity.Warning
             )
             diagnostic.code = 'grammar'
             diagnostic.relatedInformation = [
@@ -233,6 +242,7 @@ export const analyzeDocument = async (
         })
       }
     } catch (e) {
+      console.log(e)
       vscode.window.showErrorMessage(
         `Something went wrong! Are you sure your LanguageTool server running on ${url}? Error: ${e}`
       )

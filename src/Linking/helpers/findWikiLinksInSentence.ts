@@ -1,6 +1,5 @@
 import type { TxtNode } from '@textlint/ast-node-types'
 import * as vscode from 'vscode'
-import { info } from '../../Analytics'
 import type { AllPossibleLinks } from './getAllPossibleLinks'
 
 export const findWikiLinksInSentence = (
@@ -36,7 +35,9 @@ export const findWikiLinksInSentence = (
       links.push(new vscode.DocumentLink(range, link))
     } else {
       const message = '📄❌ Missing: This file does not exist'
-      missingLinks.push(new vscode.Diagnostic(range, message, info))
+      missingLinks.push(
+        new vscode.Diagnostic(range, message, vscode.DiagnosticSeverity.Error)
+      )
     }
   }
   return { links, missingLinks }
