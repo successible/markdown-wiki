@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import { error, info } from '..'
 import { READABILITY } from './analyzeDocument'
 import { getConfig } from './getConfig'
 import { removeMarkdown } from './removeMarkdown'
@@ -40,7 +39,7 @@ export const analyzeSentence = (
   if (nWords > 25 && readability) {
     findings.push([
       '🧹 Readability: This sentence is more than 25 words',
-      error,
+      vscode.DiagnosticSeverity.Error,
       READABILITY,
     ])
   }
@@ -50,7 +49,9 @@ export const analyzeSentence = (
     const message = isVeryHard
       ? '🧹 Readability: This sentence is very hard to read.'
       : '🧹 Readability: This sentence is hard to read.'
-    const severity = isVeryHard ? error : info
+    const severity = isVeryHard
+      ? vscode.DiagnosticSeverity.Error
+      : vscode.DiagnosticSeverity.Information
     findings.push([message, severity, READABILITY])
   }
 

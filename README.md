@@ -38,13 +38,11 @@ This extension only adds two shortcuts. Both are for managing footnotes. [Pandoc
 
 ## Readability
 
-![Readability](./readability.png)
-
 This extension uses the automated readability index (ARI) to check readability [^1]. It will do this automatically on any change or save to a Markdown file. If a sentence is greater than 11 words, we flag it with:
 
-- Warning (Blue): "Hard to read" if the `ARI >= 10` and `ARI < 14`.
-- Error (Red): "Very hard to read" if the `ARI >= 14`.
-- Error (Red): If the sentence is longer than 25 words.
+- Blue squiggle: "Hard to read" if the `ARI >= 10` and `ARI < 14`.
+- Red squiggle: "Very hard to read" if the `ARI >= 14`.
+- Red squiggle: If the sentence is longer than 25 words.
 
 > Note: The average reader only understands text at an 8th-grade level. This is `ARI < 10` [^2]. The average reader also finds a sentence with more than 25 words very hard to read [^3].
 
@@ -52,15 +50,11 @@ This extension uses the automated readability index (ARI) to check readability [
 
 ## Spelling & Grammar
 
-![Spelling & Grammar](./spelling-and-grammar.png)
-
-This extension uses the excellent [LanguageTool Server](https://dev.languagetool.org/http-server.html). It will flag any spelling and grammatical errors with the same Error (Red) as Readability. The LanguageTool Server must be installed and running on your computer for this to work.
+This extension uses the excellent [LanguageTool Server](https://dev.languagetool.org/http-server.html). It will flag any spelling error with a red squiggle. It will flag any grammatical error with a cyan squiggle. The LanguageTool Server must be installed and running on your computer for this to work.
 
 If you hover over a sentence with a misspelled word, you can add it to a list of excluded words via a VSCode "Quick Fix". The command for a VSCode "Quick Fix" is `Ctrl/Cmd` + `.`. The excluded words are stored in your settings under `Markdown Wiki.excludedWords`.
 
 ## Footnotes
-
-![Footnotes](./footnotes.png)
 
 Managing Markdown footnotes is a pain. This extension makes it a bit easier.
 
@@ -71,14 +65,13 @@ Managing Markdown footnotes is a pain. This extension makes it a bit easier.
 
 ## Wiki Links
 
-![Wiki Links](./wiki-links.png)
-
-Wiki links represent an internal link to another file with a double bracket syntax: `[[link]]`. They have become widely adopted because they are short and easy to read. Here's how we use them:
+This type of link represents an internal link to another file with a double bracket syntax: `[[link]]`. They have become widely adopted because they are short and easy to read. Here's how we use them:
 
 - You have the wiki link `[[security]]` in a file called `cool.md`.
 - If that link matches the name of another file, `security.md`, we will recognize it as a link.
 - The extension will also handle variations in capitalization and pluralization.
 - So you can write `[[Security]]` or `[[securities]]` in `cool.md` and it will match!
+- If the link does not match, we will flag it with a blue squiggle.
 
 [^1]: https://en.m.wikipedia.org/wiki/Automated_readability_index
 

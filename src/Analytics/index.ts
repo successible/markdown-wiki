@@ -6,9 +6,6 @@ import { analyzeDocuments } from './helpers/analyzeDocuments'
 import { debouncedAnalyzeDocument } from './helpers/debouncedAnalyzeDocument'
 import { isMarkdownFile } from './helpers/isMarkdownFile'
 
-export const error = vscode.DiagnosticSeverity.Error
-export const info = vscode.DiagnosticSeverity.Information
-
 export const Analytics = async (
   context: vscode.ExtensionContext,
   analytics: vscode.DiagnosticCollection,

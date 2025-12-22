@@ -1,6 +1,5 @@
 import * as fs from 'node:fs'
 import * as vscode from 'vscode'
-import { error } from '../../Analytics'
 
 export const footnoteRegex = /(\[\^\w+\])(?!(: ))/g
 export const endnoteRegex = /(\[\^\w+\]): (.*)/g
@@ -30,7 +29,7 @@ export const auditFootnotesInFile = async (filePath: string) => {
     const diagnostic = new vscode.Diagnostic(
       new vscode.Range(0, 0, 0, 0),
       message,
-      error
+      vscode.DiagnosticSeverity.Error
     )
     diagnostic.code = 'footnote'
     diagnostics.push(diagnostic)
