@@ -13,7 +13,6 @@ export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
 export type DocumentMode =
   | 'onDidLoadTextDocument'
-  | 'onDidChangeTextDocument'
   | 'onDidSaveTextDocument'
   | 'onDidChangeActiveTextEditor'
   | 'onCommand'
@@ -41,7 +40,7 @@ export type LanguageServerMatch = {
 export const analyzeDocument = async (
   _context: vscode.ExtensionContext,
   document: vscode.TextDocument,
-  mode: DocumentMode,
+  _mode: DocumentMode,
   statusBar: vscode.StatusBarItem | null
 ) => {
   const config = getConfig()
@@ -52,8 +51,7 @@ export const analyzeDocument = async (
     ...(await auditFootnotesInFile(document.fileName)).diagnostics
   )
 
-  const allPossibleLinks =
-    mode !== 'onDidChangeTextDocument' ? await getAllPossibleLinks() : {}
+  const allPossibleLinks = await getAllPossibleLinks()
 
   let enableLint = true
   // Loop through every line in the text
@@ -72,15 +70,12 @@ export const analyzeDocument = async (
     const sentences = split(paragraph.text)
     const isFootnote = paragraph.text.startsWith('[^')
     for (const sentence of sentences) {
-      // Find all the wiki links
-      if (mode !== 'onDidChangeTextDocument') {
-        const wikiLinkResults = findWikiLinksInSentence(
-          sentence as TxtNode,
-          lineIndex,
-          allPossibleLinks
-        )
-        diagnostics.push(...wikiLinkResults.missingLinks)
-      }
+      const wikiLinkResults = findWikiLinksInSentence(
+        sentence as TxtNode,
+        lineIndex,
+        allPossibleLinks
+      )
+      diagnostics.push(...wikiLinkResults.missingLinks)
       // Don't lint the contents of a ```code``` block
       // When you see a ```, disable linting until you see the closing ```
       // That ensures you skip the body of the code block

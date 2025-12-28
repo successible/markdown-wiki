@@ -23,20 +23,6 @@ export const Analytics = async (
   }
 
   context.subscriptions.push(
-    vscode.workspace.onDidChangeTextDocument(async (editor) => {
-      if (isMarkdownFile(editor.document.uri)) {
-        await debouncedAnalyzeDocument(
-          context,
-          editor.document,
-          analytics,
-          'onDidChangeTextDocument',
-          statusBar
-        )
-      }
-    })
-  )
-
-  context.subscriptions.push(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
       if (isMarkdownFile(document.uri)) {
         await debouncedAnalyzeDocument(
