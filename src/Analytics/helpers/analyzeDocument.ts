@@ -13,6 +13,7 @@ export type Findings = [string, vscode.DiagnosticSeverity, string][]
 export const READABILITY = 'readability'
 export type DocumentMode =
   | 'onDidLoadTextDocument'
+  | 'onDidChangeTextDocument'
   | 'onDidSaveTextDocument'
   | 'onDidChangeActiveTextEditor'
   | 'onCommand'
@@ -40,7 +41,7 @@ export type LanguageServerMatch = {
 export const analyzeDocument = async (
   _context: vscode.ExtensionContext,
   document: vscode.TextDocument,
-  _mode: DocumentMode,
+  mode: DocumentMode,
   statusBar: vscode.StatusBarItem | null
 ) => {
   const config = getConfig()
@@ -51,7 +52,8 @@ export const analyzeDocument = async (
     ...(await auditFootnotesInFile(document.fileName)).diagnostics
   )
 
-  const allPossibleLinks = await getAllPossibleLinks()
+  const allPossibleLinks =
+    mode !== 'onDidChangeTextDocument' ? await getAllPossibleLinks() : {}
 
   let enableLint = true
   // Loop through every line in the text
@@ -70,12 +72,15 @@ export const analyzeDocument = async (
     const sentences = split(paragraph.text)
     const isFootnote = paragraph.text.startsWith('[^')
     for (const sentence of sentences) {
-      const wikiLinkResults = findWikiLinksInSentence(
-        sentence as TxtNode,
-        lineIndex,
-        allPossibleLinks
-      )
-      diagnostics.push(...wikiLinkResults.missingLinks)
+      // Find all the wiki links
+      if (mode !== 'onDidChangeTextDocument') {
+        const wikiLinkResults = findWikiLinksInSentence(
+          sentence as TxtNode,
+          lineIndex,
+          allPossibleLinks
+        )
+        diagnostics.push(...wikiLinkResults.missingLinks)
+      }
       // Don't lint the contents of a ```code``` block
       // When you see a ```, disable linting until you see the closing ```
       // That ensures you skip the body of the code block
@@ -138,7 +143,10 @@ export const analyzeDocument = async (
   }).toString()
   // Run LanguageTool on the entire block on the entire file
   // But only if it exists!
-  if (languageTool.includes('bin/languagetool')) {
+  if (
+    languageTool.includes('bin/languagetool') &&
+    mode !== 'onDidChangeTextDocument'
+  ) {
     const url = 'http://localhost:8081/v2/check'
     const text = analysis.raw
       .filter((raw) => {
