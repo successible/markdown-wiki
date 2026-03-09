@@ -126,7 +126,7 @@
     "@biomejs/biome": "2.4.4",
     "@textlint/ast-node-types": "15.5.2",
     "@types/lodash": "4.17.24",
-    "@types/node": "24.10.13",
+    "@types/node": "24.11.0",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.10.0",
     "@types/valid-url": "1.0.7",
