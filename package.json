@@ -132,6 +132,6 @@
     "@types/valid-url": "1.0.7",
     "@types/vscode": "1.110.0",
     "@vscode/vsce": "3.7.1",
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   }
 }
