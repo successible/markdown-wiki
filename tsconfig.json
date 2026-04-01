@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "lib": ["ESNext"],
     "module": "commonjs",
     "outDir": "out",
+    "rootDir": "src",
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ESNext",
-    "rootDir": "src"
+    "target": "es2022"
   }
 }
