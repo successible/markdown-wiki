@@ -116,21 +116,21 @@
     "lodash": "4.18.1",
     "p-debounce": "5.1.0",
     "pluralize": "8.0.0",
-    "remove-markdown": "0.6.4",
+    "remove-markdown": "0.7.0",
     "sentence-splitter": "5.0.1",
     "shelljs": "0.10.0",
     "uuid": "14.0.2",
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.11",
+    "@biomejs/biome": "2.5.12",
     "@textlint/ast-node-types": "15.8.0",
     "@types/lodash": "4.17.25",
     "@types/node": "24.13.3",
     "@types/pluralize": "0.0.33",
     "@types/shelljs": "0.10.0",
     "@types/valid-url": "1.0.7",
-    "@types/vscode": "1.134.0",
+    "@types/vscode": "1.136.0",
     "@vscode/vsce": "3.9.2",
     "typescript": "7.0.2"
   }
